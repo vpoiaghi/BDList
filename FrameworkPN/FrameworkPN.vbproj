@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A8C3D01-959A-4983-8261-610CB456213D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
+    <RootNamespace>FrameworkPN</RootNamespace>
+    <AssemblyName>FrameworkPN</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>FrameworkPN.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DocumentationFile>FrameworkPN.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\AutoIndexedTabControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DateTimeTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DateTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\GridItem\GridItemSelectedEventArgs.vb" />
+    <Compile Include="Components\LabelView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ListView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\GridItem\Adapter.vb" />
+    <Compile Include="Components\GridItem\IAdapter.vb" />
+    <Compile Include="Components\GridItem\GridItemActionEventArgs.vb" />
+    <Compile Include="Components\GridItem\GridItem.Designer.vb">
+      <DependentUpon>GridItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridItem\GridItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\GridItem\GridView.Designer.vb">
+      <DependentUpon>GridView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridItem\GridView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Menu\Menu.Designer.vb">
+      <DependentUpon>Menu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Menu\Menu.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Menu\MenuItem.Designer.vb">
+      <DependentUpon>MenuItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Menu\MenuItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Number.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\PicturesList\PctItem.vb" />
+    <Compile Include="Components\PicturesList\PictureItem.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\PicturesList\PictureFileNameBuilder.vb" />
+    <Compile Include="Components\PicturesList\PicturesList.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\PnlUCHeader.vb">
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Components\SelectList.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\frmShowImage.Designer.vb">
+      <DependentUpon>frmShowImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmShowImage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\MoneyTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\FrmPagesManager.Designer.vb">
+      <DependentUpon>FrmPagesManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FrmPagesManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\MemorisedPage.vb" />
+    <Compile Include="Pages\UC_Page.Designer.vb">
+      <DependentUpon>UC_Page.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Page.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Tools\ImageUtils.vb" />
+    <Compile Include="Tools\StringUtils.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\GridItem\GridView.resx">
+      <DependentUpon>GridView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Menu\Menu.resx">
+      <DependentUpon>Menu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Menu\MenuItem.resx">
+      <DependentUpon>MenuItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmShowImage.resx">
+      <DependentUpon>frmShowImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\FrmPagesManager.resx">
+      <DependentUpon>FrmPagesManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Page.resx">
+      <DependentUpon>UC_Page.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BDList_TOOLS\BDList_TOOLS.vbproj">
+      <Project>{ef29a421-71cd-4481-88d9-46fe5cf2bef0}</Project>
+      <Name>BDList_TOOLS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\first.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\last.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

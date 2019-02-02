@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5A73AF51-70DA-4106-8B55-FF7A38CE7EBF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>BDList.My.MyApplication</StartupObject>
+    <RootNamespace>BDList</RootNamespace>
+    <AssemblyName>BDList</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>BDList.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DocumentationFile>BDList.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapters\AdsAdapter.vb" />
+    <Compile Include="Adapters\AuthorsAdapter.vb" />
+    <Compile Include="Adapters\PressAdapter.vb" />
+    <Compile Include="Adapters\IdBObjectsAdapter.vb" />
+    <Compile Include="Adapters\GoodiesAdapter.vb" />
+    <Compile Include="Adapters\EditionsAdapter.vb" />
+    <Compile Include="Adapters\RecentlyModifiedItemsAdapter.vb" />
+    <Compile Include="Adapters\SeriesAdapter.vb" />
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Components\FileNamesBuilders\BoardFileNameBuilder.vb" />
+    <Compile Include="Components\FileNamesBuilders\AutographFileNameBuilder.vb" />
+    <Compile Include="Components\FileNamesBuilders\EventFileNameBuilder.vb" />
+    <Compile Include="Components\FileNamesBuilders\GoodyFileNameBuilder.vb" />
+    <Compile Include="Components\FileNamesBuilders\FourthCoverFileNameBuilder.vb" />
+    <Compile Include="Components\FileNamesBuilders\FirstCoverFileNameBuilder.vb" />
+    <Compile Include="Components\GridViewItems\GridItem_Ad.Designer.vb">
+      <DependentUpon>GridItem_Ad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Ad.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Author.Designer.vb">
+      <DependentUpon>GridItem_Author.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Author.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Goody.Designer.vb">
+      <DependentUpon>GridItem_Goody.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Goody.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Edition.Designer.vb">
+      <DependentUpon>GridItem_Edition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Edition.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_RecentyModified.Designer.vb">
+      <DependentUpon>GridItem_RecentyModified.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_RecentyModified.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Serie.Designer.vb">
+      <DependentUpon>GridItem_Serie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Components\GridViewItems\GridItem_Serie.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Consts\Constantes.vb" />
+    <Compile Include="Forms\FrmEditionOrGoody.Designer.vb">
+      <DependentUpon>FrmEditionOrGoody.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmEditionOrGoody.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteFestival.Designer.vb">
+      <DependentUpon>FrmWriteFestival.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteFestival.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPossessionState.Designer.vb">
+      <DependentUpon>FrmPossessionState.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPossessionState.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteAd.Designer.vb">
+      <DependentUpon>FrmWriteAd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteAd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteEditor.Designer.vb">
+      <DependentUpon>FrmWriteEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteEvent.Designer.vb">
+      <DependentUpon>FrmWriteEvent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteEvent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteInSigning.Designer.vb">
+      <DependentUpon>FrmWriteInSigning.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteInSigning.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWritePurchase.Designer.vb">
+      <DependentUpon>FrmWritePurchase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWritePurchase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Author.Designer.vb">
+      <DependentUpon>UC_Author.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Author.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Festivals.Designer.vb">
+      <DependentUpon>UC_Festivals.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Festivals.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Purchase.Designer.vb">
+      <DependentUpon>UC_Purchase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Purchase.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Purchases.Designer.vb">
+      <DependentUpon>UC_Purchases.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Purchases.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_SearchResultsAuthors.Designer.vb">
+      <DependentUpon>UC_SearchResultsAuthors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_SearchResultsAuthors.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Statistics.Designer.vb">
+      <DependentUpon>UC_Statistics.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Statistics.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Press.Designer.vb">
+      <DependentUpon>UC_Press.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Press.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Editors.Designer.vb">
+      <DependentUpon>UC_Editors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Editors.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_ExLibris.Designer.vb">
+      <DependentUpon>UC_ExLibris.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_ExLibris.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Authors.Designer.vb">
+      <DependentUpon>UC_Authors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Authors.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Home.Designer.vb">
+      <DependentUpon>UC_Home.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Home.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Events.Designer.vb">
+      <DependentUpon>UC_Events.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Events.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_NewEditions.Designer.vb">
+      <DependentUpon>UC_NewEditions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_NewEditions.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Coming.Designer.vb">
+      <DependentUpon>UC_Coming.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Coming.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Search.Designer.vb">
+      <DependentUpon>UC_Search.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Search.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Tests.Designer.vb">
+      <DependentUpon>UC_Tests.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Tests.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tools\Ebay API\EBayFindItemsByKeywordsResponse.vb" />
+    <Compile Include="Tools\Ebay API\EBayResult.vb" />
+    <Compile Include="Tools\Ebay API\EBaySearchResults.vb" />
+    <Compile Include="Tools\Ebay API\EBayAPI.vb" />
+    <Compile Include="Tools\Ebay API\EBayItem.vb" />
+    <Compile Include="Tools\ISBN Google API\GBookIndustryIdentifiers.vb" />
+    <Compile Include="Tools\ISBN Google API\GBookSearchInfo.vb" />
+    <Compile Include="Tools\ISBN Google API\GBookVolumeInfo.vb" />
+    <Compile Include="Tools\ISBN Google API\GBookInfos.vb" />
+    <Compile Include="Tools\ISBN Google API\GBooksInfos.vb" />
+    <Compile Include="Tools\ISBN Google API\GoogleBookAPI.vb" />
+    <Compile Include="Tools\ModifiedItem\Mdl_MidifiedLevels.vb" />
+    <Compile Include="Tools\ModifiedItem\ModifiedItem.vb" />
+    <Compile Include="Pages\UC_SearchResultsGoodies.Designer.vb">
+      <DependentUpon>UC_SearchResultsGoodies.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_SearchResultsGoodies.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_SearchResultsEditions.Designer.vb">
+      <DependentUpon>UC_SearchResultsEditions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_SearchResultsEditions.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Serie.Designer.vb">
+      <DependentUpon>UC_Serie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Serie.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_SearchResultsSeries.Designer.vb">
+      <DependentUpon>UC_SearchResultsSeries.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_SearchResultsSeries.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmMain.Designer.vb">
+      <DependentUpon>FrmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteAuthorAlias.Designer.vb">
+      <DependentUpon>FrmWriteAuthorAlias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteAuthorAlias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSelectPerson.Designer.vb">
+      <DependentUpon>FrmSelectPerson.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSelectPerson.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSelectValue.Designer.vb">
+      <DependentUpon>FrmSelectValue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSelectValue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmStat.Designer.vb">
+      <DependentUpon>FrmStat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmStat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteGoody.Designer.vb">
+      <DependentUpon>FrmWriteGoody.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteGoody.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteSociety.Designer.vb">
+      <DependentUpon>FrmWriteSociety.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteSociety.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteRole.Designer.vb">
+      <DependentUpon>FrmWriteRole.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteRole.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_Synchronize.Designer.vb">
+      <DependentUpon>UC_Synchronize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_Synchronize.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tools\Purchases\IPurchaseReader.vb" />
+    <Compile Include="Tools\Purchases\PurchaseReader.vb" />
+    <Compile Include="Tools\Purchases\PurchaseReaderEBay.vb" />
+    <Compile Include="Tools\Purchases\PurchasesReadersFactory.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlFestivals.vb" />
+    <Compile Include="Tools\Synchronise\Controls\ISyncCtrl.vb" />
+    <Compile Include="Tools\Synchronise\Controls\SyncControler.vb" />
+    <Compile Include="Tools\Synchronise\Controls\SyncCtrl.vb" />
+    <Compile Include="Tools\Synchronise\Controls\SyncCtrlItem.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlTitles.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlSeries.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlEvents.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlEditors.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlAutographs.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlAuthors.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlGoodies.vb" />
+    <Compile Include="Tools\Synchronise\Controls\Controlers\SyncCtrlEditions.vb" />
+    <Compile Include="Tools\Synchronise\Results\SyncCtrlResult.vb" />
+    <Compile Include="Tools\Synchronise\Results\SyncIdBoResults.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseAuthors.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseAutographs.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseFestivalReminders.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseInSigning.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseFestivals.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseGoodies.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseEditions.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseTitles.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseSeries.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseEditors.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseEvents.vb" />
+    <Compile Include="Tools\Synchronise\Synchroniser\SynchroniseIdBobject.vb" />
+    <Compile Include="Tools\Synchronise\SynchroniseWithSQLiteBase.vb" />
+    <Compile Include="Forms\FrmWriteEdition.Designer.vb">
+      <DependentUpon>FrmWriteEdition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteEdition.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteAuthor.Designer.vb">
+      <DependentUpon>FrmWriteAuthor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteAuthor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWriteSerie.Designer.vb">
+      <DependentUpon>FrmWriteSerie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmWriteSerie.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Consts\MdlConst.vb" />
+    <Compile Include="Tools\Synchronise\SynchroniseAction.vb" />
+    <Compile Include="Tools\Synchronise\SynchroniseResults.vb" />
+    <Compile Include="MdlConvert.vb" />
+    <Compile Include="Consts\NavParameters.vb" />
+    <Compile Include="Tools\Utils\PossessionStatesUtils.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\GridViewItems\GridItem_Ad.resx">
+      <DependentUpon>GridItem_Ad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GridViewItems\GridItem_Author.resx">
+      <DependentUpon>GridItem_Author.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GridViewItems\GridItem_Goody.resx">
+      <DependentUpon>GridItem_Goody.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GridViewItems\GridItem_Edition.resx">
+      <DependentUpon>GridItem_Edition.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GridViewItems\GridItem_RecentyModified.resx">
+      <DependentUpon>GridItem_RecentyModified.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\GridViewItems\GridItem_Serie.resx">
+      <DependentUpon>GridItem_Serie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmEditionOrGoody.resx">
+      <DependentUpon>FrmEditionOrGoody.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteFestival.resx">
+      <DependentUpon>FrmWriteFestival.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmPossessionState.resx">
+      <DependentUpon>FrmPossessionState.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteAd.resx">
+      <DependentUpon>FrmWriteAd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteEditor.resx">
+      <DependentUpon>FrmWriteEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteEvent.resx">
+      <DependentUpon>FrmWriteEvent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteInSigning.resx">
+      <DependentUpon>FrmWriteInSigning.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWritePurchase.resx">
+      <DependentUpon>FrmWritePurchase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Author.resx">
+      <DependentUpon>UC_Author.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Festivals.resx">
+      <DependentUpon>UC_Festivals.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Purchase.resx">
+      <DependentUpon>UC_Purchase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Purchases.resx">
+      <DependentUpon>UC_Purchases.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_SearchResultsAuthors.resx">
+      <DependentUpon>UC_SearchResultsAuthors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Statistics.resx">
+      <DependentUpon>UC_Statistics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Press.resx">
+      <DependentUpon>UC_Press.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Editors.resx">
+      <DependentUpon>UC_Editors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_ExLibris.resx">
+      <DependentUpon>UC_ExLibris.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Authors.resx">
+      <DependentUpon>UC_Authors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Home.resx">
+      <DependentUpon>UC_Home.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Events.resx">
+      <DependentUpon>UC_Events.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_NewEditions.resx">
+      <DependentUpon>UC_NewEditions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Coming.resx">
+      <DependentUpon>UC_Coming.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Search.resx">
+      <DependentUpon>UC_Search.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_SearchResultsGoodies.resx">
+      <DependentUpon>UC_SearchResultsGoodies.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_SearchResultsEditions.resx">
+      <DependentUpon>UC_SearchResultsEditions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Serie.resx">
+      <DependentUpon>UC_Serie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_SearchResultsSeries.resx">
+      <DependentUpon>UC_SearchResultsSeries.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmMain.resx">
+      <DependentUpon>FrmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteAuthorAlias.resx">
+      <DependentUpon>FrmWriteAuthorAlias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSelectPerson.resx">
+      <DependentUpon>FrmSelectPerson.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSelectValue.resx">
+      <DependentUpon>FrmSelectValue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmStat.resx">
+      <DependentUpon>FrmStat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteGoody.resx">
+      <DependentUpon>FrmWriteGoody.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteSociety.resx">
+      <DependentUpon>FrmWriteSociety.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteRole.resx">
+      <DependentUpon>FrmWriteRole.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteEdition.resx">
+      <DependentUpon>FrmWriteEdition.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteAuthor.resx">
+      <DependentUpon>FrmWriteAuthor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmWriteSerie.resx">
+      <DependentUpon>FrmWriteSerie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Synchronize.resx">
+      <DependentUpon>UC_Synchronize.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_Tests.resx">
+      <DependentUpon>UC_Tests.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\earth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\author.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\synchronize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closed_padlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opened_padlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\present.png" />
+    <None Include="Resources\unknown.png" />
+    <None Include="Resources\to_reserve_at_cultura.png" />
+    <None Include="Resources\uncheck_reserved.png" />
+    <None Include="Resources\uncheck_delivery.png" />
+    <None Include="Resources\bouton numéroté.png" />
+    <Content Include="app.ico" />
+    <None Include="Resources\btn_arrow_slide_left.png" />
+    <None Include="Resources\btn_arrow_slide_right.png" />
+    <None Include="Resources\BDFugue.png" />
+    <None Include="Resources\editor_no_picture.png" />
+    <None Include="Resources\193596-200.png" />
+    <None Include="Resources\duplicate.png" />
+    <None Include="Resources\btn_num_one.png" />
+    <None Include="Resources\btn_prev_page.png" />
+    <None Include="Resources\btn_next_page.png" />
+    <None Include="Resources\Cadeau.png" />
+    <Content Include="Resources\folder-contract-icon.png" />
+    <None Include="Resources\menu_search.png" />
+    <None Include="Resources\menu_coming.png" />
+    <None Include="Resources\menu_new.png" />
+    <None Include="Resources\menu_author.png" />
+    <None Include="Resources\menu_editor.png" />
+    <None Include="Resources\menu_print.png" />
+    <None Include="Resources\menu_exlibris.png" />
+    <None Include="Resources\menu_boughts.png" />
+    <None Include="Resources\nothing.png" />
+    <None Include="Resources\menu_festival.png" />
+    <Content Include="Resources\Office-Customer-Male-Light-icon.png" />
+    <None Include="Resources\search 2.png" />
+    <None Include="Resources\menu_events.png" />
+    <None Include="Resources\menu_synchronize.png" />
+    <None Include="Resources\menu_statistics.png" />
+    <None Include="Resources\menu_home.png" />
+    <None Include="Resources\img_menu_header2.png" />
+    <None Include="Resources\remove.png" />
+    <None Include="Resources\events.png" />
+    <None Include="Resources\event.png" />
+    <None Include="Resources\prev.png" />
+    <None Include="Resources\next.png" />
+    <None Include="Resources\first_edition.png" />
+    <None Include="Resources\loupe.png" />
+    <None Include="Resources\news.png" />
+    <None Include="Resources\nobody.png" />
+    <None Include="Resources\Image1.bmp" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\uncheck_but_wanted.png" />
+    <None Include="Resources\uncheck.png" />
+    <None Include="Resources\editor.png" />
+    <None Include="Resources\arrow_down.png" />
+    <None Include="Resources\arrow_up.png" />
+    <None Include="Resources\check.png" />
+    <None Include="Resources\add_book.png" />
+    <None Include="Resources\add_serie.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\btn_home.png" />
+    <Content Include="Resources\btn_signature.png" />
+    <Content Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BDList_DAO\BDList_DAO_BO.vbproj">
+      <Project>{d8b6b81c-2c20-4772-a278-2078df47e6c0}</Project>
+      <Name>BDList_DAO_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BDList_DATABASE\BDList_DATABASE.vbproj">
+      <Project>{5b5777e1-ec0f-41b5-a92d-9e279fe3e471}</Project>
+      <Name>BDList_DATABASE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BDList_SERVICE\BDList_SERVICE.vbproj">
+      <Project>{05ae5a95-e1de-4a52-8923-7a1b078c8aaa}</Project>
+      <Name>BDList_SERVICE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BDList_TOOLS\BDList_TOOLS.vbproj">
+      <Project>{ef29a421-71cd-4481-88d9-46fe5cf2bef0}</Project>
+      <Name>BDList_TOOLS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrameworkPN\FrameworkPN.vbproj">
+      <Project>{2a8c3d01-959a-4983-8261-610cb456213d}</Project>
+      <Name>FrameworkPN</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

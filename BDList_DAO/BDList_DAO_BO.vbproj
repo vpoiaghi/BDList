@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8B6B81C-2C20-4772-A278-2078DF47E6C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BDList_DAO_BO</RootNamespace>
+    <AssemblyName>BDList_DAO_BO</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>BDList_DAO_BO.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DocumentationFile>BDList_DAO_BO.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BoExtended\BoAccess\AdArticle.vb" />
+    <Compile Include="BoExtended\BoAccess\Author.vb" />
+    <Compile Include="BoExtended\BoAccess\Ad.vb" />
+    <Compile Include="BoExtended\BoAccess\Collection.vb" />
+    <Compile Include="BoExtended\BoAccess\Autograph.vb" />
+    <Compile Include="BoExtended\BoAccess\InSigning.vb" />
+    <Compile Include="BoExtended\BoAccess\FestivalReminder.vb" />
+    <Compile Include="BoExtended\BoAccess\Festival.vb" />
+    <Compile Include="BoExtended\BoAccess\Purchase.vb" />
+    <Compile Include="BoExtended\BoAccess\PossessionState.vb" />
+    <Compile Include="BoExtended\BoAccess\CountByYear.vb" />
+    <Compile Include="BoExtended\BoAccess\CountByMonth.vb" />
+    <Compile Include="BoExtended\BoAccess\Edition.vb" />
+    <Compile Include="BoExtended\BoAccess\EditionColor.vb" />
+    <Compile Include="BoExtended\BoAccess\EditionFormat.vb" />
+    <Compile Include="BoExtended\BoAccess\Editor.vb" />
+    <Compile Include="BoExtended\BoAccess\Goody.vb" />
+    <Compile Include="BoExtended\BoAccess\Kind.vb" />
+    <Compile Include="BoExtended\BoAccess\KindOfGoody.vb" />
+    <Compile Include="BoExtended\BoAccess\Origin.vb" />
+    <Compile Include="BoExtended\BoAccess\Parameter.vb" />
+    <Compile Include="BoExtended\BoAccess\Person.vb" />
+    <Compile Include="BoExtended\BoAccess\AuthorRole.vb" />
+    <Compile Include="BoExtended\BoAccess\Event.vb" />
+    <Compile Include="BoExtended\BoAccess\AdState.vb" />
+    <Compile Include="BoExtended\BoAccess\Role.vb" />
+    <Compile Include="BoExtended\BoAccess\Serie.vb" />
+    <Compile Include="BoExtended\BoAccess\SizeCategory.vb" />
+    <Compile Include="BoExtended\BoAccess\Society.vb" />
+    <Compile Include="BoExtended\BoAccess\SocietyRole.vb" />
+    <Compile Include="BoExtended\BoAccess\PurchaseState.vb" />
+    <Compile Include="BoExtended\BoAccess\Seller.vb" />
+    <Compile Include="BoExtended\BoAccess\WebSite.vb" />
+    <Compile Include="BoExtended\BoAccess\State.vb" />
+    <Compile Include="BoExtended\BoAccess\Title.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneAuthor.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneInSigning.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneFestivalReminder.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneFestival.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneEvent.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneAutograph.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneGoody.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneEditor.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneTitle.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneSerie.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneParameters.vb" />
+    <Compile Include="BoExtended\BoSQLite\PhoneEdition.vb" />
+    <Compile Include="Bo\BoAccess\BoAdArticle.vb" />
+    <Compile Include="Bo\BoAccess\BoAuthor.vb" />
+    <Compile Include="Bo\BoAccess\BoCollection.vb" />
+    <Compile Include="Bo\BoAccess\BoInSigning_Edition.vb" />
+    <Compile Include="Bo\BoAccess\BoInSigning.vb" />
+    <Compile Include="Bo\BoAccess\BoFestivalReminder.vb" />
+    <Compile Include="Bo\BoAccess\BoFestival.vb" />
+    <Compile Include="Bo\BoAccess\BoColor.vb" />
+    <Compile Include="Bo\BoAccess\BoAd.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition_AuthorRole.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition_Color.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition_Format.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition_Serie.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition_SocietyRole.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition_Title.vb" />
+    <Compile Include="Bo\BoAccess\BoEditor.vb" />
+    <Compile Include="Bo\BoAccess\BoFormat.vb" />
+    <Compile Include="Bo\BoAccess\BoGoody.vb" />
+    <Compile Include="Bo\BoAccess\BoKind.vb" />
+    <Compile Include="Bo\BoAccess\BoKindOfGoody.vb" />
+    <Compile Include="Bo\BoAccess\BoOrigin.vb" />
+    <Compile Include="Bo\BoAccess\BoParameter.vb" />
+    <Compile Include="Bo\BoAccess\BoPerson.vb" />
+    <Compile Include="Bo\BoAccess\BoPossessionState.vb" />
+    <Compile Include="Bo\BoAccess\BoPurchase.vb" />
+    <Compile Include="Bo\BoAccess\BoAdState.vb" />
+    <Compile Include="Bo\BoAccess\BoRecallEvent.vb" />
+    <Compile Include="Bo\BoAccess\BoRole.vb" />
+    <Compile Include="Bo\BoAccess\BoSeller.vb" />
+    <Compile Include="Bo\BoAccess\BoSerie.vb" />
+    <Compile Include="Bo\BoAccess\BoSizeCategory.vb" />
+    <Compile Include="Bo\BoAccess\BoSociety.vb" />
+    <Compile Include="Bo\BoAccess\BoPurchaseState.vb" />
+    <Compile Include="Bo\BoAccess\BoState.vb" />
+    <Compile Include="Bo\BoAccess\BoTitle.vb" />
+    <Compile Include="Bo\BoAccess\BoWebSite.vb" />
+    <Compile Include="Bo\BObject.vb" />
+    <Compile Include="Bo\BoAccess\BoSocietyRole.vb" />
+    <Compile Include="Bo\BoAccess\BoAuthorRole.vb" />
+    <Compile Include="Bo\BoAccess\BoAuthor_Person.vb" />
+    <Compile Include="Bo\BoAccess\BoAutograph.vb" />
+    <Compile Include="Bo\BoAccess\BoEdition_Autograph.vb" />
+    <Compile Include="Bo\BoAccess\BoGoody_Autograph.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneInSigning.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneFestivalReminder.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneFestival.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneParameters.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneSerie.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneTitle.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneEditor.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneGoody.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneAutograph.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneEvent.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneAuthor.vb" />
+    <Compile Include="Bo\ILinkBObject.vb" />
+    <Compile Include="Bo\LinkBObject.vb" />
+    <Compile Include="Bo\IIdBObject.vb" />
+    <Compile Include="Bo\NamedBObject.vb" />
+    <Compile Include="Bo\IdBObject.vb" />
+    <Compile Include="Bo\IBObject.vb" />
+    <Compile Include="Bo\BoSQLite\BoPhoneEdition.vb" />
+    <Compile Include="Dao\Abstract\IDaoBObject.vb" />
+    <Compile Include="Dao\Abstract\Dao.vb" />
+    <Compile Include="Dao\Abstract\DaoBObject.vb" />
+    <Compile Include="Dao\Abstract\DaoLinks.vb" />
+    <Compile Include="Dao\Abstract\IDaoLinks.vb" />
+    <Compile Include="Dao\DaoAccess\Abstract\DaoLinksAccess.vb" />
+    <Compile Include="Dao\DaoAccess\Abstract\DaoNamedBo.vb" />
+    <Compile Include="Dao\DaoAccess\DaoAdArticle.vb" />
+    <Compile Include="Dao\DaoAccess\DaoAd.vb" />
+    <Compile Include="Dao\DaoAccess\DaoAdState.vb" />
+    <Compile Include="Dao\DaoAccess\DaoInSigning.vb" />
+    <Compile Include="Dao\DaoAccess\DaoFestivalReminder.vb" />
+    <Compile Include="Dao\DaoAccess\DaoFestival.vb" />
+    <Compile Include="Dao\DaoAccess\DaoSeller.vb" />
+    <Compile Include="Dao\DaoAccess\DaoPurchase.vb" />
+    <Compile Include="Dao\DaoAccess\DaoPossessionState.vb" />
+    <Compile Include="Dao\DaoAccess\DaoRecallEvent.vb" />
+    <Compile Include="Dao\DaoAccess\DaoPurchaseState.vb" />
+    <Compile Include="Dao\DaoAccess\DaoWebSite.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneAuthor.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneInSigning.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneFestivalReminder.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneFestival.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneEvent.vb" />
+    <Compile Include="Dao\Managing\DaoUtilsInsertOrUpdate.vb" />
+    <Compile Include="Dao\Managing\DaoUtilsDelete.vb" />
+    <Compile Include="Dao\DaoSQLite\Abstract\DaoSQLite.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneAutograph.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneGoody.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneEditor.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneTitle.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneSerie.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneParameters.vb" />
+    <Compile Include="Dao\DaoSQLite\DaoPhoneEdition.vb" />
+    <Compile Include="Dao\DaoAccess\DaoAutograph.vb" />
+    <Compile Include="Dao\DaoAccess\DaoAuthor.vb" />
+    <Compile Include="Dao\Managing\DaoUtilsSearch.vb" />
+    <Compile Include="Dao\DaoAccess\DaoSocietyRole.vb" />
+    <Compile Include="Dao\DaoAccess\DaoAuthorRole.vb" />
+    <Compile Include="Dao\Managing\LinkedDao.vb" />
+    <Compile Include="Dao\Managing\RefIdObjectsList.vb" />
+    <Compile Include="Dao\Tools\SearchCriteria.vb" />
+    <Compile Include="RequestBuilders\Abstract\BasicRequestBuilder.vb" />
+    <Compile Include="RequestBuilders\BasicAccessRequestBuilder.vb" />
+    <Compile Include="Dao\Managing\DaoManager.vb" />
+    <Compile Include="Dao\DaoAccess\Abstract\DaoAccess.vb" />
+    <Compile Include="Dao\DaoAccess\DaoCollection.vb" />
+    <Compile Include="Dao\DaoAccess\DaoColor.vb" />
+    <Compile Include="Dao\DaoAccess\DaoEdition.vb" />
+    <Compile Include="Dao\DaoAccess\DaoEditor.vb" />
+    <Compile Include="Dao\DaoAccess\DaoFormat.vb" />
+    <Compile Include="Dao\DaoAccess\DaoGoody.vb" />
+    <Compile Include="Dao\DaoAccess\DaoKind.vb" />
+    <Compile Include="Dao\DaoAccess\DaoKindOfGoody.vb" />
+    <Compile Include="Dao\DaoAccess\DaoOrigin.vb" />
+    <Compile Include="Dao\DaoAccess\DaoParameter.vb" />
+    <Compile Include="Dao\DaoAccess\DaoPerson.vb" />
+    <Compile Include="Dao\DaoAccess\DaoRole.vb" />
+    <Compile Include="Dao\DaoAccess\DaoSerie.vb" />
+    <Compile Include="Dao\DaoAccess\DaoSizeCategory.vb" />
+    <Compile Include="Dao\DaoAccess\DaoSociety.vb" />
+    <Compile Include="Dao\DaoAccess\DaoState.vb" />
+    <Compile Include="Dao\DaoAccess\DaoTitle.vb" />
+    <Compile Include="Dao\Abstract\IDao.vb" />
+    <Compile Include="Dao\Managing\LinkedDaoList.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RequestBuilders\BasicSQLiteRequestBuilder.vb" />
+    <Compile Include="RequestBuilders\Abstract\IBasicRequestBuilder.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BDList_DATABASE\BDList_DATABASE.vbproj">
+      <Project>{5b5777e1-ec0f-41b5-a92d-9e279fe3e471}</Project>
+      <Name>BDList_DATABASE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BDList_TOOLS\BDList_TOOLS.vbproj">
+      <Project>{ef29a421-71cd-4481-88d9-46fe5cf2bef0}</Project>
+      <Name>BDList_TOOLS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

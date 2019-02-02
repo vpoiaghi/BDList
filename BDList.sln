@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BDList", "BDList\BDList.vbproj", "{5A73AF51-70DA-4106-8B55-FF7A38CE7EBF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A8C3D01-959A-4983-8261-610CB456213D} = {2A8C3D01-959A-4983-8261-610CB456213D}
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BDList_DAO_BO", "BDList_DAO\BDList_DAO_BO.vbproj", "{D8B6B81C-2C20-4772-A278-2078DF47E6C0}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BDList_SERVICE", "BDList_SERVICE\BDList_SERVICE.vbproj", "{05AE5A95-E1DE-4A52-8923-7A1B078C8AAA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BDList_TOOLS", "BDList_TOOLS\BDList_TOOLS.vbproj", "{EF29A421-71CD-4481-88D9-46FE5CF2BEF0}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BDList_DATABASE", "BDList_DATABASE\BDList_DATABASE.vbproj", "{5B5777E1-EC0F-41B5-A92D-9E279FE3E471}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FrameworkPN", "FrameworkPN\FrameworkPN.vbproj", "{2A8C3D01-959A-4983-8261-610CB456213D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A73AF51-70DA-4106-8B55-FF7A38CE7EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A73AF51-70DA-4106-8B55-FF7A38CE7EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A73AF51-70DA-4106-8B55-FF7A38CE7EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A73AF51-70DA-4106-8B55-FF7A38CE7EBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8B6B81C-2C20-4772-A278-2078DF47E6C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8B6B81C-2C20-4772-A278-2078DF47E6C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8B6B81C-2C20-4772-A278-2078DF47E6C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8B6B81C-2C20-4772-A278-2078DF47E6C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05AE5A95-E1DE-4A52-8923-7A1B078C8AAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05AE5A95-E1DE-4A52-8923-7A1B078C8AAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05AE5A95-E1DE-4A52-8923-7A1B078C8AAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05AE5A95-E1DE-4A52-8923-7A1B078C8AAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF29A421-71CD-4481-88D9-46FE5CF2BEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF29A421-71CD-4481-88D9-46FE5CF2BEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF29A421-71CD-4481-88D9-46FE5CF2BEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF29A421-71CD-4481-88D9-46FE5CF2BEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5777E1-EC0F-41B5-A92D-9E279FE3E471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5777E1-EC0F-41B5-A92D-9E279FE3E471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5777E1-EC0F-41B5-A92D-9E279FE3E471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5777E1-EC0F-41B5-A92D-9E279FE3E471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8C3D01-959A-4983-8261-610CB456213D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8C3D01-959A-4983-8261-610CB456213D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8C3D01-959A-4983-8261-610CB456213D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8C3D01-959A-4983-8261-610CB456213D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
