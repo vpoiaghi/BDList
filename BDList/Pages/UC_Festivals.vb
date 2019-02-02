@@ -44,6 +44,8 @@ Public Class UC_Festivals
 
         Dim svcInSigning As New ServiceInSigning
 
+        LVw_InSigning.Items.Clear()
+
         For Each i As InSigning In svcInSigning.GetByFestival(festival)
             With LVw_InSigning.Items.Add(i.GetAuthor().ToString)
 
