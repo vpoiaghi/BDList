@@ -39,6 +39,10 @@ Public Class ServiceSerie
         Return GetDao().Search(searchCriteria)
     End Function
 
+    Public Function SearchCount(searchCriteria As SearchCriteria) As Integer
+        Return GetDao().SearchCount(searchCriteria)
+    End Function
+
     Public Function GetSeriesByFirstLetter(firstLetter As String) As List(Of IdBObject)
 
         Dim result As New List(Of IdBObject)

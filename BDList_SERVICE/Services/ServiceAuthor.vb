@@ -23,6 +23,9 @@ Public Class ServiceAuthor
         Return GetDao().Search(searchCriteria)
     End Function
 
+    Public Function SearchCount(searchCriteria As SearchCriteria) As Integer
+        Return GetDao().SearchCount(searchCriteria)
+    End Function
 
     Public Function GetByAlias(allias As String) As List(Of IdBObject)
 

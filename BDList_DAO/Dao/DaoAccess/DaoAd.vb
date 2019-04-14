@@ -64,7 +64,11 @@ Namespace DAO
         End Sub
 
         Public Function GetByPurchase(purchase As Purchase) As List(Of IdBObject)
-            Return GetByPurchase(purchase.GetId)
+            If purchase Is Nothing Then
+                Return Nothing
+            Else
+                Return GetByPurchase(purchase.GetId)
+            End If
         End Function
 
         Public Function GetByPurchase(purchaseId As Long?) As List(Of IdBObject)

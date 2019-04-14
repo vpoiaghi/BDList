@@ -1,7 +1,6 @@
 ﻿Imports BDList_DAO_BO.BO
 Imports BDList_DAO_BO.RequestBuilder
 Imports BDList_DATABASE
-Imports BDList_TOOLS
 
 Namespace DAO
 

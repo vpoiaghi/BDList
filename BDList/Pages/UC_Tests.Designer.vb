@@ -30,6 +30,10 @@ Partial Class UC_Tests
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -74,7 +78,7 @@ Partial Class UC_Tests
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(10, 114)
+        Me.Button2.Location = New System.Drawing.Point(10, 254)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(166, 38)
         Me.Button2.TabIndex = 9
@@ -90,10 +94,48 @@ Partial Class UC_Tests
         Me.Button1.Text = "Test infos Google par ISBN"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(10, 114)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(166, 38)
+        Me.Button5.TabIndex = 14
+        Me.Button5.Text = "Test infos Google tous ISBN"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.Location = New System.Drawing.Point(182, 127)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(63, 13)
+        Me.Label1.TabIndex = 15
+        Me.Label1.Text = "Compteur"
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(10, 158)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(166, 38)
+        Me.Button6.TabIndex = 16
+        Me.Button6.Text = "Test infos BNF tous ISBN"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.Location = New System.Drawing.Point(182, 171)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(63, 13)
+        Me.Label2.TabIndex = 17
+        Me.Label2.Text = "Compteur"
+        '
         'UC_Tests
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.PictureBox2)
@@ -109,6 +151,10 @@ Partial Class UC_Tests
         Me.Controls.SetChildIndex(Me.PictureBox2, 0)
         Me.Controls.SetChildIndex(Me.Button3, 0)
         Me.Controls.SetChildIndex(Me.Button4, 0)
+        Me.Controls.SetChildIndex(Me.Button5, 0)
+        Me.Controls.SetChildIndex(Me.Label1, 0)
+        Me.Controls.SetChildIndex(Me.Button6, 0)
+        Me.Controls.SetChildIndex(Me.Label2, 0)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -120,4 +166,8 @@ Partial Class UC_Tests
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Button6 As Button
+    Friend WithEvents Label2 As Label
 End Class

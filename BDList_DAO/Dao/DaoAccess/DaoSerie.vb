@@ -149,6 +149,30 @@ Namespace DAO
 
         End Function
 
+        Public Function SearchCount(searchCriteria As SearchCriteria) As Integer
+
+            Dim rqt As String
+
+            If searchCriteria.id IsNot Nothing Then
+                ' Si le critère Identifiant est renseigné, on ne tien pas compte des autres critères
+                rqt = "Select Count(*) FROM Serie WHERE Id=" & searchCriteria.id
+
+            Else
+                Dim strSearchCriteria = BuildSearchCriteria(searchCriteria)
+
+                rqt = " SELECT COUNT(*)" _
+                    & " FROM (" _
+                    & " SELECT DISTINCT Id" _
+                    & " FROM Serie" _
+                    & strSearchCriteria _
+                    & " )"
+
+            End If
+
+            Return GetRequestValue(rqt)
+
+        End Function
+
         Private Function BuildSearchCriteria(searchCriteria As SearchCriteria) As String
 
             Dim result As String = ""

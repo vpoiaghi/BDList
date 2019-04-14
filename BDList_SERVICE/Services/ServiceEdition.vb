@@ -125,9 +125,13 @@ Public Class ServiceEdition
         Return GetDao().Search(searchCriteria)
     End Function
 
+    Public Function SearchCount(searchCriteria As SearchCriteria) As Integer
+        Return GetDao().SearchCount(searchCriteria)
+    End Function
+
     Public Function GetEditionByPeriod(firstDate As Date, lastDate As Date) As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetEditionByPeriod(firstDate, lastDate)

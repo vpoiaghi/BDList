@@ -240,7 +240,7 @@ Namespace DAO
                 OrElse searchCriteria.possessionCriteria.toReserveAtCultura _
                 OrElse searchCriteria.possessionCriteria.present
                 ) Then
-                ' Si aucune des trois options n'est cochée, on prend rien donc pas besoin de lancer une requête
+                ' Si aucune des options n'est cochée, on prend rien donc pas besoin de lancer une requête
                 result = New List(Of IdBObject)
 
             Else
@@ -268,6 +268,61 @@ Namespace DAO
                   & " Edition.SpecialEdition ASC"
 
                 result = GetByIds(rqt)
+
+            End If
+
+            Return result
+
+        End Function
+
+        Public Function SearchCount(searchCriteria As SearchCriteria) As Integer
+
+            Dim result As Integer
+
+            If Not (searchCriteria.possessionCriteria.inPossession _
+                OrElse searchCriteria.possessionCriteria.wanted _
+                OrElse searchCriteria.possessionCriteria.missing _
+                OrElse searchCriteria.possessionCriteria.inDelivery _
+                OrElse searchCriteria.possessionCriteria.reserved _
+                OrElse searchCriteria.possessionCriteria.toReserveAtBDfugue _
+                OrElse searchCriteria.possessionCriteria.toReserveAtCultura _
+                OrElse searchCriteria.possessionCriteria.present
+            ) Then
+                ' Si aucune des options n'est cochée, on prend rien donc pas besoin de lancer une requête
+                result = 0
+
+            Else
+                Dim rqt As String
+
+                If searchCriteria.id IsNot Nothing Then
+                    ' Si le critère Identifiant est renseigné, on ne tien pas compte des autres critères
+                    rqt = "SELECT Count(*) FROM Edition WHERE Id=" & searchCriteria.id
+
+
+                Else
+                    Dim strSearchCriteria = BuildSearchCriteria(searchCriteria)
+
+                    rqt = " SELECT Count(*)" _
+                        & " FROM (" _
+                        & " SELECT DISTINCT Edition.Id" _
+                        & " FROM ((((((((((Edition" _
+                        & " LEFT JOIN Edition_Serie ON (Edition.Id = Edition_Serie.IdEdition))" _
+                        & " LEFT JOIN Serie ON (Edition_Serie.IdSerie = Serie.Id))" _
+                        & " LEFT JOIN Edition_Title ON (Edition.Id = Edition_Title.IdEdition))" _
+                        & " LEFT JOIN Title ON (Edition_Title.IdTitle = Title.Id))" _
+                        & " LEFT JOIN Editor ON (Edition.IdEditor = Editor.Id))" _
+                        & " LEFT JOIN Collection ON (Edition.IdCollection = Collection.Id))" _
+                        & " LEFT JOIN Edition_AuthorRole ON (Edition.Id = Edition_AuthorRole.IdEdition))" _
+                        & " LEFT JOIN AuthorRole ON (Edition_AuthorRole.IdAuthorRole = AuthorRole.Id))" _
+                        & " LEFT JOIN Author ON (AuthorRole.IdAuthor = Author.Id))" _
+                        & " LEFT JOIN Author_Person ON (Author.Id = Author_Person.IdAuthor))" _
+                        & " LEFT JOIN Person ON (Author_Person.IdPerson = Person.Id)" _
+                        & strSearchCriteria _
+                        & " )"
+
+                End If
+
+                result = GetRequestValue(rqt)
 
             End If
 

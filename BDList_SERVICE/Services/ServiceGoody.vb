@@ -9,6 +9,10 @@ Public Class ServiceGoody
         Return GetDao().Search(searchCriteria)
     End Function
 
+    Public Function SearchCount(searchCriteria As SearchCriteria) As Integer
+        Return GetDao().SearchCount(searchCriteria)
+    End Function
+
     Public Function GetAllBySerie(serie As Serie) As List(Of IdBObject)
 
         Dim result As List(Of IdBObject) = Nothing

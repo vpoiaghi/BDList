@@ -118,7 +118,7 @@ Partial Class FrmWriteGoody
         Me.txtNumberMax.Location = New System.Drawing.Point(277, 441)
         Me.txtNumberMax.Name = "txtNumberMax"
         Me.txtNumberMax.Size = New System.Drawing.Size(49, 20)
-        Me.txtNumberMax.TabIndex = 12
+        Me.txtNumberMax.TabIndex = 13
         '
         'Label3
         '
@@ -135,7 +135,7 @@ Partial Class FrmWriteGoody
         Me.rtbAutograph.Location = New System.Drawing.Point(112, 467)
         Me.rtbAutograph.Name = "rtbAutograph"
         Me.rtbAutograph.Size = New System.Drawing.Size(422, 48)
-        Me.rtbAutograph.TabIndex = 14
+        Me.rtbAutograph.TabIndex = 15
         Me.rtbAutograph.Text = ""
         '
         'Label4
@@ -221,7 +221,7 @@ Partial Class FrmWriteGoody
         Me.rtbComments.Location = New System.Drawing.Point(112, 521)
         Me.rtbComments.Name = "rtbComments"
         Me.rtbComments.Size = New System.Drawing.Size(422, 48)
-        Me.rtbComments.TabIndex = 15
+        Me.rtbComments.TabIndex = 16
         Me.rtbComments.Text = ""
         '
         'lblComments
@@ -238,7 +238,7 @@ Partial Class FrmWriteGoody
         Me.BtnOK.Location = New System.Drawing.Point(787, 694)
         Me.BtnOK.Name = "BtnOK"
         Me.BtnOK.Size = New System.Drawing.Size(100, 22)
-        Me.BtnOK.TabIndex = 21
+        Me.BtnOK.TabIndex = 22
         Me.BtnOK.Text = "Enregistrer"
         Me.BtnOK.UseVisualStyleBackColor = True
         '
@@ -248,7 +248,7 @@ Partial Class FrmWriteGoody
         Me.BtnCancel.Location = New System.Drawing.Point(888, 694)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(100, 22)
-        Me.BtnCancel.TabIndex = 22
+        Me.BtnCancel.TabIndex = 23
         Me.BtnCancel.Text = "Annuler"
         Me.BtnCancel.UseVisualStyleBackColor = True
         '
@@ -266,7 +266,7 @@ Partial Class FrmWriteGoody
         Me.txtNumberInCollection.Location = New System.Drawing.Point(472, 575)
         Me.txtNumberInCollection.Name = "txtNumberInCollection"
         Me.txtNumberInCollection.Size = New System.Drawing.Size(62, 20)
-        Me.txtNumberInCollection.TabIndex = 17
+        Me.txtNumberInCollection.TabIndex = 18
         '
         'lblNumberInCollection
         '
@@ -283,14 +283,14 @@ Partial Class FrmWriteGoody
         Me.cmbCollection.Location = New System.Drawing.Point(112, 575)
         Me.cmbCollection.Name = "cmbCollection"
         Me.cmbCollection.Size = New System.Drawing.Size(213, 21)
-        Me.cmbCollection.TabIndex = 16
+        Me.cmbCollection.TabIndex = 17
         '
         'slst_authors
         '
         Me.slst_authors.Location = New System.Drawing.Point(17, 617)
         Me.slst_authors.Name = "slst_authors"
         Me.slst_authors.Size = New System.Drawing.Size(520, 78)
-        Me.slst_authors.TabIndex = 18
+        Me.slst_authors.TabIndex = 19
         Me.slst_authors.Title = "Auteurs :"
         '
         'Btn_CreateAuthor
@@ -298,7 +298,7 @@ Partial Class FrmWriteGoody
         Me.Btn_CreateAuthor.Location = New System.Drawing.Point(516, 694)
         Me.Btn_CreateAuthor.Name = "Btn_CreateAuthor"
         Me.Btn_CreateAuthor.Size = New System.Drawing.Size(21, 21)
-        Me.Btn_CreateAuthor.TabIndex = 19
+        Me.Btn_CreateAuthor.TabIndex = 20
         Me.Btn_CreateAuthor.Text = "+"
         Me.Btn_CreateAuthor.UseVisualStyleBackColor = True
         '
@@ -308,7 +308,7 @@ Partial Class FrmWriteGoody
         Me.plstPictures.Location = New System.Drawing.Point(540, 12)
         Me.plstPictures.Name = "plstPictures"
         Me.plstPictures.Size = New System.Drawing.Size(448, 676)
-        Me.plstPictures.TabIndex = 20
+        Me.plstPictures.TabIndex = 21
         '
         'slst_editions
         '
@@ -366,7 +366,7 @@ Partial Class FrmWriteGoody
         Me.chkScanned.Location = New System.Drawing.Point(519, 444)
         Me.chkScanned.Name = "chkScanned"
         Me.chkScanned.Size = New System.Drawing.Size(15, 14)
-        Me.chkScanned.TabIndex = 13
+        Me.chkScanned.TabIndex = 14
         Me.chkScanned.UseVisualStyleBackColor = True
         '
         'cmbNumberType
@@ -375,7 +375,7 @@ Partial Class FrmWriteGoody
         Me.cmbNumberType.Location = New System.Drawing.Point(162, 441)
         Me.cmbNumberType.Name = "cmbNumberType"
         Me.cmbNumberType.Size = New System.Drawing.Size(76, 21)
-        Me.cmbNumberType.TabIndex = 35
+        Me.cmbNumberType.TabIndex = 12
         '
         'btn_possessionState
         '

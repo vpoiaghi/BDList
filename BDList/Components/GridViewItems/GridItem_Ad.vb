@@ -8,6 +8,7 @@ Public Class GridItem_Ad
     Private Shared ReadOnly COLOR_RED As Color = Color.FromArgb(255, 255, 72, 72)
     Private Shared ReadOnly COLOR_GREEN As Color = Color.FromArgb(255, 146, 208, 80)
     Private Shared ReadOnly COLOR_GREY As Color = Color.FromArgb(255, 120, 120, 120)
+    Private Shared ReadOnly COLOR_YELLOW As Color = Color.FromArgb(255, 249, 236, 0)
 
 
     Private m_pnlInfosWidth As Integer = 0
@@ -16,6 +17,7 @@ Public Class GridItem_Ad
 
     Private m_svcAd As New ServiceAd
     Private m_svcPurchase As New ServicePurchase
+
     Private m_ad As Ad
 
     Public Sub New()
@@ -41,7 +43,6 @@ Public Class GridItem_Ad
         RedrawWithNumber()
 
     End Sub
-
 
     Private Sub RedrawPicture()
 
@@ -80,18 +81,19 @@ Public Class GridItem_Ad
 
         Dim iwa As Integer
         Dim allSame As Boolean = True
+        Dim articles As List(Of IdBObject) = m_ad.GetAdArticles
 
-        If m_ad.GetAdArticles.Count = 0 Then
+        If articles.Count = 0 Then
             iwa = AdArticle.AutographStates.Unknown
 
-        ElseIf m_ad.GetAdArticles.Count = 1 Then
-            iwa = CType(m_ad.GetAdArticles(0), AdArticle).IsWithAutograph()
+        ElseIf articles.Count = 1 Then
+            iwa = CType(articles(0), AdArticle).IsWithAutograph()
 
         Else
-            iwa = CType(m_ad.GetAdArticles(0), AdArticle).IsWithAutograph
+            iwa = CType(articles(0), AdArticle).IsWithAutograph
 
-            For i As Integer = 1 To m_ad.GetAdArticles.Count - 1
-                allSame = allSame AndAlso (iwa = CType(m_ad.GetAdArticles(i), AdArticle).IsWithAutograph)
+            For i As Integer = 1 To articles.Count - 1
+                allSame = allSame AndAlso (iwa = CType(articles(i), AdArticle).IsWithAutograph)
             Next
 
         End If
@@ -104,7 +106,7 @@ Public Class GridItem_Ad
                 Lbl_WithAutograph.BackColor = IIf(iwa = AdArticle.AutographStates.WithAutograph, COLOR_GREEN, COLOR_RED)
             End If
         Else
-            Lbl_WithNumber.Visible = True
+            Lbl_WithAutograph.Visible = True
             Lbl_WithAutograph.BackColor = COLOR_GREY
         End If
 
@@ -112,34 +114,41 @@ Public Class GridItem_Ad
 
     Private Sub RedrawWithNumber()
 
-        Dim iwa As Integer
+        Dim iwn As Integer
         Dim allSame As Boolean = True
+        Dim articles As List(Of IdBObject) = m_ad.GetAdArticles
 
-        If m_ad.GetAdArticles.Count = 0 Then
-            iwa = AdArticle.AutographStates.Unknown
+        If articles.Count = 0 Then
+            iwn = AdArticle.NumberStates.Unknown
 
-        ElseIf m_ad.GetAdArticles.Count = 1 Then
+        ElseIf articles.Count = 1 Then
 
-            With CType(m_ad.GetAdArticles(0), AdArticle)
-                iwa = .IsWithNumber()
+            With CType(articles(0), AdArticle)
+                iwn = .IsWithNumber()
                 allSame = True
             End With
 
         Else
-            iwa = CType(m_ad.GetAdArticles(0), AdArticle).IsWithNumber
+            iwn = CType(articles(0), AdArticle).IsWithNumber
 
-            For i As Integer = 1 To m_ad.GetAdArticles.Count - 1
-                allSame = allSame AndAlso (iwa = CType(m_ad.GetAdArticles(i), AdArticle).IsWithNumber)
+            For i As Integer = 1 To articles.Count - 1
+                allSame = allSame AndAlso (iwn = CType(articles(i), AdArticle).IsWithNumber)
             Next
 
         End If
 
         If allSame Then
-            If iwa = AdArticle.AutographStates.Unknown Then
+            If iwn = AdArticle.NumberStates.Unknown Then
                 Lbl_WithNumber.Visible = False
             Else
                 Lbl_WithNumber.Visible = True
-                Lbl_WithNumber.BackColor = IIf(iwa = AdArticle.AutographStates.WithAutograph, COLOR_GREEN, COLOR_RED)
+
+                Select Case iwn
+                    Case AdArticle.NumberStates.WithNumber : Lbl_WithNumber.BackColor = COLOR_GREEN
+                    Case AdArticle.NumberStates.WithNumberOne : Lbl_WithNumber.BackColor = COLOR_YELLOW
+                    Case Else : Lbl_WithNumber.BackColor = COLOR_RED
+                End Select
+
             End If
         Else
             Lbl_WithNumber.Visible = True
@@ -203,6 +212,17 @@ Public Class GridItem_Ad
             Lbl_WithAutograph.Left = m_pctImageWidth - Lbl_WithAutograph.Width
             Lbl_WithNumber.Left = m_pctImageWidth - Lbl_WithNumber.Width
 
+        End If
+
+        If m_ad IsNot Nothing Then
+            If m_ad.GetState.IsWin Then
+                Dim w As Integer = Pct_Image.Width * 20 / 100
+                Dim t As Integer = Pct_Image.Height - w - 5
+                e.Graphics.DrawImage(My.Resources.winner, New Rectangle(5, t, w, w))
+            ElseIf m_ad.GetState.IsLost Then
+                Dim w As Integer = Pct_Image.Width * 90 / 100
+                e.Graphics.DrawImage(My.Resources.failed, New Rectangle(5, 5, w, w))
+            End If
         End If
 
     End Sub

@@ -36,7 +36,11 @@
     End Function
 
     Public Function GetItemsCount() As Integer Implements IAdapter.GetItemsCount
-        Return m_items.Count
+        If m_items Is Nothing Then
+            Return 0
+        Else
+            Return m_items.Count
+        End If
     End Function
 
     Protected Sub Sort()

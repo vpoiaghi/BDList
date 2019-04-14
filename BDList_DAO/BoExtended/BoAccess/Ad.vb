@@ -32,6 +32,10 @@ Namespace BO
             m_adArticles = adArticles
         End Sub
 
+        Public Overloads Function GetState() As AdState
+            Return MyBase.GetState
+        End Function
+
     End Class
 
 End Namespace

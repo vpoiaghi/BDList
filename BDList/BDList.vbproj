@@ -652,6 +652,7 @@
     <None Include="Resources\opened_padlock.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\winner.png" />
     <None Include="Resources\present.png" />
     <None Include="Resources\unknown.png" />
     <None Include="Resources\to_reserve_at_cultura.png" />
@@ -680,6 +681,7 @@
     <None Include="Resources\menu_boughts.png" />
     <None Include="Resources\nothing.png" />
     <None Include="Resources\menu_festival.png" />
+    <None Include="Resources\manqué.png" />
     <Content Include="Resources\Office-Customer-Male-Light-icon.png" />
     <None Include="Resources\search 2.png" />
     <None Include="Resources\menu_events.png" />

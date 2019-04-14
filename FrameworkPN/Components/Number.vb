@@ -192,14 +192,14 @@ Public Class Number
             s = m_numberType
         ElseIf (Not (numSet OrElse typSet)) AndAlso maxSet Then
             s = "x " & m_maxNumber
+        ElseIf numSet AndAlso maxSet AndAlso typSet Then
+            s = m_numberType & " " & m_number & " / " & m_maxNumber
         ElseIf maxSet AndAlso typSet Then
             s = m_numberType & " / " & m_maxNumber
         ElseIf numSet AndAlso typSet Then
             s = m_numberType & " " & m_number
         ElseIf numSet AndAlso maxSet Then
             s = m_number & " / " & m_maxNumber
-        ElseIf numSet AndAlso maxSet AndAlso typSet Then
-            s = m_numberType & " " & m_number & " / " & m_maxNumber
         End If
 
         Return s

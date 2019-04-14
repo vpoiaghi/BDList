@@ -176,6 +176,37 @@ Namespace DAO
 
         End Function
 
+        Public Function SearchCount(searchCriteria As SearchCriteria) As Integer
+
+            Dim rqt As String
+
+            If searchCriteria.id IsNot Nothing Then
+                ' Si le critère Identifiant est renseigné, on ne tien pas compte des autres critères
+                rqt = "SELECT Count(*) FROM Author WHERE Id=" & searchCriteria.id
+
+            Else
+                Dim daoPerson As DaoPerson = DaoManager.GetDao(Of DaoPerson)()
+                Dim strSearchCriteria = BuildSearchCriteria(searchCriteria)
+
+                Dim personTableName As String = daoPerson.GetTableName
+                Dim authorTableName As String = GetTableName()
+                Dim linkTableName As String = authorTableName & "_" & personTableName
+
+                rqt = " SELECT COUNT(*)" _
+                    & " FROM (" _
+                    & " SELECT DISTINCT " & authorTableName & ".Id" _
+                    & " FROM (" & authorTableName _
+                    & " LEFT JOIN " & linkTableName & " ON (" & authorTableName & ".Id = " & linkTableName & ".IdAuthor))" _
+                    & " LEFT JOIN " & personTableName & " ON (" & linkTableName & ".IdPerson = " & personTableName & ".Id)" _
+                    & strSearchCriteria _
+                    & " )"
+
+            End If
+
+            Return GetRequestValue(rqt)
+
+        End Function
+
         Private Function BuildSearchCriteria(searchCriteria As SearchCriteria) As String
 
             Dim result As String = ""

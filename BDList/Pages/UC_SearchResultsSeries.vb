@@ -5,9 +5,17 @@ Imports BDList_SERVICE
 
 Public Class UC_SearchResultsSeries
 
+    Private svcSeries As New ServiceSerie
+    Private svcEditions As New ServiceEdition
+    Private svcGoodies As New ServiceGoody
+    Private svcAuthors As New ServiceAuthor
+
     Private m_searchCriteria As SearchCriteria = Nothing
 
     Private seriesList As List(Of IdBObject) = Nothing
+    Private editionsCount As Integer = 0
+    Private goodiesCount As Integer = 0
+    Private authorsCount As Integer = 0
 
     Public Sub New(frm As FrmPagesManager)
         MyBase.New(frm)
@@ -20,11 +28,18 @@ Public Class UC_SearchResultsSeries
 
         If m_searchCriteria IsNot Nothing Then
 
-            Dim svcSeries As New ServiceSerie
             seriesList = svcSeries.Search(m_searchCriteria)
+            editionsCount = svcEditions.SearchCount(m_searchCriteria)
+            goodiesCount = svcGoodies.SearchCount(m_searchCriteria)
+            authorsCount = svcAuthors.SearchCount(m_searchCriteria)
 
             Dim adapter As IAdapter = New SeriesAdapter(seriesList)
             lst_seriesList.SetAdapter(adapter)
+
+            btn_series.Text = seriesList.Count & " Séries"
+            btn_editions.Text = editionsCount & " Editions"
+            btn_goodies.Text = goodiesCount & " Para-bds"
+            btn_authors.Text = authorsCount & " Auteurs"
 
         End If
 
