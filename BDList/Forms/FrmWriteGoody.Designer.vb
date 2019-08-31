@@ -48,18 +48,17 @@ Partial Class FrmWriteGoody
         Me.txtNumberInCollection = New System.Windows.Forms.TextBox()
         Me.lblNumberInCollection = New System.Windows.Forms.Label()
         Me.cmbCollection = New System.Windows.Forms.ComboBox()
-        Me.slst_authors = New FrameworkPN.SelectList()
-        Me.Btn_CreateAuthor = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.chkScanned = New System.Windows.Forms.CheckBox()
+        Me.cmbNumberType = New System.Windows.Forms.ComboBox()
+        Me.btn_possessionState = New System.Windows.Forms.Button()
         Me.plstPictures = New FrameworkPN.PicturesList()
         Me.slst_editions = New FrameworkPN.SelectList()
         Me.dtxtBoughtDate = New FrameworkPN.DateTextBox()
         Me.dtxtParutionDate = New FrameworkPN.DateTextBox()
         Me.slst_editors = New FrameworkPN.SelectList()
         Me.slst_series = New FrameworkPN.SelectList()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.chkScanned = New System.Windows.Forms.CheckBox()
-        Me.cmbNumberType = New System.Windows.Forms.ComboBox()
-        Me.btn_possessionState = New System.Windows.Forms.Button()
+        Me.slst_authors = New FrameworkPN.SelectList()
         Me.SuspendLayout()
         '
         'cmbKindOfGoody
@@ -115,15 +114,15 @@ Partial Class FrmWriteGoody
         '
         'txtNumberMax
         '
-        Me.txtNumberMax.Location = New System.Drawing.Point(277, 441)
+        Me.txtNumberMax.Location = New System.Drawing.Point(185, 441)
         Me.txtNumberMax.Name = "txtNumberMax"
         Me.txtNumberMax.Size = New System.Drawing.Size(49, 20)
-        Me.txtNumberMax.TabIndex = 13
+        Me.txtNumberMax.TabIndex = 12
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(250, 444)
+        Me.Label3.Location = New System.Drawing.Point(167, 444)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(12, 13)
         Me.Label3.TabIndex = 13
@@ -285,22 +284,39 @@ Partial Class FrmWriteGoody
         Me.cmbCollection.Size = New System.Drawing.Size(213, 21)
         Me.cmbCollection.TabIndex = 17
         '
-        'slst_authors
+        'Label7
         '
-        Me.slst_authors.Location = New System.Drawing.Point(17, 617)
-        Me.slst_authors.Name = "slst_authors"
-        Me.slst_authors.Size = New System.Drawing.Size(520, 78)
-        Me.slst_authors.TabIndex = 19
-        Me.slst_authors.Title = "Auteurs :"
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(417, 444)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(96, 13)
+        Me.Label7.TabIndex = 34
+        Me.Label7.Text = "Images scannées :"
         '
-        'Btn_CreateAuthor
+        'chkScanned
         '
-        Me.Btn_CreateAuthor.Location = New System.Drawing.Point(516, 694)
-        Me.Btn_CreateAuthor.Name = "Btn_CreateAuthor"
-        Me.Btn_CreateAuthor.Size = New System.Drawing.Size(21, 21)
-        Me.Btn_CreateAuthor.TabIndex = 20
-        Me.Btn_CreateAuthor.Text = "+"
-        Me.Btn_CreateAuthor.UseVisualStyleBackColor = True
+        Me.chkScanned.AutoSize = True
+        Me.chkScanned.Location = New System.Drawing.Point(519, 444)
+        Me.chkScanned.Name = "chkScanned"
+        Me.chkScanned.Size = New System.Drawing.Size(15, 14)
+        Me.chkScanned.TabIndex = 14
+        Me.chkScanned.UseVisualStyleBackColor = True
+        '
+        'cmbNumberType
+        '
+        Me.cmbNumberType.FormattingEnabled = True
+        Me.cmbNumberType.Location = New System.Drawing.Point(240, 441)
+        Me.cmbNumberType.Name = "cmbNumberType"
+        Me.cmbNumberType.Size = New System.Drawing.Size(76, 21)
+        Me.cmbNumberType.TabIndex = 13
+        '
+        'btn_possessionState
+        '
+        Me.btn_possessionState.Location = New System.Drawing.Point(484, 327)
+        Me.btn_possessionState.Name = "btn_possessionState"
+        Me.btn_possessionState.Size = New System.Drawing.Size(50, 50)
+        Me.btn_possessionState.TabIndex = 7
+        Me.btn_possessionState.UseVisualStyleBackColor = True
         '
         'plstPictures
         '
@@ -312,6 +328,7 @@ Partial Class FrmWriteGoody
         '
         'slst_editions
         '
+        Me.slst_editions.AllowAdd = False
         Me.slst_editions.Enabled = False
         Me.slst_editions.Location = New System.Drawing.Point(14, 189)
         Me.slst_editions.Name = "slst_editions"
@@ -337,6 +354,7 @@ Partial Class FrmWriteGoody
         '
         'slst_editors
         '
+        Me.slst_editors.AllowAdd = True
         Me.slst_editors.Location = New System.Drawing.Point(12, 96)
         Me.slst_editors.Name = "slst_editors"
         Me.slst_editors.Size = New System.Drawing.Size(522, 60)
@@ -345,45 +363,21 @@ Partial Class FrmWriteGoody
         '
         'slst_series
         '
+        Me.slst_series.AllowAdd = False
         Me.slst_series.Location = New System.Drawing.Point(12, 12)
         Me.slst_series.Name = "slst_series"
         Me.slst_series.Size = New System.Drawing.Size(522, 78)
         Me.slst_series.TabIndex = 0
         Me.slst_series.Title = "Séries :"
         '
-        'Label7
+        'slst_authors
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(417, 444)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(96, 13)
-        Me.Label7.TabIndex = 34
-        Me.Label7.Text = "Images scannées :"
-        '
-        'chkScanned
-        '
-        Me.chkScanned.AutoSize = True
-        Me.chkScanned.Location = New System.Drawing.Point(519, 444)
-        Me.chkScanned.Name = "chkScanned"
-        Me.chkScanned.Size = New System.Drawing.Size(15, 14)
-        Me.chkScanned.TabIndex = 14
-        Me.chkScanned.UseVisualStyleBackColor = True
-        '
-        'cmbNumberType
-        '
-        Me.cmbNumberType.FormattingEnabled = True
-        Me.cmbNumberType.Location = New System.Drawing.Point(162, 441)
-        Me.cmbNumberType.Name = "cmbNumberType"
-        Me.cmbNumberType.Size = New System.Drawing.Size(76, 21)
-        Me.cmbNumberType.TabIndex = 12
-        '
-        'btn_possessionState
-        '
-        Me.btn_possessionState.Location = New System.Drawing.Point(484, 327)
-        Me.btn_possessionState.Name = "btn_possessionState"
-        Me.btn_possessionState.Size = New System.Drawing.Size(50, 50)
-        Me.btn_possessionState.TabIndex = 7
-        Me.btn_possessionState.UseVisualStyleBackColor = True
+        Me.slst_authors.AllowAdd = True
+        Me.slst_authors.Location = New System.Drawing.Point(12, 617)
+        Me.slst_authors.Name = "slst_authors"
+        Me.slst_authors.Size = New System.Drawing.Size(522, 78)
+        Me.slst_authors.TabIndex = 19
+        Me.slst_authors.Title = "Auteurs :"
         '
         'FrmWriteGoody
         '
@@ -395,12 +389,10 @@ Partial Class FrmWriteGoody
         Me.Controls.Add(Me.cmbNumberType)
         Me.Controls.Add(Me.chkScanned)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Btn_CreateAuthor)
         Me.Controls.Add(Me.cmbCollection)
         Me.Controls.Add(Me.lblCollection)
         Me.Controls.Add(Me.txtNumberInCollection)
         Me.Controls.Add(Me.lblNumberInCollection)
-        Me.Controls.Add(Me.slst_authors)
         Me.Controls.Add(Me.plstPictures)
         Me.Controls.Add(Me.slst_editions)
         Me.Controls.Add(Me.dtxtBoughtDate)
@@ -429,6 +421,7 @@ Partial Class FrmWriteGoody
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.slst_editors)
         Me.Controls.Add(Me.slst_series)
+        Me.Controls.Add(Me.slst_authors)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -472,7 +465,6 @@ Partial Class FrmWriteGoody
     Friend WithEvents txtNumberInCollection As System.Windows.Forms.TextBox
     Friend WithEvents lblNumberInCollection As System.Windows.Forms.Label
     Friend WithEvents cmbCollection As System.Windows.Forms.ComboBox
-    Friend WithEvents Btn_CreateAuthor As System.Windows.Forms.Button
     Friend WithEvents Label7 As Label
     Friend WithEvents chkScanned As CheckBox
     Friend WithEvents cmbNumberType As ComboBox

@@ -50,4 +50,5 @@
         cmbValues.SelectedItem = newObject
 
     End Sub
+
 End Class

@@ -4,6 +4,8 @@ Imports FrameworkPN
 
 Public Class UC_Festivals
 
+    Private m_svcInSigning As New ServiceInSigning
+    Private m_svcAuthors As New ServiceAuthor()
     Private m_svcFestivals As New ServiceFestival()
     Private m_festival As Festival
 
@@ -39,28 +41,8 @@ Public Class UC_Festivals
     Private Sub RefreshFestival(festival As Festival)
 
         Btn_editFestival.Enabled = True
-
         Lbl_festivalDates.Text = festival.GetDatesString()
-
-        Dim svcInSigning As New ServiceInSigning
-
-        LVw_InSigning.Items.Clear()
-
-        For Each i As InSigning In svcInSigning.GetByFestival(festival)
-            With LVw_InSigning.Items.Add(i.GetAuthor().ToString)
-
-                If i.GetEditor Is Nothing Then
-                    .SubItems.Add("")
-                Else
-                    .SubItems.Add(i.GetEditor.ToString)
-                End If
-
-                .SubItems.Add(Format(i.GetDay, "dd/MM/yyyy"))
-                .SubItems.Add(Format(i.GetStartTime, "hh:mm"))
-                .SubItems.Add(Format(i.GetEndTime, "hh:mm"))
-
-            End With
-        Next
+        InitAuthorsList(festival)
 
     End Sub
 
@@ -109,6 +91,102 @@ Public Class UC_Festivals
 
     Private Sub Btn_AddInSigning_Click(sender As Object, e As EventArgs) Handles Btn_AddInSigning.Click
 
+        Dim result As FrmSelectItems.FrmSelectItemsResult = FrmSelectItems.GetSelectedItems(m_svcAuthors.GetAll, Nothing, Me.ParentForm)
+
+        If (result.DlgResult = DialogResult.OK) AndAlso (result.SelectedItems IsNot Nothing) Then
+            For Each author As Author In result.SelectedItems
+
+                Dim inSingning As New InSigning
+                inSingning.SetAuthor(author)
+                inSingning.SetFestival(m_festival)
+
+                AddAuthorInSigningToList(inSingning)
+
+            Next
+        End If
+
     End Sub
 
+    Private Sub InitAuthorsList(festival As Festival)
+
+        LVw_InSigning.Items.Clear()
+
+        For Each i As InSigning In m_svcInSigning.GetByFestival(festival)
+            AddAuthorInSigningToList(i)
+        Next
+
+    End Sub
+
+    Private Sub AddAuthorInSigningToList(authorInSigning As InSigning)
+
+        With LVw_InSigning.Items.Add(authorInSigning.GetAuthor().ToString)
+
+            If authorInSigning.GetEditor Is Nothing Then
+                .SubItems.Add("")
+            Else
+                .SubItems.Add(authorInSigning.GetEditor.ToString)
+            End If
+
+            .SubItems.Add(Format(authorInSigning.GetDay, "dd/MM/yyyy"))
+            .SubItems.Add(Format(authorInSigning.GetStartTime, "hh:mm"))
+            .SubItems.Add(Format(authorInSigning.GetEndTime, "hh:mm"))
+            .Tag = authorInSigning
+
+        End With
+
+    End Sub
+
+    Private Sub LVw_InSigning_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LVw_InSigning.SelectedIndexChanged
+
+        Btn_SetDefaultTime.Enabled = (LVw_InSigning.SelectedItems.Count = 1)
+
+    End Sub
+
+    Private Sub Btn_SetDefaultTime_Click(sender As Object, e As EventArgs) Handles Btn_SetDefaultTime.Click
+
+        Dim author As Author
+
+        If LVw_InSigning.SelectedItems.Count = 1 Then
+
+            author = CType(LVw_InSigning.SelectedItems.Item(0).Tag, InSigning).GetAuthor
+
+            Dim dte1 As Date? = m_festival.GetBeginDate()
+            Dim dte2 As Date? = m_festival.GetEndDate()
+
+            If (dte1 IsNot Nothing) AndAlso (dte2 IsNot Nothing) Then
+
+                Dim i As Integer = 0
+                While i < LVw_InSigning.Items.Count
+
+                    If CType(LVw_InSigning.Items(i).Tag, InSigning).GetAuthor.GetId = author.GetId Then
+                        LVw_InSigning.Items.RemoveAt(i)
+                    Else
+                        i += 1
+                    End If
+
+                End While
+
+                While dte1 <= dte2
+
+                    Dim inSingning As New InSigning
+                    inSingning.SetAuthor(author)
+                    inSingning.SetDay(dte1)
+                    inSingning.SetFestival(m_festival)
+
+                    AddAuthorInSigningToList(inSingning)
+
+                    dte1 = dte1.Value.AddDays(1)
+
+                End While
+
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub Btn_Save_Click(sender As Object, e As EventArgs) Handles Btn_Save.Click
+
+
+    End Sub
 End Class

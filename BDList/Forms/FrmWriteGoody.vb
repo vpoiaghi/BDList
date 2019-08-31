@@ -31,7 +31,7 @@ Public Class FrmWriteGoody
             Throw New ArgumentNullException()
         End If
 
-        m_initGoody = goodyToEdit.GetItem
+        m_initGoody = Nothing
         m_goody = goodyToEdit.GetItem
         m_defaultSerie = defaultSerie
         m_modifiedGoody = goodyToEdit
@@ -627,7 +627,13 @@ Public Class FrmWriteGoody
 
     End Function
 
-    Private Sub Btn_CreateAuthor_Click(sender As Object, e As EventArgs) Handles Btn_CreateAuthor.Click
+    Private Sub btn_possessionState_Click(sender As Object, e As EventArgs) Handles btn_possessionState.Click
+        btn_possessionState.Tag = FrmPossessionState.GetPossessionState(CType(btn_possessionState.Tag, PossessionStates), Me)
+        btn_possessionState.Image = PossessionStatesUtils.GetImage(btn_possessionState.Tag)
+    End Sub
+
+
+    Private Sub slst_authors_AddItemClick(sender As SelectList) Handles slst_authors.AddItemClick
 
         Dim modifiedItem As ModifiedItem = FrmWriteAuthor.CreateOrEdit(Me.ParentForm, Nothing)
 
@@ -643,8 +649,20 @@ Public Class FrmWriteGoody
 
     End Sub
 
-    Private Sub btn_possessionState_Click(sender As Object, e As EventArgs) Handles btn_possessionState.Click
-        btn_possessionState.Tag = FrmPossessionState.GetPossessionState(CType(btn_possessionState.Tag, PossessionStates), Me)
-        btn_possessionState.Image = PossessionStatesUtils.GetImage(btn_possessionState.Tag)
+    Private Sub slst_editors_AddItemClick(sender As SelectList) Handles slst_editors.AddItemClick
+
+        Dim modifiedItem As ModifiedItem = FrmWriteEditor.CreateOrEdit(Me.ParentForm, Nothing)
+
+        If modifiedItem IsNot Nothing Then
+
+            Dim newEditor As Editor = modifiedItem.GetItem
+
+            If newEditor IsNot Nothing Then
+                slst_editors.AddItem(newEditor)
+            End If
+
+        End If
+
     End Sub
+
 End Class

@@ -281,6 +281,40 @@ Namespace DAO
 
         End Function
 
+        Public Function GetSeriesWithCoffretAlerts() As List(Of IdBObject)
+
+            Dim rqt As String _
+                = " SELECT tbl1.idserie" _
+                & " FROM (" _
+                & "     SELECT edition_serie.idserie, COUNT(*) AS nbTomesHorsCoffret" _
+                & "     FROM (" _
+                & "         SELECT *" _
+                & "         FROM edition" _
+                & "         WHERE edition.id NOT IN (SELECT idEdition FROM goody_edition)" _
+                & "     ) as ed" _
+                & "     INNER JOIN edition_serie ON (ed.id = edition_serie.idEdition)" _
+                & "     GROUP BY idSerie" _
+                & " ) tbl1" _
+                & " INNER JOIN (" _
+                & "     SELECT idSerie, MIN(nb) AS minPourCoffret" _
+                & "     FROM (" _
+                & "         SELECT serie.id as idSerie, goody.id as idGoody, COUNT(*) AS nb" _
+                & "         FROM (((serie" _
+                & "         INNER JOIN goody_serie ON (serie.id = goody_serie.idSerie))" _
+                & "         INNER JOIN goody ON (goody_serie.idGoody = goody.id))" _
+                & "         INNER JOIN goody_edition ON (goody_edition.idgoody = goody.id))" _
+                & "         INNER JOIN edition ON (goody_edition.idEdition = edition.id)" _
+                & "         WHERE goody.idkindofgoody IN (11, 17)" _
+                & "         group by serie.id, goody.id" _
+                & "     )" _
+                & "     GROUP BY idserie" _
+                & " ) tbl2" _
+                & " ON (tbl1.idserie = tbl2.idserie)" _
+                & " WHERE tbl1.nbtomeshorscoffret >= tbl2.minpourcoffret"
+
+            Return GetByIds(rqt)
+
+        End Function
 
     End Class
 End Namespace

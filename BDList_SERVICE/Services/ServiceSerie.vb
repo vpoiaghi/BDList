@@ -83,6 +83,10 @@ Public Class ServiceSerie
         Return GetDao().GetAllWithEditionsNotFullCount()
     End Function
 
+    Public Function GetSeriesWithCoffretAlerts() As List(Of IdBObject)
+        Return GetDao().GetSeriesWithCoffretAlerts()
+    End Function
+
     Protected Overrides Sub BoAdded(serie As IdBObject)
         AddFolder(serie)
     End Sub

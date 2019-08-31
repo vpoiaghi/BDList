@@ -26,28 +26,32 @@ Partial Class UC_Festivals
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UC_Festivals))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Btn_editFestival = New System.Windows.Forms.Button()
+        Me.Btn_addFestival = New System.Windows.Forms.Button()
         Me.Lst_festivals = New System.Windows.Forms.ListBox()
         Me.Lbl_festivalDates = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.LVw_InSigning = New System.Windows.Forms.ListView()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Btn_SetDefaultTime = New System.Windows.Forms.Button()
         Me.Btn_AddInSigning = New System.Windows.Forms.Button()
-        Me.Btn_editFestival = New System.Windows.Forms.Button()
-        Me.Btn_addFestival = New System.Windows.Forms.Button()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Btn_Save = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -59,8 +63,30 @@ Partial Class UC_Festivals
         Me.Panel1.Location = New System.Drawing.Point(0, 62)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Padding = New System.Windows.Forms.Padding(20, 3, 3, 3)
-        Me.Panel1.Size = New System.Drawing.Size(1230, 56)
+        Me.Panel1.Size = New System.Drawing.Size(1069, 56)
         Me.Panel1.TabIndex = 6
+        '
+        'Btn_editFestival
+        '
+        Me.Btn_editFestival.BackColor = System.Drawing.SystemColors.Control
+        Me.Btn_editFestival.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Btn_editFestival.Image = Global.BDList.My.Resources.Resources.edit
+        Me.Btn_editFestival.Location = New System.Drawing.Point(966, 3)
+        Me.Btn_editFestival.Name = "Btn_editFestival"
+        Me.Btn_editFestival.Size = New System.Drawing.Size(50, 50)
+        Me.Btn_editFestival.TabIndex = 4
+        Me.Btn_editFestival.UseVisualStyleBackColor = False
+        '
+        'Btn_addFestival
+        '
+        Me.Btn_addFestival.BackColor = System.Drawing.SystemColors.Control
+        Me.Btn_addFestival.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Btn_addFestival.Image = CType(resources.GetObject("Btn_addFestival.Image"), System.Drawing.Image)
+        Me.Btn_addFestival.Location = New System.Drawing.Point(1016, 3)
+        Me.Btn_addFestival.Name = "Btn_addFestival"
+        Me.Btn_addFestival.Size = New System.Drawing.Size(50, 50)
+        Me.Btn_addFestival.TabIndex = 1
+        Me.Btn_addFestival.UseVisualStyleBackColor = False
         '
         'Lst_festivals
         '
@@ -72,7 +98,7 @@ Partial Class UC_Festivals
         Me.Lst_festivals.ItemHeight = 18
         Me.Lst_festivals.Location = New System.Drawing.Point(0, 118)
         Me.Lst_festivals.Name = "Lst_festivals"
-        Me.Lst_festivals.Size = New System.Drawing.Size(267, 541)
+        Me.Lst_festivals.Size = New System.Drawing.Size(267, 440)
         Me.Lst_festivals.TabIndex = 7
         '
         'Lbl_festivalDates
@@ -91,7 +117,7 @@ Partial Class UC_Festivals
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(267, 118)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(963, 100)
+        Me.Panel2.Size = New System.Drawing.Size(802, 100)
         Me.Panel2.TabIndex = 9
         '
         'TabControl1
@@ -102,7 +128,7 @@ Partial Class UC_Festivals
         Me.TabControl1.Location = New System.Drawing.Point(267, 218)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(963, 441)
+        Me.TabControl1.Size = New System.Drawing.Size(802, 340)
         Me.TabControl1.TabIndex = 10
         '
         'TabPage1
@@ -112,20 +138,10 @@ Partial Class UC_Festivals
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(955, 415)
+        Me.TabPage1.Size = New System.Drawing.Size(794, 314)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Auteurs en dédicace"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(955, 415)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Pense-bête"
-        Me.TabPage2.UseVisualStyleBackColor = True
         '
         'LVw_InSigning
         '
@@ -134,23 +150,14 @@ Partial Class UC_Festivals
         Me.LVw_InSigning.FullRowSelect = True
         Me.LVw_InSigning.GridLines = True
         Me.LVw_InSigning.HideSelection = False
-        Me.LVw_InSigning.Location = New System.Drawing.Point(3, 33)
+        Me.LVw_InSigning.Location = New System.Drawing.Point(3, 53)
         Me.LVw_InSigning.MultiSelect = False
         Me.LVw_InSigning.Name = "LVw_InSigning"
         Me.LVw_InSigning.ShowGroups = False
-        Me.LVw_InSigning.Size = New System.Drawing.Size(949, 379)
+        Me.LVw_InSigning.Size = New System.Drawing.Size(788, 258)
         Me.LVw_InSigning.TabIndex = 0
         Me.LVw_InSigning.UseCompatibleStateImageBehavior = False
         Me.LVw_InSigning.View = System.Windows.Forms.View.Details
-        '
-        'Panel3
-        '
-        Me.Panel3.Controls.Add(Me.Btn_AddInSigning)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel3.Location = New System.Drawing.Point(3, 3)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(949, 30)
-        Me.Panel3.TabIndex = 1
         '
         'ColumnHeader1
         '
@@ -180,38 +187,70 @@ Partial Class UC_Festivals
         Me.ColumnHeader6.Text = "Edition(s)"
         Me.ColumnHeader6.Width = 200
         '
+        'Panel3
+        '
+        Me.Panel3.Controls.Add(Me.Btn_SetDefaultTime)
+        Me.Panel3.Controls.Add(Me.Btn_AddInSigning)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel3.Location = New System.Drawing.Point(3, 3)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(788, 50)
+        Me.Panel3.TabIndex = 1
+        '
+        'Btn_SetDefaultTime
+        '
+        Me.Btn_SetDefaultTime.BackColor = System.Drawing.SystemColors.Control
+        Me.Btn_SetDefaultTime.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Btn_SetDefaultTime.Enabled = False
+        Me.Btn_SetDefaultTime.Image = Global.BDList.My.Resources.Resources.all_the_time
+        Me.Btn_SetDefaultTime.Location = New System.Drawing.Point(688, 0)
+        Me.Btn_SetDefaultTime.Name = "Btn_SetDefaultTime"
+        Me.Btn_SetDefaultTime.Size = New System.Drawing.Size(50, 50)
+        Me.Btn_SetDefaultTime.TabIndex = 3
+        Me.Btn_SetDefaultTime.UseVisualStyleBackColor = False
+        '
         'Btn_AddInSigning
         '
         Me.Btn_AddInSigning.BackColor = System.Drawing.SystemColors.Control
         Me.Btn_AddInSigning.Dock = System.Windows.Forms.DockStyle.Right
         Me.Btn_AddInSigning.Image = CType(resources.GetObject("Btn_AddInSigning.Image"), System.Drawing.Image)
-        Me.Btn_AddInSigning.Location = New System.Drawing.Point(917, 0)
+        Me.Btn_AddInSigning.Location = New System.Drawing.Point(738, 0)
         Me.Btn_AddInSigning.Name = "Btn_AddInSigning"
-        Me.Btn_AddInSigning.Size = New System.Drawing.Size(32, 30)
+        Me.Btn_AddInSigning.Size = New System.Drawing.Size(50, 50)
         Me.Btn_AddInSigning.TabIndex = 2
         Me.Btn_AddInSigning.UseVisualStyleBackColor = False
         '
-        'Btn_editFestival
+        'TabPage2
         '
-        Me.Btn_editFestival.BackColor = System.Drawing.SystemColors.Control
-        Me.Btn_editFestival.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Btn_editFestival.Image = Global.BDList.My.Resources.Resources.edit
-        Me.Btn_editFestival.Location = New System.Drawing.Point(1127, 3)
-        Me.Btn_editFestival.Name = "Btn_editFestival"
-        Me.Btn_editFestival.Size = New System.Drawing.Size(50, 50)
-        Me.Btn_editFestival.TabIndex = 4
-        Me.Btn_editFestival.UseVisualStyleBackColor = False
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(955, 415)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Pense-bête"
+        Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Btn_addFestival
+        'Panel4
         '
-        Me.Btn_addFestival.BackColor = System.Drawing.SystemColors.Control
-        Me.Btn_addFestival.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Btn_addFestival.Image = CType(resources.GetObject("Btn_addFestival.Image"), System.Drawing.Image)
-        Me.Btn_addFestival.Location = New System.Drawing.Point(1177, 3)
-        Me.Btn_addFestival.Name = "Btn_addFestival"
-        Me.Btn_addFestival.Size = New System.Drawing.Size(50, 50)
-        Me.Btn_addFestival.TabIndex = 1
-        Me.Btn_addFestival.UseVisualStyleBackColor = False
+        Me.Panel4.BackColor = System.Drawing.Color.Gray
+        Me.Panel4.Controls.Add(Me.Btn_Save)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel4.Location = New System.Drawing.Point(0, 558)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Padding = New System.Windows.Forms.Padding(3)
+        Me.Panel4.Size = New System.Drawing.Size(1069, 32)
+        Me.Panel4.TabIndex = 11
+        '
+        'Btn_Save
+        '
+        Me.Btn_Save.BackColor = System.Drawing.SystemColors.Control
+        Me.Btn_Save.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Btn_Save.Location = New System.Drawing.Point(988, 3)
+        Me.Btn_Save.Name = "Btn_Save"
+        Me.Btn_Save.Size = New System.Drawing.Size(78, 26)
+        Me.Btn_Save.TabIndex = 5
+        Me.Btn_Save.Text = "Enregistrer"
+        Me.Btn_Save.UseVisualStyleBackColor = False
         '
         'UC_Festivals
         '
@@ -222,9 +261,11 @@ Partial Class UC_Festivals
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Lst_festivals)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel4)
         Me.Name = "UC_Festivals"
-        Me.Size = New System.Drawing.Size(1230, 659)
+        Me.Size = New System.Drawing.Size(1069, 590)
         Me.Title = "Festivals, séances de dédicace"
+        Me.Controls.SetChildIndex(Me.Panel4, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
         Me.Controls.SetChildIndex(Me.Lst_festivals, 0)
         Me.Controls.SetChildIndex(Me.Panel2, 0)
@@ -235,6 +276,7 @@ Partial Class UC_Festivals
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -257,4 +299,7 @@ Partial Class UC_Festivals
     Friend WithEvents ColumnHeader6 As ColumnHeader
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Btn_AddInSigning As Button
+    Friend WithEvents Btn_SetDefaultTime As Button
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Btn_Save As Button
 End Class

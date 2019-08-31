@@ -132,10 +132,16 @@
     <Compile Include="Components\SelectList.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\frmShowImage.Designer.vb">
-      <DependentUpon>frmShowImage.vb</DependentUpon>
+    <Compile Include="Forms\FrmSelectItems.Designer.vb">
+      <DependentUpon>FrmSelectItems.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmShowImage.vb">
+    <Compile Include="Forms\FrmSelectItems.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmShowImage.Designer.vb">
+      <DependentUpon>FrmShowImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmShowImage.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Components\MoneyTextBox.vb">
@@ -182,8 +188,11 @@
     <EmbeddedResource Include="Components\Menu\MenuItem.resx">
       <DependentUpon>MenuItem.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmShowImage.resx">
-      <DependentUpon>frmShowImage.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmSelectItems.resx">
+      <DependentUpon>FrmSelectItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmShowImage.resx">
+      <DependentUpon>FrmShowImage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

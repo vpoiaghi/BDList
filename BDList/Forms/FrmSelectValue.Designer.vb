@@ -40,7 +40,8 @@ Partial Class FrmSelectValue
         '
         'cmbValues
         '
-        Me.cmbValues.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbValues.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.cmbValues.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbValues.FormattingEnabled = True
         Me.cmbValues.Location = New System.Drawing.Point(12, 29)
         Me.cmbValues.Name = "cmbValues"

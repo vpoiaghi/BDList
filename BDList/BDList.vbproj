@@ -210,6 +210,12 @@
     <Compile Include="Pages\UC_Author.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Pages\UC_CoffretsPossibles.Designer.vb">
+      <DependentUpon>UC_CoffretsPossibles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_CoffretsPossibles.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Pages\UC_Festivals.Designer.vb">
       <DependentUpon>UC_Festivals.vb</DependentUpon>
     </Compile>
@@ -504,6 +510,9 @@
     <EmbeddedResource Include="Pages\UC_Author.resx">
       <DependentUpon>UC_Author.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_CoffretsPossibles.resx">
+      <DependentUpon>UC_CoffretsPossibles.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\UC_Festivals.resx">
       <DependentUpon>UC_Festivals.vb</DependentUpon>
     </EmbeddedResource>
@@ -670,6 +679,7 @@
     <None Include="Resources\btn_prev_page.png" />
     <None Include="Resources\btn_next_page.png" />
     <None Include="Resources\Cadeau.png" />
+    <None Include="Resources\all_the_time.png" />
     <Content Include="Resources\folder-contract-icon.png" />
     <None Include="Resources\menu_search.png" />
     <None Include="Resources\menu_coming.png" />

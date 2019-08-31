@@ -217,7 +217,7 @@ Namespace DAO
                                 & " FROM (Goody_Serie" _
                                 & " LEFT JOIN Goody ON (Goody_Serie.IdGoody = Goody.Id))" _
                                 & " LEFT JOIN Serie ON (Goody_Serie.IdSerie = Serie.Id)" _
-                                & " WHERE (" & FIELD_ID_KIND_OF_GOODY & " IN (14, 18, 22, 32, 33, 34, 35))" _
+                                & " WHERE (" & FIELD_ID_KIND_OF_GOODY & " IN (10, 14, 18, 22, 32, 33, 34, 35, 38))" _
                                 & " ORDER BY Serie.SortName ASC, Goody.Description ASC"
 
             Return GetByIds(rqt)

@@ -2,20 +2,26 @@
     Inherits Panel
 
     Private WithEvents m_list As ListBox
-    Private WithEvents m_txtFilter As New TextBox
-    Private m_tmpList1 As New ListBox
-    Private m_tmpList2 As ListBox
     Private m_footPanel As Panel
     Private m_titleLabel As Label
     Private WithEvents m_editButton As Label
-    Private WithEvents m_frm As Form
+    Private WithEvents m_addButton As Label
 
     Private fullItemsList As Collections.IList
+    Private m_allowAdd As Boolean
 
     Public Event ItemsListChanged(sender As SelectList)
+    Public Event AddItemClick(sender As SelectList)
 
     Public Sub New()
         MyBase.New()
+
+        m_allowAdd = False
+        InitComponents()
+
+    End Sub
+
+    Private Sub InitComponents()
 
         With Me
             .BorderStyle = Windows.Forms.BorderStyle.None
@@ -37,6 +43,18 @@
             .Dock = DockStyle.Top
             .Height = 19
             .BorderStyle = Windows.Forms.BorderStyle.None
+        End With
+
+        m_addButton = New Label
+        With m_addButton
+            .Parent = m_footPanel
+            .Visible = True
+            .Dock = DockStyle.Right
+            .BackColor = Color.LightGray
+            .Width = 50
+            .TextAlign = ContentAlignment.MiddleCenter
+            .Text = "Ajouter"
+            .Visible = m_allowAdd
         End With
 
         m_editButton = New Label
@@ -70,24 +88,22 @@
         End Set
     End Property
 
+    Public Property AllowAdd As Boolean
+        Get
+            Return m_allowAdd
+        End Get
+        Set(value As Boolean)
+            m_allowAdd = value
+            m_addButton.Visible = m_allowAdd
+        End Set
+    End Property
+
     Public Sub SetValues(items As Collections.IList)
-
-        m_tmpList1.Items.Clear()
         AddValues(items)
-
     End Sub
 
     Public Sub AddValues(items As Collections.IList)
-
-        Dim array(items.Count - 1) As Object
-
-        items.CopyTo(array, 0)
         fullItemsList = items
-
-        m_tmpList1.Items.AddRange(array)
-
-        m_txtFilter.Text = ""
-
     End Sub
 
     Public Sub Clear()
@@ -101,7 +117,13 @@
             fullItemsList.Clear()
         End If
 
-        m_tmpList1.Items.Clear()
+    End Sub
+
+    Private Sub m_addButton_MouseUp(sender As Object, e As MouseEventArgs) Handles m_addButton.MouseUp
+
+        If AllowAdd Then
+            RaiseEvent AddItemClick(Me)
+        End If
 
     End Sub
 
@@ -109,162 +131,20 @@
 
         If e.Button = Windows.Forms.MouseButtons.Left Then
 
-            If IsNothing(m_frm) Then
-                m_frm = BuildSelectForm()
-            Else
-                m_tmpList2.Items.Clear()
+            Dim result As FrmSelectItems.FrmSelectItemsResult = FrmSelectItems.GetSelectedItems(fullItemsList, m_list.Items, Me)
+
+            If result.DlgResult = DialogResult.OK Then
+
+                m_list.Items.Clear()
+
+                If result.SelectedItems IsNot Nothing Then
+                    For Each item As Object In result.SelectedItems
+                        m_list.Items.Add(item)
+                    Next
+
+                End If
             End If
 
-            For Each item As Object In m_list.Items
-                m_tmpList2.Items.Add(item)
-            Next
-
-            m_frm.ShowDialog(Me.FindForm)
-
-        End If
-
-    End Sub
-
-    Private Function BuildSelectForm() As Form
-
-        Dim frm As New Form
-        With frm
-            .Width = 550
-            .Height = 300
-            .FormBorderStyle = FormBorderStyle.FixedDialog
-            .StartPosition = FormStartPosition.CenterParent
-        End With
-
-        Dim pnlList1 As New Panel
-        With pnlList1
-            .Parent = frm
-            .Visible = True
-            .Dock = DockStyle.Left
-            .BorderStyle = Windows.Forms.BorderStyle.None
-            .Width = 225
-        End With
-
-        With m_tmpList1
-            .Parent = pnlList1
-            .Visible = True
-            .Dock = DockStyle.Fill
-            .IntegralHeight = False
-            .BorderStyle = Windows.Forms.BorderStyle.FixedSingle
-        End With
-
-        With m_txtFilter
-            .Parent = pnlList1
-            .Visible = True
-            .Dock = DockStyle.Top
-            .TabIndex = 0
-            .Focus()
-        End With
-
-        m_tmpList2 = New ListBox
-        With m_tmpList2
-            .Parent = frm
-            .Visible = True
-            .Dock = DockStyle.Right
-            .IntegralHeight = False
-            .BorderStyle = Windows.Forms.BorderStyle.FixedSingle
-            .Width = 225
-        End With
-
-        Dim pnl As New Panel
-        With pnl
-            .Parent = frm
-            .Visible = True
-            .Dock = DockStyle.Fill
-            .BorderStyle = Windows.Forms.BorderStyle.None
-        End With
-
-        Dim btnAdd As New Button
-        With btnAdd
-            .Parent = pnl
-            .Dock = DockStyle.Top
-            .FlatStyle = FlatStyle.Flat
-            .Height = 50
-            .Text = "Ajouter"
-        End With
-        AddHandler btnAdd.MouseUp, AddressOf btnAdd_MouseUp
-
-        Dim btnRemove As New Button
-        With btnRemove
-            .Parent = pnl
-            .Dock = DockStyle.Top
-            .FlatStyle = FlatStyle.Flat
-            .Height = 50
-            .Text = "Suppr."
-        End With
-        AddHandler btnRemove.MouseUp, AddressOf btnremove_MouseUp
-
-        Dim btnOk As New Button
-        With btnOk
-            .Parent = pnl
-            .Dock = DockStyle.Bottom
-            .FlatStyle = FlatStyle.Flat
-            .Height = 50
-            .Text = "Valider"
-        End With
-        AddHandler btnOk.MouseUp, AddressOf btnOk_MouseUp
-
-        Dim btnCancel As New Button
-        With btnCancel
-            .Parent = pnl
-            .Dock = DockStyle.Bottom
-            .FlatStyle = FlatStyle.Flat
-            .Height = 50
-            .Text = "Annuler"
-        End With
-        AddHandler btnCancel.MouseUp, AddressOf btnCancel_MouseUp
-
-        With m_txtFilter
-            .TabIndex = 0
-            .Focus()
-        End With
-
-        Return frm
-
-    End Function
-
-    Private Sub btnOk_MouseUp(sender As Object, e As MouseEventArgs)
-
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            Clear()
-
-            For Each item As Object In m_tmpList2.Items
-                AddItem(item)
-            Next
-
-            CType(sender, Control).FindForm.Close()
-        End If
-
-    End Sub
-
-    Private Sub btnCancel_MouseUp(sender As Object, e As MouseEventArgs)
-
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            CType(sender, Control).FindForm.Close()
-        End If
-
-    End Sub
-
-    Private Sub btnAdd_MouseUp(sender As Object, e As MouseEventArgs)
-
-        If e.Button = Windows.Forms.MouseButtons.Left AndAlso m_tmpList1.SelectedItem IsNot Nothing Then
-            If Not m_tmpList2.Items.Contains(m_tmpList1.SelectedItem) Then
-                m_tmpList2.Items.Add(m_tmpList1.SelectedItem)
-            Else
-                MsgBox(m_tmpList1.SelectedItem.ToString & " est déjà dans la liste.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Doublons...")
-            End If
-        End If
-
-    End Sub
-
-    Private Sub btnremove_MouseUp(sender As Object, e As MouseEventArgs)
-
-        If e.Button = Windows.Forms.MouseButtons.Left AndAlso m_tmpList2.SelectedItem IsNot Nothing Then
-            m_tmpList2.Items.Remove(m_tmpList2.SelectedItem)
         End If
 
     End Sub
@@ -297,36 +177,5 @@
             Return m_list.Items.Count
         End Get
     End Property
-
-    Private Sub m_txtFilter_KeyUp(sender As Object, e As KeyEventArgs) Handles m_txtFilter.KeyUp
-
-        If e.KeyCode = Keys.Enter Then
-
-            Dim filteredList As New List(Of Object)
-            Dim filter As String = "*" & m_txtFilter.Text.Trim.ToLower & "*"
-
-            For Each o As Object In fullItemsList
-
-                If o.ToString.ToLower Like filter Then
-                    filteredList.Add(o)
-                End If
-
-            Next
-
-            m_tmpList1.Items.Clear()
-            m_tmpList1.Items.AddRange(filteredList.ToArray)
-
-        End If
-
-    End Sub
-
-    Private Sub m_frm_Activated(sender As Object, e As EventArgs) Handles m_frm.Activated
-
-        With m_txtFilter
-            .TabIndex = 0
-            .Focus()
-        End With
-
-    End Sub
 
 End Class
