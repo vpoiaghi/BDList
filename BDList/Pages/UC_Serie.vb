@@ -435,10 +435,10 @@ Public Class UC_Serie
         btn_goodies.Enabled = True
 
         ' zones
-        lst_editions.Visible = True
-        lst_editions.Focus()
+        lst_goodies.Visible = True
+        lst_goodies.Focus()
         pnl_serieInfos.Visible = False
-        lst_goodies.Visible = False
+        lst_editions.Visible = False
 
         ' visualisation des boutons d'action
         btn_add.Visible = True
