@@ -579,6 +579,55 @@ Namespace DAO
 
         End Function
 
+        Public Function GetPurchased() As List(Of IdBObject)
+
+            Dim rqt As String = " SELECT Edition.Id AS Id" _
+                              & " FROM (((Edition" _
+                              & " LEFT JOIN Edition_Serie ON (Edition.Id = Edition_Serie.IdEdition))" _
+                              & " LEFT JOIN Serie ON (Edition_Serie.IdSerie = Serie.Id))" _
+                              & " LEFT JOIN Edition_Title ON (Edition.Id = Edition_Title.IdEdition))" _
+                              & " LEFT JOIN Title ON (Edition_Title.IdTitle = Title.Id)" _
+                              & " WHERE Edition.BoughtDate IS NOT NULL" _
+                              & " ORDER BY BoughtDate DESC," _
+                              & " Serie.SortName ASC," _
+                              & " Edition.Miscellany DESC," _
+                              & " Edition.Integral DESC," _
+                              & " Title.OutSerie DESC," _
+                              & " Title.OrderNumber ASC," _
+                              & " Edition.SpecialEdition ASC"
+
+            Return GetByIds(rqt)
+
+        End Function
+
+        Public Function GetPurchasedByEditor(editor As Editor) As List(Of IdBObject)
+
+            Dim rqt As String =
+                " SELECT Edition.Id AS Id" &
+                " FROM (((Edition" &
+                " LEFT JOIN Edition_Serie ON (Edition.Id = Edition_Serie.IdEdition))" &
+                " LEFT JOIN Serie ON (Edition_Serie.IdSerie = Serie.Id))" &
+                " LEFT JOIN Edition_Title ON (Edition.Id = Edition_Title.IdEdition))" &
+                " LEFT JOIN Title ON (Edition_Title.IdTitle = Title.Id)" &
+                " WHERE Edition.BoughtDate IS NOT NULL"
+
+            If editor IsNot Nothing Then
+                rqt &= " AND Edition.IdEditor = " & editor.GetId()
+            End If
+
+            rqt &=
+                " ORDER BY BoughtDate DESC," &
+                " Serie.SortName ASC," &
+                " Edition.Miscellany DESC," &
+                " Edition.Integral DESC," &
+                " Title.OutSerie DESC," &
+                " Title.OrderNumber ASC," &
+                " Edition.SpecialEdition ASC"
+
+            Return GetByIds(rqt)
+
+        End Function
+
         Public Function GetByGoody(goodyId As Long?) As List(Of IdBObject)
 
             Dim rqt As String = " SELECT Edition.Id AS Id" _

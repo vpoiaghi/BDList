@@ -19,7 +19,7 @@ Public Class SyncControler
         Dim ctrlResults As New List(Of SyncCtrlResult)
 
         Dim phoneExplorer As PhoneExplorer
-        Dim dbFile As IFile = Factory.GetFile(Constantes.SQLITE_DATABASE_LOCAL_FILE_PATH)
+        Dim dbFile As IFile = Factory.GetFile(MdlConst.SQLITE_DATABASE_LOCAL_FILE_PATH)
         Dim dbPhoneFile As IFile = Factory.GetFile(SQLITE_DATABASE_PHONE_FILE_PATH)
         Dim dbLocalFile As IFile = Factory.GetFile(SQLITE_DATABASE_LOCAL_FILE_PATH)
 
@@ -28,13 +28,13 @@ Public Class SyncControler
 
         phoneExplorer = PhoneExplorer.GetInstance
 
-        If phoneExplorer.Connect Then
+        'If phoneExplorer.Connect Then
 
-            ' Copie la base de données du téléphone en local
-            phoneExplorer.PullFile(dbPhoneFile, dbLocalFile)
+        ' Copie la base de données du téléphone en local
+        'phoneExplorer.PullFile(dbPhoneFile, dbLocalFile)
 
 
-            Dim controlersList As New List(Of SyncCtrl)
+        Dim controlersList As New List(Of SyncCtrl)
             controlersList.Add(New SyncCtrlEvents)
             controlersList.Add(New SyncCtrlEditors)
             controlersList.Add(New SyncCtrlSeries)
@@ -57,7 +57,7 @@ Public Class SyncControler
 
             Next
 
-        End If
+        'End If
 
         'Catch ex As Exception
         '    MessageBox.Show(ex.Message)

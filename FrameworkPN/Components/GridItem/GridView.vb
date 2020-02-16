@@ -3,6 +3,7 @@
     Public Event ListItemAction(Sender As Object, e As GridItemActionEventArgs)
     Public Event ItemSelectionChanged(Sender As Object, e As GridItemSelectedEventArgs)
     Public Event SerieClicked(Sender As Object, item As GridItem)
+    Public Event ShowFilterClick(sender As Object, e As MouseEventArgs)
 
     Private m_adapter As IAdapter
 
@@ -24,6 +25,9 @@
     Public Sub New()
         MyBase.New()
         InitializeComponent()
+
+        btn_filter.Visible = False
+
     End Sub
 
     Protected Overrides Sub Finalize()
@@ -96,6 +100,15 @@
         End Get
     End Property
 
+    Public Property ShowFilter As Boolean
+        Get
+            Return Me.btn_filter.Visible
+        End Get
+        Set(value As Boolean)
+            Me.btn_filter.Visible = value
+        End Set
+    End Property
+
     Private Sub pnl_main_SizeChanged(sender As Object, e As EventArgs) Handles pnl_main.SizeChanged
         UpdateItemsOrganization()
     End Sub
@@ -143,15 +156,7 @@
 
     End Sub
 
-    Public Sub ShowItem(itemIndex As Integer)
-
-        Dim pageIndex As Integer = Math.Ceiling(itemIndex / m_itemsByPageCount)
-
-        showPage(pageIndex)
-
-    End Sub
-
-    Public Sub showPage(pageIndex As Integer)
+    Public Sub ShowPage(pageIndex As Integer)
 
         If (m_adapter IsNot Nothing) AndAlso (pageIndex > 0) AndAlso (pageIndex <= m_pageCount) Then
 
@@ -331,6 +336,10 @@
 
         RaiseEvent ItemSelectionChanged(Me, New GridItemSelectedEventArgs(Nothing))
 
+    End Sub
+
+    Private Sub btn_filter_MouseUp(sender As Object, e As MouseEventArgs) Handles btn_filter.MouseUp
+        RaiseEvent ShowFilterClick(Me, e)
     End Sub
 
 End Class

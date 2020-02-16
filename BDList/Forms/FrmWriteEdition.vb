@@ -1751,7 +1751,7 @@ Public Class FrmWriteEdition
 
     End Sub
 
-    Private Sub TxtAutographDate_TextChanged(sender As Object, e As EventArgs) Handles TxtAutographDate.TextChanged
+    Private Sub TxtAutographDate_TextChanged(sender As Object, e As EventArgs) Handles TxtAutographDate.DateChanged
 
         If LvwAutographs.SelectedItems.Count = 1 Then
 
@@ -1871,6 +1871,7 @@ Public Class FrmWriteEdition
                 .SubItems.Add("")
                 .SubItems.Add("")
                 .SubItems.Add("")
+                .SubItems.Add("")
                 .Tag = m_serviceAutograph.GetNew()
                 .Selected = True
             End With
@@ -1919,4 +1920,5 @@ Public Class FrmWriteEdition
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
 
     End Sub
+
 End Class

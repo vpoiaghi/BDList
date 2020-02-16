@@ -1,7 +1,7 @@
 ﻿Public Class DateTextBox
     Inherits Panel
 
-    Public Shadows Event TextChanged(sender As Object, e As EventArgs)
+    Public Shadows Event DateChanged(sender As Object, e As EventArgs)
 
     Private WithEvents m_textbox As TextBox
     Private Shared m_dateSelector As New DateSelector
@@ -51,7 +51,7 @@
             m_textbox.Text = Format(m_date, m_dateFormat)
         End If
 
-        RaiseEvent TextChanged(Me, New EventArgs())
+        RaiseEvent DateChanged(Me, New EventArgs())
 
     End Sub
 
@@ -75,7 +75,7 @@
             m_date = Nothing
         End If
 
-        RaiseEvent TextChanged(Me, e)
+        RaiseEvent DateChanged(Me, e)
 
     End Sub
 

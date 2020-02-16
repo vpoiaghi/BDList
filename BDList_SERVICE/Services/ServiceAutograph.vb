@@ -1,6 +1,7 @@
 ﻿Imports BDList_DAO_BO.BO
 Imports BDList_DAO_BO.DAO
 Imports BDList_TOOLS.IO
+Imports FrameworkPN
 
 Public Class ServiceAutograph
     Inherits Service(Of DaoAutograph)
@@ -56,5 +57,31 @@ Public Class ServiceAutograph
         Return filePattern & ".jpg"
 
     End Function
+
+    Public Overrides Sub Delete(autograph As IdBObject)
+
+        MyBase.Delete(autograph)
+        DeleteAutographImages(autograph)
+
+    End Sub
+
+    Public Overrides Sub Delete(autographsList As List(Of IdBObject))
+
+        MyBase.Delete(autographsList)
+
+        For Each autograph As IdBObject In autographsList
+            DeleteAutographImages(autograph)
+        Next
+
+    End Sub
+
+    Public Sub DeleteAutographImages(edition As IdBObject)
+
+        For Each imgFile As IFile In GetFiles(edition)
+            ImageUtils.DeleteImage(imgFile)
+        Next
+
+    End Sub
+
 
 End Class

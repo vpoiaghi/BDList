@@ -27,19 +27,31 @@ Public Class UC_Synchronize
         RefreshLabels()
     End Sub
 
+    Private Sub btn_control_Click(sender As Object, e As EventArgs) Handles btn_control.Click
+        StartControl()
+    End Sub
+
     Private Sub btn_synchronize_Click(sender As Object, e As EventArgs) Handles btn_synchronize.Click
-        StartSync(False)
+
+        If StartSync(False) Then
+            StartControl()
+        End If
+
     End Sub
 
     Private Sub btn_synchronizeAll_Click(sender As Object, e As EventArgs) Handles btn_synchronizeAll.Click
 
         If MsgBox("Etes-vous sure de vouloir réinitialiser le téléphone ?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Tout synchroniser...") = MsgBoxResult.Yes Then
-            StartSync(True)
+            If StartSync(True) Then
+                StartControl()
+            End If
         End If
 
     End Sub
 
-    Private Sub StartSync(synchroniseAll As Boolean)
+    Private Function StartSync(synchroniseAll As Boolean) As Boolean
+
+        Dim result As Boolean = False
 
         ListBox1.Items.Clear()
         ListBox1.Refresh()
@@ -65,29 +77,37 @@ Public Class UC_Synchronize
         EnabledSyncToLocal(False)
 
         m_synchroniseWithSQLiteBase = New SynchroniseWithSQLiteBase
-        Dim result As SynchroniseResults = m_synchroniseWithSQLiteBase.Synchronise(synchroniseAll)
+        Dim syncResult As SynchroniseResults = m_synchroniseWithSQLiteBase.Synchronise(synchroniseAll)
 
-        For Each info As String In result.GetPhoneInfos
-            ListBox1.Items.Add(info)
-        Next
+        If syncResult IsNot Nothing Then
 
-        ListBox1.Items.Add("")
+            For Each info As String In syncResult.GetPhoneInfos
+                ListBox1.Items.Add(info)
+            Next
 
-        For Each info As String In result.GetLocalInfos
-            ListBox1.Items.Add(info)
-        Next
+            ListBox1.Items.Add("")
 
-        ListBox1.Items.Add("")
+            For Each info As String In syncResult.GetLocalInfos
+                ListBox1.Items.Add(info)
+            Next
 
-        For Each action As SynchroniseAction In result.GetActions
-            ListBox1.Items.Add(action)
-        Next
+            ListBox1.Items.Add("")
 
-        RefreshLabels()
+            For Each action As SynchroniseAction In syncResult.GetActions
+                ListBox1.Items.Add(action)
+            Next
+
+            RefreshLabels()
+
+            result = True
+
+        End If
 
         m_synchroniseWithSQLiteBase = Nothing
 
-    End Sub
+        Return result
+
+    End Function
 
     Private Sub RefreshLabels()
 
@@ -100,50 +120,18 @@ Public Class UC_Synchronize
     Private Sub ShowLastSyncDate()
 
         Dim svcPhoneParameters As New ServicePhoneParameters
-        Dim d As DateTime? = svcPhoneParameters.GetAll(0).GetModifiedDateTime
+        Dim lst As List(Of IdBObject) = svcPhoneParameters.GetAll
+        Dim d As DateTime?
+
+        If lst.Count > 0 Then
+            d = lst(0).GetModifiedDateTime
+        End If
 
         If d Is Nothing Then
             lbl_lastSync.Text = "Dernière synchronisation : inconnue"
         Else
             lbl_lastSync.Text = "Dernière synchronisation : " & Format(d, "dd/MM/yyyy HH:mm:ss")
         End If
-
-    End Sub
-
-    Private Sub btn_control_Click(sender As Object, e As EventArgs) Handles btn_control.Click
-
-        ListBox2.Items.Clear()
-        ListBox2.Refresh()
-        DataGridView1.Rows.Clear()
-        DataGridView1.Refresh()
-        DataGridView2.Rows.Clear()
-        DataGridView2.Refresh()
-
-        ProgressBar1.Visible = True
-        ProgressBar1.Minimum = 0
-        ProgressBar1.Maximum = 100
-        ProgressBar1.Value = 0
-        ProgressBar1.Refresh()
-
-        lbl_messages.Text = "Contrôle en cours.."
-        lbl_messages.Refresh()
-
-        m_syncControler = New SyncControler
-        m_syncCtrlResults = m_syncControler.StartControl()
-
-        SetCanSyncToPhone(False)
-        SetCanSyncTolocal(False)
-        EnabledSyncToPhone(False)
-        EnabledSyncToLocal(False)
-
-        For Each result As SyncCtrlResult In m_syncCtrlResults
-
-            Dim values() As Object = {result.Name, result.GetSamesCount, result.GetDifferentsCount, result.GetMissingsOnLocalCount, result.GetMissingsOnPhoneCount}
-            DataGridView1.Rows.Add(values)
-
-        Next
-
-        m_syncControler = Nothing
 
     End Sub
 
@@ -284,10 +272,10 @@ Public Class UC_Synchronize
         ProgressBar1.Value = ProgressBar1.Maximum
         ProgressBar1.Refresh()
 
-        lbl_messages.Text = "Synchronisation terminée..."
+        lbl_messages.Text = "Synchronisation terminée en " & Format(syncDuration.Hours, "00") & ":" & Format(syncDuration.Minutes, "00") & ":" & Format(syncDuration.Seconds, "00")
         lbl_messages.Refresh()
 
-        MessageBox.Show("Mise à jour terminée en " & Format(syncDuration.Hours, "00") & ":" & Format(syncDuration.Minutes, "00") & ":" & Format(syncDuration.Seconds, "00"))
+        'MessageBox.Show("Mise à jour terminée en " & Format(syncDuration.Hours, "00") & ":" & Format(syncDuration.Minutes, "00") & ":" & Format(syncDuration.Seconds, "00"))
 
         ProgressBar1.Visible = False
         lbl_messages.Text = ""
@@ -316,13 +304,50 @@ Public Class UC_Synchronize
         ProgressBar1.Value = ProgressBar1.Maximum
         ProgressBar1.Refresh()
 
-        lbl_messages.Text = "Contrôle terminé..."
+        lbl_messages.Text = "Contrôle terminé en " & Format(ctrlDuration.Hours, "00") & ":" & Format(ctrlDuration.Minutes, "00") & ":" & Format(ctrlDuration.Seconds, "00")
         lbl_messages.Refresh()
 
-        MessageBox.Show("Contrôle terminé en " & Format(ctrlDuration.Hours, "00") & ":" & Format(ctrlDuration.Minutes, "00") & ":" & Format(ctrlDuration.Seconds, "00"))
+        'MessageBox.Show("Contrôle terminé en " & Format(ctrlDuration.Hours, "00") & ":" & Format(ctrlDuration.Minutes, "00") & ":" & Format(ctrlDuration.Seconds, "00"))
 
         ProgressBar1.Visible = False
         lbl_messages.Text = ""
+
+    End Sub
+
+    Private Sub StartControl()
+
+        ListBox2.Items.Clear()
+        ListBox2.Refresh()
+        DataGridView1.Rows.Clear()
+        DataGridView1.Refresh()
+        DataGridView2.Rows.Clear()
+        DataGridView2.Refresh()
+
+        ProgressBar1.Visible = True
+        ProgressBar1.Minimum = 0
+        ProgressBar1.Maximum = 100
+        ProgressBar1.Value = 0
+        ProgressBar1.Refresh()
+
+        lbl_messages.Text = "Contrôle en cours.."
+        lbl_messages.Refresh()
+
+        m_syncControler = New SyncControler
+        m_syncCtrlResults = m_syncControler.StartControl()
+
+        SetCanSyncToPhone(False)
+        SetCanSyncTolocal(False)
+        EnabledSyncToPhone(False)
+        EnabledSyncToLocal(False)
+
+        For Each result As SyncCtrlResult In m_syncCtrlResults
+
+            Dim values() As Object = {result.Name, result.GetSamesCount, result.GetDifferentsCount, result.GetMissingsOnLocalCount, result.GetMissingsOnPhoneCount}
+            DataGridView1.Rows.Add(values)
+
+        Next
+
+        m_syncControler = Nothing
 
     End Sub
 

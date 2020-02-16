@@ -76,7 +76,7 @@ Public Class UC_NewEditions
         Dim svcGoodies As New ServiceGoody
         items.AddRange(svcGoodies.GetByPeriod(Now.AddDays(-30), Now))
 
-        Dim adapter As IAdapter = New IdBObjectsAdapter(items)
+        Dim adapter As IAdapter = New ChronologicParutionSortAdapter(items)
 
         lst_newItemsList.SetAdapter(adapter)
 
@@ -90,7 +90,7 @@ Public Class UC_NewEditions
         Dim svcGoodies As New ServiceGoody
         items.AddRange(svcGoodies.GetByPeriodAndEditor(Now.AddDays(-30), Now, editor))
 
-        Dim adapter As IAdapter = New IdBObjectsAdapter(items)
+        Dim adapter As IAdapter = New ChronologicParutionSortAdapter(items)
 
         lst_newItemsList.SetAdapter(adapter)
 

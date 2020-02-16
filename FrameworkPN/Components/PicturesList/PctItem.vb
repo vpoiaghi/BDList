@@ -15,7 +15,7 @@ Friend Class PctItem
 
             Try
                 m_image = ImageUtils.LoadImage(m_file)
-                m_saved = True
+                'm_saved = True
             Catch ex As Exception
                 m_image = Nothing
             End Try

@@ -1596,6 +1596,7 @@ Partial Class FrmWriteEdition
         '
         'slst_authors
         '
+        Me.slst_authors.AllowAdd = False
         Me.slst_authors.Location = New System.Drawing.Point(11, 6)
         Me.slst_authors.Name = "slst_authors"
         Me.slst_authors.Size = New System.Drawing.Size(276, 42)

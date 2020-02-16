@@ -131,7 +131,7 @@ Partial Class FrmSelectItems
         Me.Btn_Add.Text = "Ajouter >>"
         Me.Btn_Add.UseVisualStyleBackColor = True
         '
-        'frmSelectItems
+        'FrmSelectItems
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -142,7 +142,7 @@ Partial Class FrmSelectItems
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmSelectItems"
+        Me.Name = "FrmSelectItems"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Selection..."
         Me.pnlList1.ResumeLayout(False)

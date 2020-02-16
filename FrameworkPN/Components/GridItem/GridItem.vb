@@ -25,6 +25,9 @@
     Public Overridable Sub ModifyItem()
     End Sub
 
+    Public Overridable Sub DeleteItem()
+    End Sub
+
     Public Overridable Sub ShowItem()
     End Sub
 

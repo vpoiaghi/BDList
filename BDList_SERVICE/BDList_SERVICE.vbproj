@@ -156,6 +156,10 @@
       <Project>{ef29a421-71cd-4481-88d9-46fe5cf2bef0}</Project>
       <Name>BDList_TOOLS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FrameworkPN\FrameworkPN.vbproj">
+      <Project>{2A8C3D01-959A-4983-8261-610CB456213D}</Project>
+      <Name>FrameworkPN</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

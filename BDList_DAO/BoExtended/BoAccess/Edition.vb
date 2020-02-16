@@ -193,7 +193,7 @@ Namespace BO
                     If .IsOutSerie Then
                         result = ("[HS] " & .GetOrderNumber).Trim & es & " - " & .ToString
                     Else
-                        result = .GetOrderNumber & " - " & .GetName
+                        result = .GetOrderNumber & " - " & .GetName & es
                     End If
 
                 End With

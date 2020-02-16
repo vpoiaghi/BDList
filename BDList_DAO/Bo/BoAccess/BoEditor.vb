@@ -2,7 +2,7 @@ Option Explicit On
 
 Namespace BO
 
-	Public MustInherit Class BoEditor
+    Public MustInherit Class BoEditor
         Inherits NamedBObject
 
         Dim m_manager As BoPerson
@@ -102,18 +102,6 @@ Namespace BO
         Public Sub SetManager(p_manager As BoPerson)
             m_manager = p_manager
         End Sub
-
-        Public Overrides Function CompareWith(other As IdBObject) As Integer
-
-            If other Is Nothing Then
-                Return -1
-            ElseIf Not TypeOf other Is BoEditor Then
-                Throw New FormatException
-            Else
-                Return GetName.CompareTo(CType(other, BoEditor).GetName)
-            End If
-
-        End Function
 
     End Class
 End Namespace

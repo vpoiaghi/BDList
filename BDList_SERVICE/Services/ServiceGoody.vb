@@ -1,6 +1,7 @@
 ﻿Imports BDList_DAO_BO.BO
 Imports BDList_DAO_BO.DAO
 Imports BDList_TOOLS.IO
+Imports FrameworkPN
 
 Public Class ServiceGoody
     Inherits Service(Of DaoGoody)
@@ -59,7 +60,7 @@ Public Class ServiceGoody
 
     Public Function GetComing(firstDate As Date) As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetComing(firstDate)
@@ -77,10 +78,44 @@ Public Class ServiceGoody
 
     Public Function GetComingByEditor(firstDate As Date, editor As Editor) As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetComingByEditor(firstDate, editor.GetId)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return result
+
+    End Function
+
+    Public Function GetPurchased() As List(Of IdBObject)
+
+        Dim result As New List(Of IdBObject)
+
+        Try
+            result = GetDao().GetPurchased()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return result
+
+    End Function
+
+    Public Function GetPurchasedByEditor(editor As Editor) As List(Of IdBObject)
+
+        Dim result As List(Of IdBObject) = Nothing
+
+        Try
+
+            If editor Is Nothing Then
+                result = New List(Of IdBObject)
+            Else
+                result = GetDao().GetPurchasedByEditor(editor)
+            End If
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -232,6 +267,31 @@ Public Class ServiceGoody
         Next
 
         MyBase.InsertOrUpdate(goody)
+
+    End Sub
+
+    Public Overrides Sub Delete(goody As IdBObject)
+
+        MyBase.Delete(goody)
+        DeleteGoodyImages(goody)
+
+    End Sub
+
+    Public Overrides Sub Delete(goodiesList As List(Of IdBObject))
+
+        MyBase.Delete(goodiesList)
+
+        For Each goody As IdBObject In goodiesList
+            DeleteGoodyImages(goody)
+        Next
+
+    End Sub
+
+    Private Sub DeleteGoodyImages(goody As IdBObject)
+
+        For Each imgFile As IFile In GetFiles(goody)
+            ImageUtils.DeleteImage(imgFile)
+        Next
 
     End Sub
 

@@ -99,11 +99,20 @@
     End Property
 
     Public Sub SetValues(items As Collections.IList)
+        ClearValues()
         AddValues(items)
     End Sub
 
     Public Sub AddValues(items As Collections.IList)
-        fullItemsList = items
+
+        If fullItemsList Is Nothing Then
+            fullItemsList = items
+        Else
+            For Each item In items
+                fullItemsList.Add(item)
+            Next
+        End If
+
     End Sub
 
     Public Sub Clear()
@@ -143,6 +152,9 @@
                     Next
 
                 End If
+
+                RaiseEvent ItemsListChanged(Me)
+
             End If
 
         End If

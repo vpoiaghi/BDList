@@ -12,6 +12,12 @@
 
         Public Sub New(lsLineResult As String)
 
+            m_name = Nothing
+            m_isDirectory = False
+            m_creationDate = Nothing
+            m_size = Nothing
+            m_exists = False
+
             If lsLineResult <> "" Then
 
                 With lsLineResult
@@ -19,22 +25,24 @@
                     If .ToLower.EndsWith(NO_SUCH_FILE_OR_DIRECTORY) Then
 
                         m_name = .Substring(0, .Length - NO_SUCH_FILE_OR_DIRECTORY.Length - 2)
-                        m_isDirectory = False
-                        m_creationDate = Nothing
-                        m_size = Nothing
-                        m_exists = False
 
                     Else
 
-                        m_name = .Substring(55)
+                        Dim lineElements() As String = lsLineResult.Split({" "}, StringSplitOptions.RemoveEmptyEntries)
+
+                        m_name = lineElements.Last
                         m_isDirectory = (.Substring(0, 1) = "d")
-                        m_creationDate = New Date(.Substring(38, 4), .Substring(43, 2), .Substring(46, 2), .Substring(49, 2), .Substring(52, 2), 0)
                         m_exists = True
+
+                        Dim dte As String = lineElements(5)
+                        Dim hr As String = lineElements(6)
+                        'm_creationDate = New Date(.Substring(38, 4), .Substring(43, 2), .Substring(46, 2), .Substring(49, 2), .Substring(52, 2), 0)
+                        m_creationDate = New Date(dte.Substring(0, 4), dte.Substring(5, 2), dte.Substring(8, 2), hr.Substring(0, 2), hr.Substring(3, 2), 0)
 
                         If m_isDirectory Then
                             m_size = Nothing
                         Else
-                            m_size = Integer.Parse(.Substring(29, 8))
+                            m_size = Integer.Parse(lineElements(4))
                         End If
 
                     End If

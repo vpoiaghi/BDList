@@ -14,6 +14,7 @@ Namespace BO
         Dim m_endOfValidity As Nullable(Of DateTime)
         Dim m_currentcost As Nullable(Of Single)
         Dim m_bestPrice As Nullable(Of Single)
+        Dim m_articlesCount As Integer
 
         Public Function GetTitle() As String
             Return m_title
@@ -69,6 +70,13 @@ Namespace BO
         End Function
         Public Sub SetBestPrice(p_bestPrice As Nullable(Of Single))
             m_bestPrice = p_bestPrice
+        End Sub
+
+        Public Function GetArticlesCount() As Integer
+            Return m_articlesCount
+        End Function
+        Public Sub SetArticlesCount(p_articlesCount As Integer)
+            m_articlesCount = p_articlesCount
         End Sub
 
     End Class

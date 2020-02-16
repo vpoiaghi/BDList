@@ -101,8 +101,9 @@
   <ItemGroup>
     <Compile Include="Adapters\AdsAdapter.vb" />
     <Compile Include="Adapters\AuthorsAdapter.vb" />
+    <Compile Include="Adapters\LastPurchaseSortAdapter.vb" />
     <Compile Include="Adapters\PressAdapter.vb" />
-    <Compile Include="Adapters\IdBObjectsAdapter.vb" />
+    <Compile Include="Adapters\ChronologicParutionSortAdapter.vb" />
     <Compile Include="Adapters\GoodiesAdapter.vb" />
     <Compile Include="Adapters\EditionsAdapter.vb" />
     <Compile Include="Adapters\RecentlyModifiedItemsAdapter.vb" />
@@ -150,7 +151,6 @@
     <Compile Include="Components\GridViewItems\GridItem_Serie.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Consts\Constantes.vb" />
     <Compile Include="Forms\FrmEditionOrGoody.Designer.vb">
       <DependentUpon>FrmEditionOrGoody.vb</DependentUpon>
     </Compile>
@@ -220,6 +220,12 @@
       <DependentUpon>UC_Festivals.vb</DependentUpon>
     </Compile>
     <Compile Include="Pages\UC_Festivals.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UC_LastPurchases.Designer.vb">
+      <DependentUpon>UC_LastPurchases.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UC_LastPurchases.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\UC_Purchase.Designer.vb">
@@ -516,6 +522,9 @@
     <EmbeddedResource Include="Pages\UC_Festivals.resx">
       <DependentUpon>UC_Festivals.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UC_LastPurchases.resx">
+      <DependentUpon>UC_LastPurchases.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\UC_Purchase.resx">
       <DependentUpon>UC_Purchase.vb</DependentUpon>
     </EmbeddedResource>
@@ -661,6 +670,8 @@
     <None Include="Resources\opened_padlock.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\reserved_at_cultura.png" />
+    <None Include="Resources\ordered_at_bdfugue.png" />
     <None Include="Resources\winner.png" />
     <None Include="Resources\present.png" />
     <None Include="Resources\unknown.png" />
@@ -680,6 +691,8 @@
     <None Include="Resources\btn_next_page.png" />
     <None Include="Resources\Cadeau.png" />
     <None Include="Resources\all_the_time.png" />
+    <None Include="Resources\filter.png" />
+    <None Include="Resources\delete.png" />
     <Content Include="Resources\folder-contract-icon.png" />
     <None Include="Resources\menu_search.png" />
     <None Include="Resources\menu_coming.png" />
@@ -692,6 +705,7 @@
     <None Include="Resources\nothing.png" />
     <None Include="Resources\menu_festival.png" />
     <None Include="Resources\manqué.png" />
+    <None Include="Resources\menu_last_purchases.png" />
     <Content Include="Resources\Office-Customer-Male-Light-icon.png" />
     <None Include="Resources\search 2.png" />
     <None Include="Resources\menu_events.png" />

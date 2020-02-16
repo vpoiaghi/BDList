@@ -167,7 +167,6 @@ Public Class FrmWriteGoody
 
         Dim serviceSerie As New ServiceSerie
         slst_series.AddRange(oldGoody.GetSeries.ToArray)
-        slst_series.SetValues(serviceSerie.GetAll.ToArray)
         slst_series.SetValues(serviceSerie.GetAll)
 
         Dim serviceEditor As New ServiceEditor
@@ -176,7 +175,7 @@ Public Class FrmWriteGoody
                 slst_editors.AddItem(edt)
             Next
         End If
-        slst_editors.SetValues(serviceEditor.GetAll.ToArray)
+        slst_editors.SetValues(serviceEditor.GetAll)
 
         InitAuthors(oldGoody)
 
@@ -189,11 +188,12 @@ Public Class FrmWriteGoody
         cmbKindOfGoody.SelectedItem = oldGoody.GetKindOfGoody
 
         If oldGoody.GetPossessionState IsNot Nothing Then
-            btn_possessionState.Tag = oldGoody.GetPossessionState.GetId
-            btn_possessionState.Image = PossessionStatesUtils.GetImage(btn_possessionState.Tag)
+            ChangePossessionState(oldGoody.GetPossessionState.GetId)
         Else
             btn_possessionState.Tag = Nothing
             btn_possessionState.Image = Nothing
+            NUD_Count.Visible = False
+            NUD_Count.Value = 0
         End If
 
         cmbCollection.Items.Clear()
@@ -286,7 +286,7 @@ Public Class FrmWriteGoody
             Dim serviceEdition As New ServiceEdition
             slst_editions.ClearValues()
             For Each s As Serie In slst_series.Items
-                slst_editions.AddValues(serviceEdition.GetAllBySerie(s).ToArray)
+                slst_editions.AddValues(serviceEdition.GetAllBySerie(s))
             Next
 
         Else
@@ -304,7 +304,7 @@ Public Class FrmWriteGoody
         slst_authors.Enabled = True
         slst_authors.Clear()
         slst_authors.AddRange(goody.GetAuthors.ToArray)
-        slst_authors.SetValues(serviceAuthor.GetAll().ToArray)
+        slst_authors.SetValues(serviceAuthor.GetAll())
 
     End Sub
 
@@ -363,6 +363,12 @@ Public Class FrmWriteGoody
                 .SetComments(GetStringValue(rtbComments))
                 .SetNumberInCollection(GetIntegerValue(txtNumberInCollection))
                 .SetScanned(chkScanned.Checked)
+
+                If GetPossessionState().GetId = PossessionStates.InPossession Then
+                    .SetCount(NUD_Count.Value)
+                Else
+                    .SetCount(0)
+                End If
 
                 plstPictures.SavePictures()
 
@@ -628,8 +634,7 @@ Public Class FrmWriteGoody
     End Function
 
     Private Sub btn_possessionState_Click(sender As Object, e As EventArgs) Handles btn_possessionState.Click
-        btn_possessionState.Tag = FrmPossessionState.GetPossessionState(CType(btn_possessionState.Tag, PossessionStates), Me)
-        btn_possessionState.Image = PossessionStatesUtils.GetImage(btn_possessionState.Tag)
+        ChangePossessionState(FrmPossessionState.GetPossessionState(CType(btn_possessionState.Tag, PossessionStates), Me))
     End Sub
 
 
@@ -661,6 +666,29 @@ Public Class FrmWriteGoody
                 slst_editors.AddItem(newEditor)
             End If
 
+        End If
+
+    End Sub
+
+    Private Sub dtxtBoughtDate_DateChanged(sender As Object, e As EventArgs) Handles dtxtBoughtDate.DateChanged
+
+        If dtxtBoughtDate.GetDate.HasValue Then
+            ChangePossessionState(PossessionStates.InPossession)
+        End If
+
+    End Sub
+
+    Private Sub ChangePossessionState(newState As PossessionStates)
+
+        btn_possessionState.Tag = newState
+        btn_possessionState.Image = PossessionStatesUtils.GetImage(newState)
+
+        If newState = PossessionStates.InPossession Then
+            NUD_Count.Visible = True
+            NUD_Count.Value = 1
+        Else
+            NUD_Count.Visible = False
+            NUD_Count.Value = 0
         End If
 
     End Sub

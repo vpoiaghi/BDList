@@ -90,4 +90,25 @@ Public Class ImageUtils
 
     End Function
 
+    Public Shared Function DeleteImage(p_imageFile As IFile) As Boolean
+
+        Dim deletedWithSuccess As Boolean = False
+
+        Try
+
+            If (p_imageFile IsNot Nothing) AndAlso (p_imageFile.IsExists) Then
+                File.Delete(p_imageFile.GetFullName)
+            End If
+
+            deletedWithSuccess = True
+
+        Catch ex As Exception
+            Throw New Exception("Une erreur s'est prosuite lors de la suppression de l'image " & vbCrLf & p_imageFile.GetFullName, ex)
+        End Try
+
+        Return deletedWithSuccess
+
+
+    End Function
+
 End Class

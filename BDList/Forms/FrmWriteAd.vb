@@ -126,6 +126,10 @@ Public Class FrmWriteAd
         m_ad.SetSellerComments(Rtb_SellerComments.Text.Trim)
         m_ad.SetComments(Rtb_Comments.Text.Trim)
 
+        If (Trim(Txt_articlesCount.Text)).Length > 0 Then
+            m_ad.SetArticlesCount(Val(Trim(Txt_articlesCount.Text)))
+        End If
+
         Dim curCost As String = Txt_CurrentCost.Text.Trim
         If Not String.IsNullOrEmpty(curCost) Then
             m_ad.SetCurrentCost(CSng(curCost))
@@ -264,6 +268,9 @@ Public Class FrmWriteAd
             Rtb_SellerComments.Text = m_ad.GetSellerComments()
             Rtb_Comments.Text = m_ad.GetComments()
 
+            Txt_articlesCount.Text = m_ad.GetArticlesCount()
+            Txt_articlesCount.Enabled = (m_ad.GetAdArticles.Count = 0)
+
             If m_ad.GetCurrentCost() IsNot Nothing Then
                 Txt_CurrentCost.Text = m_ad.GetCurrentCost()
             Else
@@ -285,7 +292,7 @@ Public Class FrmWriteAd
 
     Private Sub LoadArticles(ad As Ad)
 
-        Dim adapter As IAdapter = New IdBObjectsAdapter(ad.GetAdArticles())
+        Dim adapter As IAdapter = New ChronologicParutionSortAdapter(ad.GetAdArticles())
         GVw_articles.SetAdapter(adapter)
 
     End Sub

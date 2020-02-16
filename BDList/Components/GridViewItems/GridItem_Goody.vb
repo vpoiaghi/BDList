@@ -5,6 +5,8 @@ Imports BDList_TOOLS.IO
 
 Public Class GridItem_Goody
 
+    Private Shared m_svcGoody As New ServiceGoody
+
     Private m_series As List(Of Serie) = Nothing
     Private m_firstImage As Image
     Private m_goody As Goody
@@ -16,7 +18,6 @@ Public Class GridItem_Goody
 
     Public Overrides Sub Redraw()
 
-        Dim svcGoody As New ServiceGoody
         m_goody = CType(m_value, Goody)
 
         With m_goody
@@ -35,9 +36,11 @@ Public Class GridItem_Goody
             RedrawCollectionInfo()
             RedrawEditors()
             RedrawParutionDate()
+            RedrawPurchaseDate()
             RedrawNumber()
+            RedrawCount()
             RedrawAuthors()
-            RedrawPictures(svcGoody.GetFiles(m_goody))
+            RedrawPictures(m_svcGoody.GetFiles(m_goody))
 
             Nb_Number.SendToBack()
             pct_withAutograph.SendToBack()
@@ -81,6 +84,17 @@ Public Class GridItem_Goody
 
     End Sub
 
+    Private Sub RedrawPurchaseDate()
+
+        Dim parutionDate As Date? = m_goody.GetBoughtDate
+        If parutionDate Is Nothing Then
+            lbl_purchaseDate.Text = ""
+        Else
+            lbl_purchaseDate.Text = Format(parutionDate, "dd/MM/yyyy")
+        End If
+
+    End Sub
+
     Private Sub RedrawNumber()
 
         Nb_Number.Number = m_goody.GetNumber
@@ -88,6 +102,20 @@ Public Class GridItem_Goody
         Nb_Number.MaxNumber = m_goody.GetNumberMax
 
         Nb_Number.Visible = Not String.IsNullOrEmpty(Nb_Number.Text.Trim)
+
+    End Sub
+
+    Private Sub RedrawCount()
+
+        Dim c As Integer? = m_goody.GetCount
+
+        If c.HasValue AndAlso c.Value > 1 Then
+            Lbl_Count.Visible = True
+            Lbl_Count.Text = "x " & c
+        Else
+            Lbl_Count.Visible = False
+            Lbl_Count.Text = String.Empty
+        End If
 
     End Sub
 
@@ -254,6 +282,20 @@ Public Class GridItem_Goody
             SendActionEvent(eventArgs)
 
         End If
+
+    End Sub
+
+    Public Overrides Sub DeleteItem()
+
+        Dim goody As Goody = CType(m_value, Goody)
+        Dim goodyId As Long? = CType(m_value, Goody).GetId
+
+        m_svcGoody.Delete(goody)
+
+        Dim eventArgs As New GridItemActionEventArgs(GridItemActionEventArgs.listItemActions.Delete)
+        eventArgs.AddParameter(NavParameters.PRM_GOODY_ID, goodyId)
+
+        SendActionEvent(eventArgs)
 
     End Sub
 

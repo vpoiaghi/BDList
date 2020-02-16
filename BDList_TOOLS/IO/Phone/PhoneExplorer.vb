@@ -9,7 +9,7 @@ Namespace IO
 
         Private Shared ReadOnly app As New ApplicationServices.ApplicationBase
         Private Shared ReadOnly PHONE_REQUEST_FILE_FOLDER As String = app.Info.DirectoryPath & "\"
-        Private Const ADB_DIRECTORY As String = "E:\Program Files (x86)\Android\sdk\platform-tools\"
+        Private Const ADB_DIRECTORY As String = "E:\Program Files\adb\platform-tools\"
 
         Private m_trasactionActionsList As New List(Of String)
         Private m_inTransaction As Boolean = False
@@ -317,13 +317,17 @@ Namespace IO
             Dim resultLinesList As List(Of String) = SendRequest("shell ls -l '" & phoneDirectory.GetFullName & "'")
             Dim element As PhoneElement
 
+            Dim i As Integer = 0
+
             For Each line As String In resultLinesList
 
                 element = GetPhoneElement(phoneDirectory, line)
 
-                If TypeOf element Is IFile Then
+                If (element IsNot Nothing) AndAlso (TypeOf element Is IFile) Then
                     result.Add(CType(element, IFile))
                 End If
+
+                i = i + 1
             Next
 
             Return result
@@ -333,17 +337,23 @@ Namespace IO
 
         Private Function GetPhoneElement(parentDirectory As PhoneDirectory, lsResultLine As String) As PhoneElement
 
-            Dim result As PhoneElement
+            Dim result As PhoneElement = Nothing
 
-            Dim infos As New PhoneElementInfos(lsResultLine)
+            If Not lsResultLine.ToLower.StartsWith("total") Then
 
-            If infos.IsDirectory Then
-                result = New PhoneDirectory(parentDirectory.GetFullname & "/" & infos.GetName)
-            Else
-                result = New PhoneFile(parentDirectory.GetFullname & "/" & infos.GetName)
+                Dim infos As New PhoneElementInfos(lsResultLine)
+
+                If infos IsNot Nothing Then
+                    If infos.IsDirectory Then
+                        result = New PhoneDirectory(parentDirectory.GetFullName & "/" & infos.GetName)
+                    Else
+                        result = New PhoneFile(parentDirectory.GetFullName & "/" & infos.GetName)
+                    End If
+
+                    result.SetInfos(infos)
+                End If
+
             End If
-
-            result.SetInfos(infos)
 
             Return result
 
@@ -607,26 +617,6 @@ Namespace IO
             Dim requestsList As New List(Of String)
             requestsList.Add(request)
             BuildRequestBatFile(requestsList, requestFilePath, resultFilePath)
-
-            'Dim sw As StreamWriter = Nothing
-            'Dim readOk As Boolean = False
-
-            'My.Computer.FileSystem.DeleteFile(requestFilePath)
-            'My.Computer.FileSystem.DeleteFile(resultFilePath)
-
-            'sw = New StreamWriter(requestFilePath, False, System.Text.Encoding.Default)
-
-            'If sw IsNot Nothing Then
-            '    sw.WriteLine("CHCP")
-            '    sw.WriteLine("CHCP 1252")
-            '    sw.WriteLine("MODE CON")
-            '    sw.WriteLine("cd """ & ADB_DIRECTORY & """")
-            '    sw.WriteLine("E:")
-            '    sw.WriteLine("adb " & request & " > """ & resultFilePath & """")
-            '    sw.WriteLine("CHCP 850")
-            '    sw.Close()
-            '    sw.Dispose()
-            'End If
 
         End Sub
 

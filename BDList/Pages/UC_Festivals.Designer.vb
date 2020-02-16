@@ -31,6 +31,7 @@ Partial Class UC_Festivals
         Me.Lst_festivals = New System.Windows.Forms.ListBox()
         Me.Lbl_festivalDates = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Pct_Festival = New System.Windows.Forms.PictureBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.LVw_InSigning = New System.Windows.Forms.ListView()
@@ -48,6 +49,7 @@ Partial Class UC_Festivals
         Me.Btn_Save = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.Pct_Festival, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -113,12 +115,24 @@ Partial Class UC_Festivals
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.Pct_Festival)
         Me.Panel2.Controls.Add(Me.Lbl_festivalDates)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(267, 118)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(802, 100)
         Me.Panel2.TabIndex = 9
+        '
+        'Pct_Festival
+        '
+        Me.Pct_Festival.BackColor = System.Drawing.Color.Black
+        Me.Pct_Festival.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Pct_Festival.Location = New System.Drawing.Point(673, 0)
+        Me.Pct_Festival.Name = "Pct_Festival"
+        Me.Pct_Festival.Size = New System.Drawing.Size(129, 100)
+        Me.Pct_Festival.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Pct_Festival.TabIndex = 9
+        Me.Pct_Festival.TabStop = False
         '
         'TabControl1
         '
@@ -225,7 +239,7 @@ Partial Class UC_Festivals
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(955, 415)
+        Me.TabPage2.Size = New System.Drawing.Size(794, 314)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Pense-bête"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -273,6 +287,7 @@ Partial Class UC_Festivals
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.Pct_Festival, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
@@ -302,4 +317,5 @@ Partial Class UC_Festivals
     Friend WithEvents Btn_SetDefaultTime As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Btn_Save As Button
+    Friend WithEvents Pct_Festival As PictureBox
 End Class

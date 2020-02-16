@@ -68,20 +68,16 @@
 
     Private Sub Btn_Add_MouseUp(sender As Object, e As MouseEventArgs) Handles Btn_Add.MouseUp
 
-        If e.Button = Windows.Forms.MouseButtons.Left AndAlso Lst_InitList.SelectedItem IsNot Nothing Then
-            If Not Lst_SelectionList.Items.Contains(Lst_InitList.SelectedItem) Then
-                Lst_SelectionList.Items.Add(Lst_InitList.SelectedItem)
-            Else
-                MsgBox(Lst_InitList.SelectedItem.ToString & " est déjà dans la liste.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Doublons...")
-            End If
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            AddSelectedItem()
         End If
 
     End Sub
 
     Private Sub Btn_Remove_MouseUp(sender As Object, e As MouseEventArgs) Handles Btn_Remove.MouseUp
 
-        If e.Button = Windows.Forms.MouseButtons.Left AndAlso Lst_SelectionList.SelectedItem IsNot Nothing Then
-            Lst_SelectionList.Items.Remove(Lst_SelectionList.SelectedItem)
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            RemoveSelectedItem()
         End If
 
     End Sub
@@ -131,6 +127,36 @@
             .Focus()
         End With
 
+    End Sub
+
+    Private Sub AddSelectedItem()
+
+        If Lst_InitList.SelectedItem IsNot Nothing Then
+
+            If Not Lst_SelectionList.Items.Contains(Lst_InitList.SelectedItem) Then
+                Lst_SelectionList.Items.Add(Lst_InitList.SelectedItem)
+            Else
+                MsgBox(Lst_InitList.SelectedItem.ToString & " est déjà dans la liste.", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Doublons...")
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub RemoveSelectedItem()
+
+        If Lst_SelectionList.SelectedItem IsNot Nothing Then
+            Lst_SelectionList.Items.Remove(Lst_SelectionList.SelectedItem)
+        End If
+
+    End Sub
+
+    Private Sub Lst_InitList_DoubleClick(sender As Object, e As EventArgs) Handles Lst_InitList.DoubleClick
+        AddSelectedItem()
+    End Sub
+
+    Private Sub Lst_SelectionList_DoubleClick(sender As Object, e As EventArgs) Handles Lst_SelectionList.DoubleClick
+        RemoveSelectedItem()
     End Sub
 
 End Class

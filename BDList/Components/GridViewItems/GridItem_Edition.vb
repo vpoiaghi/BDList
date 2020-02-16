@@ -5,6 +5,8 @@ Imports BDList_TOOLS.IO
 
 Public Class GridItem_Edition
 
+    Private Shared m_svcEdition As New ServiceEdition
+
     Private m_series As List(Of Serie) = Nothing
     Private m_coverImage As Image
 
@@ -14,8 +16,6 @@ Public Class GridItem_Edition
     End Sub
 
     Public Overrides Sub Redraw()
-
-        Dim svcEdition As New ServiceEdition
 
         Dim edition As Edition = CType(m_value, Edition)
 
@@ -36,7 +36,6 @@ Public Class GridItem_Edition
                 RefreshLabel(lbl_collection, .GetCollection, "Collection")
 
 
-
                 Dim versionNumber As Integer? = .GetVersionNumber
                 If versionNumber Is Nothing Then
                     pct_firstEdition.Visible = False
@@ -47,24 +46,12 @@ Public Class GridItem_Edition
                 pct_withAutograph.Visible = (.GetAutographs.Count > 0)
                 pct_withAutograph.BringToFront()
 
-                Dim parutionDate As Date? = .GetParutionDate
-                If parutionDate Is Nothing Then
-                    lbl_parutionDate.Text = ""
-                    lbl_parutionDate.BackColor = Color.Transparent
-                Else
-                    lbl_parutionDate.Text = "Parution : " & Format(parutionDate, "dd/MM/yyyy")
-
-                    If parutionDate >= Today Then
-                        lbl_parutionDate.BackColor = Color.Yellow
-                    Else
-                        lbl_parutionDate.BackColor = Color.Transparent
-                    End If
-
-                End If
+                RefreshParutionDate(edition)
+                RefreshPurchaseDate(edition)
 
                 pct_inPossession.Image = PossessionStatesUtils.GetImage(.GetPossessionState().GetId)
 
-                Dim firstCoverFile As IFile = svcEdition.GetFirstCoverFile(edition, True)
+                Dim firstCoverFile As IFile = m_svcEdition.GetFirstCoverFile(edition, True)
                 If firstCoverFile Is Nothing Then
                     pct_cover.Image = Nothing
                 Else
@@ -72,7 +59,7 @@ Public Class GridItem_Edition
                     pct_cover.Image = m_coverImage
                 End If
 
-                Dim fourthCoverFile As IFile = svcEdition.GetFourthCoverFile(edition, True)
+                Dim fourthCoverFile As IFile = m_svcEdition.GetFourthCoverFile(edition, True)
                 If fourthCoverFile Is Nothing Then
                     pct_minFourthCover.Image = Nothing
                     pct_minFourthCover.Visible = False
@@ -81,7 +68,7 @@ Public Class GridItem_Edition
                     pct_minFourthCover.Visible = True
                 End If
 
-                Dim boardsFiles As List(Of IFile) = svcEdition.GetBoardsFiles(edition)
+                Dim boardsFiles As List(Of IFile) = m_svcEdition.GetBoardsFiles(edition)
                 If boardsFiles.Count = 0 Then
                     pct_minBoard.Image = Nothing
                     pct_minBoard.Visible = False
@@ -92,6 +79,36 @@ Public Class GridItem_Edition
                 End If
 
             End With
+        End If
+
+    End Sub
+
+    Private Sub RefreshParutionDate(edition As Edition)
+
+        Dim parutionDate As Date? = edition.GetParutionDate
+        If parutionDate Is Nothing Then
+            lbl_parutionDate.Text = ""
+            lbl_parutionDate.BackColor = Color.Transparent
+        Else
+            lbl_parutionDate.Text = "Parution : " & Format(parutionDate, "dd/MM/yyyy")
+
+            If parutionDate >= Today Then
+                lbl_parutionDate.BackColor = Color.Yellow
+            Else
+                lbl_parutionDate.BackColor = Color.Transparent
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub RefreshPurchaseDate(edition As Edition)
+
+        Dim purchaseDate As Date? = edition.GetBoughtDate
+        If purchaseDate Is Nothing Then
+            lbl_purchaseDate.Text = ""
+        Else
+            lbl_purchaseDate.Text = "Achat : " & Format(purchaseDate, "dd/MM/yyyy")
         End If
 
     End Sub
@@ -198,6 +215,20 @@ Public Class GridItem_Edition
             SendActionEvent(eventArgs)
 
         End If
+
+    End Sub
+
+    Public Overrides Sub DeleteItem()
+
+        Dim edition As Edition = CType(m_value, Edition)
+        Dim editionId As Long? = CType(m_value, Edition).GetId
+
+        m_svcedition.Delete(edition)
+
+        Dim eventArgs As New GridItemActionEventArgs(GridItemActionEventArgs.listItemActions.Delete)
+        eventArgs.AddParameter(NavParameters.PRM_EDITION_ID, editionId)
+
+        SendActionEvent(eventArgs)
 
     End Sub
 

@@ -24,6 +24,7 @@ Namespace BO
         Dim m_BoxNumber As Nullable(Of Integer)
         Dim m_numberInCollection As Nullable(Of Integer)
         Dim m_scanned As Boolean
+        Dim m_count As Nullable(Of Integer)
 
         Public Function GetCollection() As BoCollection
             Return m_Collection
@@ -151,6 +152,12 @@ Namespace BO
             m_scanned = p_Scanned
         End Sub
 
+        Public Function GetCount() As Nullable(Of Integer)
+            Return m_count
+        End Function
+        Public Sub SetCount(p_count As Nullable(Of Integer))
+            m_count = p_count
+        End Sub
 
     End Class
 End Namespace

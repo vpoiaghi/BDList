@@ -1,5 +1,6 @@
 ﻿Imports BDList_DAO_BO.BO
 Imports BDList_SERVICE
+Imports BDList_TOOLS.IO
 Imports FrameworkPN
 
 Public Class UC_Festivals
@@ -9,10 +10,14 @@ Public Class UC_Festivals
     Private m_svcFestivals As New ServiceFestival()
     Private m_festival As Festival
 
+    Private m_withPicture As Boolean
 
     Public Sub New(frm As FrmPagesManager)
         MyBase.New(frm)
         InitializeComponent()
+
+        Pct_Festival.AllowDrop = True
+
     End Sub
 
     Protected Overrides Sub Activate()
@@ -185,8 +190,99 @@ Public Class UC_Festivals
 
     End Sub
 
-    Private Sub Btn_Save_Click(sender As Object, e As EventArgs) Handles Btn_Save.Click
+    Private Sub LoadPicture(p_filePath As String)
 
+        Dim img As Image = ImageUtils.LoadImage(p_filePath)
+
+        If img Is Nothing Then
+            Pct_Festival.Image = My.Resources.nobody
+            m_withPicture = False
+        Else
+            Pct_Festival.Image = img
+            m_withPicture = True
+        End If
+
+    End Sub
+
+    Private Sub SavePicture(p_festival As Festival)
+        If m_withPicture = True Then
+            SavePicture((New ServiceFestival).GetFile(p_festival))
+        End If
+    End Sub
+
+    Private Sub SavePicture(p_file As IFile)
+        ImageUtils.SaveImage(Pct_Festival.Image, p_file)
+    End Sub
+
+    Private Sub Pct_Festival_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Pct_Festival.DragEnter
+        e.Effect = DragDropEffects.Copy
+    End Sub
+
+    Private Sub Pct_Festival_DragDrop(sender As Object, e As DragEventArgs) Handles Pct_Festival.DragDrop
+
+        Try
+            ' recupere la donnée
+            'Variable qui contiendra un tableau contenant les fichiers
+            Dim strFiles As Object
+
+            'on recupere le drop dans le tableau
+            strFiles = e.Data.GetData(DataFormats.FileDrop)
+            strFiles = e.Data.GetData(DataFormats.Html)
+
+            ' on recupere le début de l'adresse de l'image
+            Dim addressStart() As String = Split(strFiles.ToString, "src=")
+
+            ' ensuite on ne prend que la source
+            ' prend le guillemet 
+            Dim guillemet = Chr(34)
+            Dim adresse = Split(addressStart(1), guillemet)
+
+            ' extraction de l'image
+            Dim newPicture As Image = RecupFichierImageInternet(adresse(1))
+
+            ' enregistrement de l'image
+            If newPicture IsNot Nothing Then
+                Pct_Festival.Image = newPicture
+                m_withPicture = True
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Function RecupFichierImageInternet(ByVal UrlFichier As String) As Image
+
+        Dim WebClient As New System.Net.WebClient
+        Dim imageToAdd As Image = Nothing
+
+        Try
+            Dim WebResponse As System.IO.Stream
+            Dim FichierDistant As String = UrlFichier.Replace("&amp;", "&")
+            WebResponse = WebClient.OpenRead(FichierDistant)
+            imageToAdd = Image.FromStream(WebResponse)
+
+            WebClient.Dispose()
+            WebClient = Nothing
+
+            WebResponse.Close()
+            WebResponse = Nothing
+
+        Catch ex As Exception
+            WebClient.Dispose()
+            WebClient = Nothing
+        End Try
+
+        Return imageToAdd
+
+    End Function
+
+    Private Sub Pct_Festival_MouseDown(sender As Object, e As MouseEventArgs) Handles Pct_Festival.MouseDown
+
+        If e.Button = MouseButtons.Right Then
+            FrmShowImage.ShowImage(CType(sender, PictureBox).Image)
+        End If
 
     End Sub
 End Class

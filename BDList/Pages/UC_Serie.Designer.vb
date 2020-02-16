@@ -42,11 +42,11 @@ Partial Class UC_Serie
         Me.btn_copy = New System.Windows.Forms.Button()
         Me.btn_show = New System.Windows.Forms.Button()
         Me.btn_edit = New System.Windows.Forms.Button()
-        Me.btn_addEdition = New System.Windows.Forms.Button()
-        Me.btn_addGoody = New System.Windows.Forms.Button()
+        Me.btn_add = New System.Windows.Forms.Button()
         Me.btn_goodies = New System.Windows.Forms.Button()
         Me.btn_editions = New System.Windows.Forms.Button()
         Me.btn_serie = New System.Windows.Forms.Button()
+        Me.btn_delete = New System.Windows.Forms.Button()
         Me.pnl_editionsList.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.pnl_serieInfos.SuspendLayout()
@@ -59,7 +59,7 @@ Partial Class UC_Serie
         Me.pnl_editionsList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnl_editionsList.Location = New System.Drawing.Point(0, 206)
         Me.pnl_editionsList.Name = "pnl_editionsList"
-        Me.pnl_editionsList.Size = New System.Drawing.Size(1257, 500)
+        Me.pnl_editionsList.Size = New System.Drawing.Size(1054, 500)
         Me.pnl_editionsList.TabIndex = 0
         '
         'Panel2
@@ -70,7 +70,7 @@ Partial Class UC_Serie
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1257, 500)
+        Me.Panel2.Size = New System.Drawing.Size(1054, 500)
         Me.Panel2.TabIndex = 4
         '
         'pnl_serieInfos
@@ -85,7 +85,7 @@ Partial Class UC_Serie
         Me.pnl_serieInfos.Controls.Add(Me.lbl_kind)
         Me.pnl_serieInfos.Location = New System.Drawing.Point(33, 44)
         Me.pnl_serieInfos.Name = "pnl_serieInfos"
-        Me.pnl_serieInfos.Size = New System.Drawing.Size(862, 230)
+        Me.pnl_serieInfos.Size = New System.Drawing.Size(690, 230)
         Me.pnl_serieInfos.TabIndex = 3
         '
         'lbl_story
@@ -159,9 +159,10 @@ Partial Class UC_Serie
         Me.lst_editions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lst_editions.ColumnsCount = 4
         Me.lst_editions.ItemsMargin = 3
-        Me.lst_editions.Location = New System.Drawing.Point(980, 202)
+        Me.lst_editions.Location = New System.Drawing.Point(768, 193)
         Me.lst_editions.Name = "lst_editions"
         Me.lst_editions.RowsCount = 4
+        Me.lst_editions.ShowFilter = False
         Me.lst_editions.Size = New System.Drawing.Size(233, 134)
         Me.lst_editions.TabIndex = 1
         '
@@ -171,9 +172,10 @@ Partial Class UC_Serie
         Me.lst_goodies.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lst_goodies.ColumnsCount = 4
         Me.lst_goodies.ItemsMargin = 3
-        Me.lst_goodies.Location = New System.Drawing.Point(980, 29)
+        Me.lst_goodies.Location = New System.Drawing.Point(788, 29)
         Me.lst_goodies.Name = "lst_goodies"
         Me.lst_goodies.RowsCount = 4
+        Me.lst_goodies.ShowFilter = True
         Me.lst_goodies.Size = New System.Drawing.Size(233, 134)
         Me.lst_goodies.TabIndex = 2
         '
@@ -183,7 +185,7 @@ Partial Class UC_Serie
         Me.pnl_serieHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnl_serieHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnl_serieHeader.Name = "pnl_serieHeader"
-        Me.pnl_serieHeader.Size = New System.Drawing.Size(1257, 150)
+        Me.pnl_serieHeader.Size = New System.Drawing.Size(1054, 150)
         Me.pnl_serieHeader.TabIndex = 4
         '
         'Panel1
@@ -192,16 +194,16 @@ Partial Class UC_Serie
         Me.Panel1.Controls.Add(Me.btn_copy)
         Me.Panel1.Controls.Add(Me.btn_show)
         Me.Panel1.Controls.Add(Me.btn_edit)
-        Me.Panel1.Controls.Add(Me.btn_addEdition)
-        Me.Panel1.Controls.Add(Me.btn_addGoody)
+        Me.Panel1.Controls.Add(Me.btn_add)
         Me.Panel1.Controls.Add(Me.btn_goodies)
         Me.Panel1.Controls.Add(Me.btn_editions)
         Me.Panel1.Controls.Add(Me.btn_serie)
+        Me.Panel1.Controls.Add(Me.btn_delete)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 150)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Padding = New System.Windows.Forms.Padding(3)
-        Me.Panel1.Size = New System.Drawing.Size(1257, 56)
+        Me.Panel1.Size = New System.Drawing.Size(1054, 56)
         Me.Panel1.TabIndex = 5
         '
         'btn_copy
@@ -209,7 +211,7 @@ Partial Class UC_Serie
         Me.btn_copy.BackColor = System.Drawing.SystemColors.Control
         Me.btn_copy.Dock = System.Windows.Forms.DockStyle.Right
         Me.btn_copy.Image = Global.BDList.My.Resources.Resources.duplicate
-        Me.btn_copy.Location = New System.Drawing.Point(1004, 3)
+        Me.btn_copy.Location = New System.Drawing.Point(801, 3)
         Me.btn_copy.Name = "btn_copy"
         Me.btn_copy.Size = New System.Drawing.Size(50, 50)
         Me.btn_copy.TabIndex = 6
@@ -220,7 +222,7 @@ Partial Class UC_Serie
         Me.btn_show.BackColor = System.Drawing.SystemColors.Control
         Me.btn_show.Dock = System.Windows.Forms.DockStyle.Right
         Me.btn_show.Image = Global.BDList.My.Resources.Resources.loupe
-        Me.btn_show.Location = New System.Drawing.Point(1054, 3)
+        Me.btn_show.Location = New System.Drawing.Point(851, 3)
         Me.btn_show.Name = "btn_show"
         Me.btn_show.Size = New System.Drawing.Size(50, 50)
         Me.btn_show.TabIndex = 5
@@ -231,33 +233,22 @@ Partial Class UC_Serie
         Me.btn_edit.BackColor = System.Drawing.SystemColors.Control
         Me.btn_edit.Dock = System.Windows.Forms.DockStyle.Right
         Me.btn_edit.Image = Global.BDList.My.Resources.Resources.edit
-        Me.btn_edit.Location = New System.Drawing.Point(1104, 3)
+        Me.btn_edit.Location = New System.Drawing.Point(901, 3)
         Me.btn_edit.Name = "btn_edit"
         Me.btn_edit.Size = New System.Drawing.Size(50, 50)
         Me.btn_edit.TabIndex = 4
         Me.btn_edit.UseVisualStyleBackColor = False
         '
-        'btn_addEdition
+        'btn_add
         '
-        Me.btn_addEdition.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_addEdition.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btn_addEdition.Image = CType(resources.GetObject("btn_addEdition.Image"), System.Drawing.Image)
-        Me.btn_addEdition.Location = New System.Drawing.Point(1154, 3)
-        Me.btn_addEdition.Name = "btn_addEdition"
-        Me.btn_addEdition.Size = New System.Drawing.Size(50, 50)
-        Me.btn_addEdition.TabIndex = 0
-        Me.btn_addEdition.UseVisualStyleBackColor = False
-        '
-        'btn_addGoody
-        '
-        Me.btn_addGoody.BackColor = System.Drawing.SystemColors.Control
-        Me.btn_addGoody.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btn_addGoody.Image = CType(resources.GetObject("btn_addGoody.Image"), System.Drawing.Image)
-        Me.btn_addGoody.Location = New System.Drawing.Point(1204, 3)
-        Me.btn_addGoody.Name = "btn_addGoody"
-        Me.btn_addGoody.Size = New System.Drawing.Size(50, 50)
-        Me.btn_addGoody.TabIndex = 1
-        Me.btn_addGoody.UseVisualStyleBackColor = False
+        Me.btn_add.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_add.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btn_add.Image = Global.BDList.My.Resources.Resources.add
+        Me.btn_add.Location = New System.Drawing.Point(951, 3)
+        Me.btn_add.Name = "btn_add"
+        Me.btn_add.Size = New System.Drawing.Size(50, 50)
+        Me.btn_add.TabIndex = 0
+        Me.btn_add.UseVisualStyleBackColor = False
         '
         'btn_goodies
         '
@@ -299,6 +290,17 @@ Partial Class UC_Serie
         Me.btn_serie.Text = "Série"
         Me.btn_serie.UseVisualStyleBackColor = True
         '
+        'btn_delete
+        '
+        Me.btn_delete.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_delete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btn_delete.Image = CType(resources.GetObject("btn_delete.Image"), System.Drawing.Image)
+        Me.btn_delete.Location = New System.Drawing.Point(1001, 3)
+        Me.btn_delete.Name = "btn_delete"
+        Me.btn_delete.Size = New System.Drawing.Size(50, 50)
+        Me.btn_delete.TabIndex = 7
+        Me.btn_delete.UseVisualStyleBackColor = False
+        '
         'UC_Serie
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -308,7 +310,7 @@ Partial Class UC_Serie
         Me.Controls.Add(Me.pnl_serieHeader)
         Me.Name = "UC_Serie"
         Me.ShowHeader = False
-        Me.Size = New System.Drawing.Size(1257, 706)
+        Me.Size = New System.Drawing.Size(1054, 706)
         Me.Title = "Série"
         Me.Controls.SetChildIndex(Me.pnl_serieHeader, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
@@ -327,9 +329,8 @@ Partial Class UC_Serie
     Friend WithEvents btn_goodies As System.Windows.Forms.Button
     Friend WithEvents btn_editions As System.Windows.Forms.Button
     Friend WithEvents lst_editions As FrameworkPN.GridView
-    Friend WithEvents btn_addEdition As System.Windows.Forms.Button
+    Friend WithEvents btn_add As System.Windows.Forms.Button
     Friend WithEvents lst_goodies As FrameworkPN.GridView
-    Friend WithEvents btn_addGoody As System.Windows.Forms.Button
     Friend WithEvents pnl_serieInfos As System.Windows.Forms.Panel
     Friend WithEvents lbl_goodies As System.Windows.Forms.Label
     Friend WithEvents lbl_editions As System.Windows.Forms.Label
@@ -342,4 +343,5 @@ Partial Class UC_Serie
     Friend WithEvents btn_edit As Button
     Friend WithEvents btn_show As Button
     Friend WithEvents btn_copy As Button
+    Friend WithEvents btn_delete As Button
 End Class

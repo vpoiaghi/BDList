@@ -59,6 +59,8 @@ Partial Class FrmWriteGoody
         Me.slst_editors = New FrameworkPN.SelectList()
         Me.slst_series = New FrameworkPN.SelectList()
         Me.slst_authors = New FrameworkPN.SelectList()
+        Me.NUD_Count = New System.Windows.Forms.NumericUpDown()
+        CType(Me.NUD_Count, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmbKindOfGoody
@@ -92,7 +94,7 @@ Partial Class FrmWriteGoody
         Me.rtbDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.rtbDescription.Location = New System.Drawing.Point(112, 273)
         Me.rtbDescription.Name = "rtbDescription"
-        Me.rtbDescription.Size = New System.Drawing.Size(422, 48)
+        Me.rtbDescription.Size = New System.Drawing.Size(339, 48)
         Me.rtbDescription.TabIndex = 4
         Me.rtbDescription.Text = ""
         '
@@ -158,7 +160,7 @@ Partial Class FrmWriteGoody
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(236, 330)
+        Me.Label8.Location = New System.Drawing.Point(265, 330)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(91, 13)
         Me.Label8.TabIndex = 21
@@ -182,7 +184,7 @@ Partial Class FrmWriteGoody
         '
         'txtHeight
         '
-        Me.txtHeight.Location = New System.Drawing.Point(333, 356)
+        Me.txtHeight.Location = New System.Drawing.Point(362, 356)
         Me.txtHeight.Name = "txtHeight"
         Me.txtHeight.Size = New System.Drawing.Size(89, 20)
         Me.txtHeight.TabIndex = 9
@@ -190,7 +192,7 @@ Partial Class FrmWriteGoody
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(236, 359)
+        Me.Label10.Location = New System.Drawing.Point(265, 359)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(76, 13)
         Me.Label10.TabIndex = 23
@@ -312,7 +314,7 @@ Partial Class FrmWriteGoody
         '
         'btn_possessionState
         '
-        Me.btn_possessionState.Location = New System.Drawing.Point(484, 327)
+        Me.btn_possessionState.Location = New System.Drawing.Point(484, 301)
         Me.btn_possessionState.Name = "btn_possessionState"
         Me.btn_possessionState.Size = New System.Drawing.Size(50, 50)
         Me.btn_possessionState.TabIndex = 7
@@ -339,7 +341,7 @@ Partial Class FrmWriteGoody
         'dtxtBoughtDate
         '
         Me.dtxtBoughtDate.DateFormat = "dd/MM/yyyy"
-        Me.dtxtBoughtDate.Location = New System.Drawing.Point(333, 327)
+        Me.dtxtBoughtDate.Location = New System.Drawing.Point(362, 327)
         Me.dtxtBoughtDate.Name = "dtxtBoughtDate"
         Me.dtxtBoughtDate.Size = New System.Drawing.Size(89, 20)
         Me.dtxtBoughtDate.TabIndex = 6
@@ -379,12 +381,21 @@ Partial Class FrmWriteGoody
         Me.slst_authors.TabIndex = 19
         Me.slst_authors.Title = "Auteurs :"
         '
+        'NUD_Count
+        '
+        Me.NUD_Count.Location = New System.Drawing.Point(486, 357)
+        Me.NUD_Count.Name = "NUD_Count"
+        Me.NUD_Count.Size = New System.Drawing.Size(48, 20)
+        Me.NUD_Count.TabIndex = 35
+        Me.NUD_Count.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'FrmWriteGoody
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(999, 728)
         Me.ControlBox = False
+        Me.Controls.Add(Me.NUD_Count)
         Me.Controls.Add(Me.btn_possessionState)
         Me.Controls.Add(Me.cmbNumberType)
         Me.Controls.Add(Me.chkScanned)
@@ -428,6 +439,7 @@ Partial Class FrmWriteGoody
         Me.Name = "FrmWriteGoody"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Para-bd"
+        CType(Me.NUD_Count, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -469,4 +481,5 @@ Partial Class FrmWriteGoody
     Friend WithEvents chkScanned As CheckBox
     Friend WithEvents cmbNumberType As ComboBox
     Friend WithEvents btn_possessionState As Button
+    Friend WithEvents NUD_Count As NumericUpDown
 End Class

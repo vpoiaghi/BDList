@@ -70,7 +70,8 @@ Public Class UC_Purchase
             ac = ad.GetAdArticles.Count
 
             'temporaire
-            If ac = 0 Then ac = 1
+            'If ac = 0 Then ac = 1
+            If ac = 0 Then ac = ad.GetArticlesCount
 
             If (ad.GetBestPrice >= ad.GetCurrentCost) AndAlso (ac > 0) Then
                 priceAds += ad.GetCurrentCost

@@ -33,10 +33,17 @@ Public Class ServiceAd
 
     End Function
 
-    Public Overrides Sub InsertOrUpdate(ad As IdBObject)
+    Public Overrides Sub InsertOrUpdate(p_ad As IdBObject)
+
+        Dim ad As Ad = CType(p_ad, Ad)
+        Dim articles As List(Of IdBObject) = ad.GetAdArticles
+
+        If (articles IsNot Nothing) AndAlso (articles.Count > 0) Then
+            ad.SetArticlesCount(articles.Count)
+        End If
 
         Dim serviceAdArticle As New ServiceAdArticle
-        For Each adArticle As AdArticle In CType(ad, Ad).GetAdArticles
+        For Each adArticle As AdArticle In ad.GetAdArticles
             serviceAdArticle.InsertOrUpdate(adArticle)
         Next
 

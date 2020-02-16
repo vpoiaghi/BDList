@@ -19,6 +19,18 @@ Namespace BO
             Return GetName()
         End Function
 
+        Public Overrides Function CompareWith(other As IdBObject) As Integer
+
+            If other Is Nothing Then
+                Return -1
+            ElseIf Not other.GetType Is Me.GetType Then
+                Throw New FormatException
+            Else
+                Return GetName.CompareTo(CType(other, NamedBObject).GetName)
+            End If
+
+        End Function
+
     End Class
 
 End Namespace

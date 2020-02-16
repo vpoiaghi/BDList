@@ -1,7 +1,7 @@
 ﻿Imports BDList_DAO_BO.BO
 Imports FrameworkPN
 
-Public Class IdBObjectsAdapter
+Public Class ChronologicParutionSortAdapter
     Inherits Adapter(Of IdBObject)
 
     Public Sub New(idBObjects As List(Of IdBObject))

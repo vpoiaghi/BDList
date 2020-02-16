@@ -1,11 +1,16 @@
 ﻿Imports BDList_DAO_BO.BO
 Imports BDList_DAO_BO.DAO
 Imports BDList_TOOLS.IO
+Imports FrameworkPN
 
 Public Class ServiceEdition
     Inherits Service(Of DaoEdition)
 
-    Public Sub convertFilesNames()
+    Private Shared m_svcTitle As New ServiceTitle
+    Private Shared m_svcAutograph As New ServiceAutograph
+
+
+    Public Sub ConvertFilesNames()
 
         Dim editions As List(Of IdBObject) = GetAll()
         Dim boardsFiles As List(Of IFile)
@@ -61,12 +66,12 @@ Public Class ServiceEdition
 
     Public Function GetAllBySerie(serie As Serie) As List(Of IdBObject)
 
-        Dim result As List(Of IdBobject) = Nothing
+        Dim result As List(Of IdBObject) = Nothing
 
         Try
 
             If serie Is Nothing Then
-                result = New List(Of IdBobject)
+                result = New List(Of IdBObject)
             Else
                 result = GetAllBySerie(serie.GetId)
             End If
@@ -89,7 +94,7 @@ Public Class ServiceEdition
 
     Public Function GetExisting() As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetExisting()
@@ -103,12 +108,12 @@ Public Class ServiceEdition
 
     Public Function GetExistingBySerie(serie As Serie) As List(Of IdBObject)
 
-        Dim result As List(Of IdBobject) = Nothing
+        Dim result As List(Of IdBObject) = Nothing
 
         Try
 
             If serie Is Nothing Then
-                result = New List(Of IdBobject)
+                result = New List(Of IdBObject)
             Else
                 result = GetExistingBySerie(serie.GetId)
             End If
@@ -145,7 +150,7 @@ Public Class ServiceEdition
 
     Public Function GetBoughtByPeriod(firstDate As Date, lastDate As Date) As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetBoughtByPeriod(firstDate, lastDate)
@@ -159,7 +164,7 @@ Public Class ServiceEdition
 
     Public Function GetEditionByPeriodAndEditor(firstDate As Date, lastDate As Date, editor As Editor) As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetEditionByPeriodAndEditor(firstDate, lastDate, editor.GetId)
@@ -173,7 +178,7 @@ Public Class ServiceEdition
 
     Public Function GetBoughtByPeriodAndEditor(firstDate As Date, lastDate As Date, editor As Editor) As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetBoughtByPeriodAndEditor(firstDate, lastDate, editor.GetId)
@@ -187,7 +192,7 @@ Public Class ServiceEdition
 
     Public Function GetComing() As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetComing(Today)
@@ -201,7 +206,7 @@ Public Class ServiceEdition
 
     Public Function GetComing(firstDate As Date) As List(Of IdBObject)
 
-        Dim result As New List(Of IdBobject)
+        Dim result As New List(Of IdBObject)
 
         Try
             result = GetDao().GetComing(firstDate)
@@ -215,12 +220,12 @@ Public Class ServiceEdition
 
     Public Function GetComingBySerie(serie As Serie) As List(Of IdBObject)
 
-        Dim result As List(Of IdBobject) = Nothing
+        Dim result As List(Of IdBObject) = Nothing
 
         Try
 
             If serie Is Nothing Then
-                result = New List(Of IdBobject)
+                result = New List(Of IdBObject)
             Else
                 result = GetComingBySerie(serie.GetId)
             End If
@@ -235,14 +240,48 @@ Public Class ServiceEdition
 
     Public Function GetComingByEditor(editor As Editor) As List(Of IdBObject)
 
-        Dim result As List(Of IdBobject) = Nothing
+        Dim result As List(Of IdBObject) = Nothing
 
         Try
 
             If editor Is Nothing Then
-                result = New List(Of IdBobject)
+                result = New List(Of IdBObject)
             Else
                 result = GetComingByEditor(editor.GetId)
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return result
+
+    End Function
+
+    Public Function GetPurchased() As List(Of IdBObject)
+
+        Dim result As New List(Of IdBObject)
+
+        Try
+            result = GetDao().GetPurchased()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Return result
+
+    End Function
+
+    Public Function GetPurchasedByEditor(editor As Editor) As List(Of IdBObject)
+
+        Dim result As List(Of IdBObject) = Nothing
+
+        Try
+
+            If editor Is Nothing Then
+                result = New List(Of IdBObject)
+            Else
+                result = GetDao().GetPurchasedByEditor(editor)
             End If
 
         Catch ex As Exception
@@ -417,14 +456,13 @@ Public Class ServiceEdition
 
     Public Overrides Sub InsertOrUpdate(edition As IdBObject)
 
-        Dim serviceTitle As New ServiceTitle
+
         For Each title As Title In CType(edition, Edition).GetTitles
-            serviceTitle.InsertOrUpdate(title)
+            m_svcTitle.InsertOrUpdate(title)
         Next
 
-        Dim serviceAutograph As New ServiceAutograph
         For Each autograph As Autograph In CType(edition, Edition).GetAutographs
-            serviceAutograph.InsertOrUpdate(autograph)
+            m_svcAutograph.InsertOrUpdate(autograph)
         Next
 
         MyBase.InsertOrUpdate(edition)
@@ -438,5 +476,39 @@ Public Class ServiceEdition
     Public Function GetWithAutograph() As List(Of IdBObject)
         Return GetDao().GetWithAutograph
     End Function
+
+    Public Overrides Sub Delete(edition As IdBObject)
+
+        MyBase.Delete(edition)
+        DeleteEditionImages(edition)
+
+    End Sub
+
+    Public Overrides Sub Delete(editionsList As List(Of IdBObject))
+
+        MyBase.Delete(editionsList)
+
+        For Each edition As IdBObject In editionsList
+            DeleteEditionImages(edition)
+        Next
+
+    End Sub
+
+    Private Sub DeleteEditionImages(edition As IdBObject)
+
+        Dim e As Edition = CType(edition, Edition)
+
+        ImageUtils.DeleteImage(GetFirstCoverFile(e, True))
+        ImageUtils.DeleteImage(GetFourthCoverFile(e, True))
+
+        For Each imgFile As IFile In GetBoardsFiles(e)
+            ImageUtils.DeleteImage(imgFile)
+        Next
+
+        For Each autograph As Autograph In e.GetAutographs
+            m_svcAutograph.DeleteAutographImages(autograph)
+        Next
+
+    End Sub
 
 End Class

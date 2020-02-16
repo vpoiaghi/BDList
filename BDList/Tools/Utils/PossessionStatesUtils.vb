@@ -15,6 +15,8 @@ Public Module PossessionStatesUtils
             Case PossessionStates.ToOrderAtBDfugue : img = My.Resources.to_order_at_bdfugue
             Case PossessionStates.ToReserveAtCultura : img = My.Resources.to_reserve_at_cultura
             Case PossessionStates.Present : img = My.Resources.present
+            Case PossessionStates.OrderedAtBDFugue : img = My.Resources.ordered_at_bdfugue
+            Case PossessionStates.ReservedAtCultura : img = My.Resources.reserved_at_cultura
         End Select
 
         Return img

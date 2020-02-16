@@ -27,10 +27,10 @@ Partial Class GridItem_Edition
         Me.lbl_serieName = New System.Windows.Forms.Label()
         Me.lbl_editionName = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pct_withAutograph = New System.Windows.Forms.PictureBox()
         Me.pct_firstEdition = New System.Windows.Forms.PictureBox()
         Me.pct_inPossession = New System.Windows.Forms.PictureBox()
         Me.lbl_editor = New System.Windows.Forms.Label()
-        Me.lbl_parutionDate = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lbl_comments = New System.Windows.Forms.Label()
         Me.lbl_collection = New System.Windows.Forms.Label()
@@ -40,8 +40,11 @@ Partial Class GridItem_Edition
         Me.pct_minBoard = New System.Windows.Forms.PictureBox()
         Me.pct_minFourthCover = New System.Windows.Forms.PictureBox()
         Me.pct_cover = New System.Windows.Forms.PictureBox()
-        Me.pct_withAutograph = New System.Windows.Forms.PictureBox()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.lbl_parutionDate = New System.Windows.Forms.Label()
+        Me.lbl_purchaseDate = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
+        CType(Me.pct_withAutograph, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pct_firstEdition, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pct_inPossession, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
@@ -49,7 +52,7 @@ Partial Class GridItem_Edition
         CType(Me.pct_minBoard, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pct_minFourthCover, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pct_cover, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pct_withAutograph, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'lbl_serieName
@@ -88,6 +91,18 @@ Partial Class GridItem_Edition
         Me.Panel1.Size = New System.Drawing.Size(40, 148)
         Me.Panel1.TabIndex = 5
         '
+        'pct_withAutograph
+        '
+        Me.pct_withAutograph.BackColor = System.Drawing.Color.Transparent
+        Me.pct_withAutograph.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pct_withAutograph.Image = Global.BDList.My.Resources.Resources.btn_signature
+        Me.pct_withAutograph.Location = New System.Drawing.Point(0, 80)
+        Me.pct_withAutograph.Name = "pct_withAutograph"
+        Me.pct_withAutograph.Size = New System.Drawing.Size(40, 40)
+        Me.pct_withAutograph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.pct_withAutograph.TabIndex = 10
+        Me.pct_withAutograph.TabStop = False
+        '
         'pct_firstEdition
         '
         Me.pct_firstEdition.BackColor = System.Drawing.Color.Transparent
@@ -124,26 +139,13 @@ Partial Class GridItem_Edition
         Me.lbl_editor.Text = "Editeur"
         Me.lbl_editor.UseMnemonic = False
         '
-        'lbl_parutionDate
-        '
-        Me.lbl_parutionDate.AutoSize = True
-        Me.lbl_parutionDate.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lbl_parutionDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_parutionDate.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.lbl_parutionDate.Location = New System.Drawing.Point(0, 50)
-        Me.lbl_parutionDate.Name = "lbl_parutionDate"
-        Me.lbl_parutionDate.Size = New System.Drawing.Size(86, 13)
-        Me.lbl_parutionDate.TabIndex = 7
-        Me.lbl_parutionDate.Text = "Date de parution"
-        Me.lbl_parutionDate.UseMnemonic = False
-        '
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.lbl_comments)
         Me.Panel2.Controls.Add(Me.lbl_collection)
         Me.Panel2.Controls.Add(Me.lbl_cycle)
+        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Controls.Add(Me.lbl_editionNumber)
-        Me.Panel2.Controls.Add(Me.lbl_parutionDate)
         Me.Panel2.Controls.Add(Me.lbl_editor)
         Me.Panel2.Controls.Add(Me.lbl_editionName)
         Me.Panel2.Controls.Add(Me.lbl_serieName)
@@ -198,7 +200,7 @@ Partial Class GridItem_Edition
         Me.lbl_editionNumber.Dock = System.Windows.Forms.DockStyle.Top
         Me.lbl_editionNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_editionNumber.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.lbl_editionNumber.Location = New System.Drawing.Point(0, 63)
+        Me.lbl_editionNumber.Location = New System.Drawing.Point(0, 50)
         Me.lbl_editionNumber.Name = "lbl_editionNumber"
         Me.lbl_editionNumber.Size = New System.Drawing.Size(63, 13)
         Me.lbl_editionNumber.TabIndex = 8
@@ -252,17 +254,41 @@ Partial Class GridItem_Edition
         Me.pct_cover.TabIndex = 4
         Me.pct_cover.TabStop = False
         '
-        'pct_withAutograph
+        'Panel4
         '
-        Me.pct_withAutograph.BackColor = System.Drawing.Color.Transparent
-        Me.pct_withAutograph.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pct_withAutograph.Image = Global.BDList.My.Resources.Resources.btn_signature
-        Me.pct_withAutograph.Location = New System.Drawing.Point(0, 80)
-        Me.pct_withAutograph.Name = "pct_withAutograph"
-        Me.pct_withAutograph.Size = New System.Drawing.Size(40, 40)
-        Me.pct_withAutograph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.pct_withAutograph.TabIndex = 10
-        Me.pct_withAutograph.TabStop = False
+        Me.Panel4.Controls.Add(Me.lbl_purchaseDate)
+        Me.Panel4.Controls.Add(Me.lbl_parutionDate)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel4.Location = New System.Drawing.Point(0, 63)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(381, 13)
+        Me.Panel4.TabIndex = 13
+        '
+        'lbl_parutionDate
+        '
+        Me.lbl_parutionDate.AutoSize = True
+        Me.lbl_parutionDate.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbl_parutionDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_parutionDate.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.lbl_parutionDate.Location = New System.Drawing.Point(0, 0)
+        Me.lbl_parutionDate.Name = "lbl_parutionDate"
+        Me.lbl_parutionDate.Size = New System.Drawing.Size(86, 13)
+        Me.lbl_parutionDate.TabIndex = 8
+        Me.lbl_parutionDate.Text = "Date de parution"
+        Me.lbl_parutionDate.UseMnemonic = False
+        '
+        'lbl_purchaseDate
+        '
+        Me.lbl_purchaseDate.AutoSize = True
+        Me.lbl_purchaseDate.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbl_purchaseDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_purchaseDate.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.lbl_purchaseDate.Location = New System.Drawing.Point(86, 0)
+        Me.lbl_purchaseDate.Name = "lbl_purchaseDate"
+        Me.lbl_purchaseDate.Size = New System.Drawing.Size(68, 13)
+        Me.lbl_purchaseDate.TabIndex = 9
+        Me.lbl_purchaseDate.Text = "Date d'achat"
+        Me.lbl_purchaseDate.UseMnemonic = False
         '
         'GridItem_Edition
         '
@@ -278,6 +304,7 @@ Partial Class GridItem_Edition
         Me.Padding = New System.Windows.Forms.Padding(3)
         Me.Size = New System.Drawing.Size(585, 154)
         Me.Panel1.ResumeLayout(False)
+        CType(Me.pct_withAutograph, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pct_firstEdition, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pct_inPossession, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
@@ -286,7 +313,8 @@ Partial Class GridItem_Edition
         CType(Me.pct_minBoard, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pct_minFourthCover, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pct_cover, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pct_withAutograph, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -295,7 +323,6 @@ Partial Class GridItem_Edition
     Friend WithEvents pct_cover As System.Windows.Forms.PictureBox
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents lbl_editor As System.Windows.Forms.Label
-    Friend WithEvents lbl_parutionDate As System.Windows.Forms.Label
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents pct_minBoard As System.Windows.Forms.PictureBox
@@ -307,4 +334,7 @@ Partial Class GridItem_Edition
     Friend WithEvents lbl_comments As System.Windows.Forms.Label
     Friend WithEvents lbl_collection As System.Windows.Forms.Label
     Friend WithEvents pct_withAutograph As PictureBox
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents lbl_purchaseDate As Label
+    Friend WithEvents lbl_parutionDate As Label
 End Class

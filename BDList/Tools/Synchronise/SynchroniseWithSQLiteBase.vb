@@ -4,6 +4,7 @@ Imports BDList_TOOLS.IO
 Imports BDList_TOOLS.Types.Sql
 
 Imports System.Text
+Imports System.IO
 
 Public Class SynchroniseWithSQLiteBase
 
@@ -30,19 +31,6 @@ Public Class SynchroniseWithSQLiteBase
 
     End Function
 
-    'Public Shared Function Synchronise(forceCleanPhone As Boolean) As SynchroniseResults
-
-    '    Dim result As SynchroniseResults = Nothing
-
-    '    If instance.beforeSynchronise() Then
-    '        result = instance.doSynchronise(forceCleanPhone)
-    '        instance.afterSynchronise(result)
-    '    End If
-
-    '    Return result
-
-    'End Function
-
     Private Function beforeSynchronise() As Boolean
 
         Dim result As Boolean = False
@@ -53,19 +41,19 @@ Public Class SynchroniseWithSQLiteBase
 
             m_phoneExplorer = PhoneExplorer.GetInstance
 
-            If m_phoneExplorer.Connect Then
+            'If m_phoneExplorer.Connect Then
 
-                Dim dbPhoneFile As IFile = Factory.GetFile(SQLITE_DATABASE_PHONE_FILE_PATH)
-                Dim dbLocalFile As IFile = Factory.GetFile(SQLITE_DATABASE_LOCAL_FILE_PATH)
+            '    Dim dbPhoneFile As IFile = Factory.GetFile(SQLITE_DATABASE_PHONE_FILE_PATH)
+            '    Dim dbLocalFile As IFile = Factory.GetFile(SQLITE_DATABASE_LOCAL_FILE_PATH)
 
-                ' Copie la base de données du téléphone en local
-                m_phoneExplorer.PullFile(dbPhoneFile, dbLocalFile)
-
-            Else
-                MsgBox("Aucun téléphone n'est actuellement connecté.", MsgBoxStyle.OkOnly + MsgBoxStyle.Critical, "Connection à un téléphone...")
-            End If
+            '    ' Copie la base de données du téléphone en local
+            '    m_phoneExplorer.PullFile(dbPhoneFile, dbLocalFile)
 
             result = True
+
+            'Else
+            '    MsgBox("Aucun téléphone n'est actuellement connecté.", MsgBoxStyle.OkOnly + MsgBoxStyle.Critical, "Connection à un téléphone...")
+            'End If
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -130,14 +118,15 @@ Public Class SynchroniseWithSQLiteBase
 
             ' La table mise à jour n'est renvoyée sur le téléphone que si elle
             ' a eue des mise à jours.
-            If (syncResults.GetPhoneDataUpdatesCount > 0) OrElse (syncResults.GetPhoneDataRemovedCount > 0) Then
+            'If (syncResults.GetPhoneDataUpdatesCount > 0) OrElse (syncResults.GetPhoneDataRemovedCount > 0) Then
 
-                Dim dbPhoneFile As IFile = Factory.GetFile(SQLITE_DATABASE_PHONE_FILE_PATH)
-                Dim dbLocalFile As IFile = Factory.GetFile(SQLITE_DATABASE_LOCAL_FILE_PATH)
+            '    Dim dbPhoneFile As IFile = Factory.GetFile(SQLITE_DATABASE_PHONE_FILE_PATH)
+            '    Dim dbLocalFile As IFile = Factory.GetFile(SQLITE_DATABASE_LOCAL_FILE_PATH)
 
-                m_phoneExplorer.SendFile(dbLocalFile, dbPhoneFile)
+            '    m_phoneExplorer.RemoveFile(dbPhoneFile)
+            '    m_phoneExplorer.SendFile(dbLocalFile, dbPhoneFile)
 
-            End If
+            'End If
 
             Dim endSyncDate As Date = Now
             Dim syncDuration As TimeSpan = (endSyncDate - syncDate)

@@ -18,12 +18,17 @@ Public Class UC_Serie
     Private m_editionsList As List(Of IdBObject)
     Private m_goodiesList As List(Of IdBObject)
 
+    Private m_kindOfGoodyFlterList As List(Of KindOfGoody)
+
     Private m_serie As Serie
     Private m_currentScreen As Screens = Screens.Serie
 
     Public Sub New(frm As FrmPagesManager)
         MyBase.New(frm)
         InitializeComponent()
+
+        m_kindOfGoodyFlterList = New List(Of KindOfGoody)
+
     End Sub
 
     Protected Overrides Sub Activate()
@@ -81,14 +86,8 @@ Public Class UC_Serie
 
                 lbl_story.Text = .GetStory
 
-                m_editionsList = svcEditions.GetAllBySerie(m_serie)
-                Dim adapterEditions As IAdapter = New EditionsAdapter(m_editionsList)
-                lst_editions.SetAdapter(adapterEditions)
-
-                m_goodiesList = svcGoodies.GetAllBySerie(m_serie)
-                Dim adapterGoodies As IAdapter = New GoodiesAdapter(m_goodiesList)
-                lst_goodies.SetAdapter(adapterGoodies)
-
+                RefreshEditions()
+                RefreshGoodies()
                 UpdateSerieStats()
 
                 DrawHeader()
@@ -96,6 +95,22 @@ Public Class UC_Serie
             End With
 
         End If
+
+    End Sub
+
+    Private Sub RefreshEditions()
+
+        m_editionsList = svcEditions.GetAllBySerie(m_serie)
+        Dim adapterEditions As IAdapter = New EditionsAdapter(m_editionsList)
+        lst_editions.SetAdapter(adapterEditions)
+
+    End Sub
+
+    Private Sub RefreshGoodies()
+
+        m_goodiesList = svcGoodies.GetAllBySerie(m_serie)
+        Dim adapterGoodies As IAdapter = New GoodiesAdapter(m_goodiesList)
+        lst_goodies.SetAdapter(adapterGoodies)
 
     End Sub
 
@@ -190,7 +205,22 @@ Public Class UC_Serie
 
     End Sub
 
-    Private Sub btn_addEdition_Click(sender As Object, e As EventArgs) Handles btn_addEdition.Click
+    Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
+
+        Dim gridItem As GridItem = Nothing
+
+        Select Case m_currentScreen
+            Case Screens.Editions : AddEdition()
+            Case Screens.Goodies : AddGoody()
+        End Select
+
+        If gridItem IsNot Nothing Then
+            gridItem.ModifyItem()
+        End If
+
+    End Sub
+
+    Private Sub AddEdition()
 
         Dim newEdition As ModifiedItem = FrmWriteEdition.CreateOrEdit(Me.ParentForm, Nothing, m_serie)
 
@@ -224,7 +254,7 @@ Public Class UC_Serie
 
     End Sub
 
-    Private Sub btn_addGoody_Click(sender As Object, e As EventArgs) Handles btn_addGoody.Click
+    Private Sub AddGoody()
 
         Dim newGoody As ModifiedItem = FrmWriteGoody.CreateOrEdit(Me.ParentForm, Nothing, m_serie)
 
@@ -258,6 +288,49 @@ Public Class UC_Serie
 
     End Sub
 
+    Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
+
+        Dim gridItem As GridItem = Nothing
+
+        Select Case m_currentScreen
+            Case Screens.Editions : DeleteEdition()
+            Case Screens.Goodies : DeleteGoody()
+        End Select
+
+        If gridItem IsNot Nothing Then
+            gridItem.ModifyItem()
+        End If
+
+    End Sub
+
+    Private Sub DeleteEdition()
+
+        If MsgBox("Voulez-vous supprimer cette édition ?", vbYesNo Or vbQuestion, "Suppression...") = MsgBoxResult.Yes Then
+
+            Dim gridItem As GridItem = lst_editions.SelectedItem
+
+            If gridItem IsNot Nothing Then
+                gridItem.DeleteItem()
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub DeleteGoody()
+
+        If MsgBox("Voulez-vous supprimer ce para-bd ?", vbYesNo Or vbQuestion, "Suppression...") = MsgBoxResult.Yes Then
+
+            Dim gridItem As GridItem = lst_goodies.SelectedItem
+
+            If gridItem IsNot Nothing Then
+                gridItem.DeleteItem()
+            End If
+
+        End If
+
+    End Sub
+
     Private Sub btn_serie_Click(sender As Object, e As EventArgs) Handles btn_serie.Click
         ShowSerieInfos()
     End Sub
@@ -272,90 +345,114 @@ Public Class UC_Serie
 
     Private Sub lst_editions_ListItemAction(Sender As Object, e As GridItemActionEventArgs) Handles lst_editions.ListItemAction
 
-        If e.GetAction = GridItemActionEventArgs.listItemActions.Modify Then
-            UpdateSerieStats()
-        End If
+        Select Case e.GetAction
+            Case GridItemActionEventArgs.listItemActions.Modify
+            Case GridItemActionEventArgs.listItemActions.Delete : RefreshEditions()
+        End Select
+
+        UpdateSerieStats()
+
+    End Sub
+
+    Private Sub lst_goodies_ListItemAction(Sender As Object, e As GridItemActionEventArgs) Handles lst_goodies.ListItemAction
+
+        Select Case e.GetAction
+            Case GridItemActionEventArgs.listItemActions.Modify
+            Case GridItemActionEventArgs.listItemActions.Delete : RefreshGoodies()
+        End Select
+
+        UpdateSerieStats()
 
     End Sub
 
     Private Sub ShowSerieInfos()
 
-        btn_serie.Enabled = False
-        pnl_serieInfos.Visible = True
-        pnl_serieInfos.Focus()
-
-        btn_editions.Enabled = True
-        btn_addEdition.Visible = False
-        lst_editions.Visible = False
-
-        btn_goodies.Enabled = True
-        btn_addGoody.Visible = False
-        lst_goodies.Visible = False
-
-        btn_copy.Visible = False
-        btn_show.Visible = False
-
         m_currentScreen = Screens.Serie
 
-        btn_edit.Enabled = True
-        btn_show.Enabled = False
-        btn_copy.Enabled = False
+        ' boutons "onglets"
+        btn_serie.Enabled = False
+        btn_goodies.Enabled = True
+        btn_editions.Enabled = True
 
+        ' zones
+        pnl_serieInfos.Visible = True
+        pnl_serieInfos.Focus()
+        lst_editions.Visible = False
+        lst_goodies.Visible = False
+
+        ' visualisation des boutons d'action
+        btn_add.Visible = False
+        btn_show.Visible = False
+        btn_copy.Visible = False
+        btn_edit.Visible = True
+        btn_delete.Visible = False
+
+        ' activation des boutons d'action visibles
+        btn_edit.Enabled = True
 
     End Sub
 
     Private Sub ShowEditions()
 
-        btn_serie.Enabled = True
-        pnl_serieInfos.Visible = False
+        m_currentScreen = Screens.Editions
+        Dim itemSelected As Boolean = (lst_editions.SelectedItem IsNot Nothing)
 
+        ' boutons "onglets"
+        btn_serie.Enabled = True
         btn_editions.Enabled = False
-        btn_addEdition.Visible = True
+        btn_goodies.Enabled = True
+
+        ' zones
         lst_editions.Visible = True
         lst_editions.Focus()
-
-        btn_goodies.Enabled = True
-        btn_addGoody.Visible = False
+        pnl_serieInfos.Visible = False
         lst_goodies.Visible = False
 
-        btn_copy.Visible = True
+        ' visualisation des boutons d'action
+        btn_add.Visible = True
         btn_show.Visible = True
+        btn_copy.Visible = True
+        btn_edit.Visible = True
+        btn_delete.Visible = True
 
-        m_currentScreen = Screens.Editions
-
-
-        Dim itemSelected As Boolean = (lst_editions.SelectedItem IsNot Nothing)
-        btn_edit.Enabled = itemSelected
+        ' activation des boutons d'action visibles
+        btn_add.Enabled = True
         btn_show.Enabled = itemSelected
         btn_copy.Enabled = itemSelected
-
+        btn_edit.Enabled = itemSelected
+        btn_delete.Enabled = itemSelected
 
     End Sub
 
     Private Sub showGoodies()
 
-        btn_serie.Enabled = True
-        pnl_serieInfos.Visible = False
-        pnl_serieInfos.Focus()
-
-        btn_editions.Enabled = True
-        btn_addEdition.Visible = False
-        lst_editions.Visible = False
-
-        btn_goodies.Enabled = False
-        btn_addGoody.Visible = True
-        lst_goodies.Visible = True
-        lst_goodies.Focus()
-
-        btn_copy.Visible = True
-        btn_show.Visible = True
-
         m_currentScreen = Screens.Goodies
-
         Dim itemSelected As Boolean = (lst_goodies.SelectedItem IsNot Nothing)
-        btn_edit.Enabled = itemSelected
+
+        ' boutons "onglets"
+        btn_serie.Enabled = True
+        btn_editions.Enabled = False
+        btn_goodies.Enabled = True
+
+        ' zones
+        lst_editions.Visible = True
+        lst_editions.Focus()
+        pnl_serieInfos.Visible = False
+        lst_goodies.Visible = False
+
+        ' visualisation des boutons d'action
+        btn_add.Visible = True
+        btn_show.Visible = True
+        btn_copy.Visible = True
+        btn_edit.Visible = True
+        btn_delete.Visible = True
+
+        ' activation des boutons d'action visibles
+        btn_add.Enabled = True
         btn_show.Enabled = itemSelected
         btn_copy.Enabled = itemSelected
+        btn_edit.Enabled = itemSelected
+        btn_delete.Enabled = itemSelected
 
     End Sub
 
@@ -511,6 +608,7 @@ Public Class UC_Serie
         btn_edit.Enabled = itemSelected
         btn_show.Enabled = itemSelected
         btn_copy.Enabled = itemSelected
+        btn_delete.Enabled = itemSelected
 
     End Sub
 
@@ -521,6 +619,54 @@ Public Class UC_Serie
         btn_edit.Enabled = itemSelected
         btn_show.Enabled = itemSelected
         btn_copy.Enabled = itemSelected
+        btn_delete.Enabled = itemSelected
+
+    End Sub
+
+    Private Sub lst_goodies_ShowFilterClick(sender As Object, e As MouseEventArgs) Handles lst_goodies.ShowFilterClick
+
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+
+            Dim goodyKinds As New List(Of KindOfGoody)
+
+            For Each goody As Goody In m_goodiesList
+                If Not goodyKinds.Contains(goody.GetKindOfGoody) Then
+                    goodyKinds.Add(goody.GetKindOfGoody)
+                End If
+            Next
+
+            goodyKinds.Sort()
+            m_kindOfGoodyFlterList.Sort()
+
+            Dim result As FrmSelectItems.FrmSelectItemsResult = FrmSelectItems.GetSelectedItems(goodyKinds, m_kindOfGoodyFlterList, Me)
+
+            If result.DlgResult = DialogResult.OK Then
+
+                m_kindOfGoodyFlterList.Clear()
+
+                If result.SelectedItems Is Nothing OrElse result.SelectedItems.Count = 0 Then
+                    Dim adapterGoodies As IAdapter = New GoodiesAdapter(m_goodiesList)
+                    lst_goodies.SetAdapter(adapterGoodies)
+
+                Else
+                    For Each selecteditem As KindOfGoody In result.SelectedItems
+                        m_kindOfGoodyFlterList.Add(selecteditem)
+                    Next
+
+                    Dim filteredGoodiesList As New List(Of IdBObject)
+
+                    For Each goody As Goody In m_goodiesList
+                        If result.SelectedItems.Contains(goody.GetKindOfGoody) Then
+                            filteredGoodiesList.Add(goody)
+                        End If
+                    Next
+
+                    Dim adapterGoodies As IAdapter = New GoodiesAdapter(filteredGoodiesList)
+                    lst_goodies.SetAdapter(adapterGoodies)
+                End If
+            End If
+
+        End If
 
     End Sub
 

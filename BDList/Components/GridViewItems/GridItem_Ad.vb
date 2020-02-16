@@ -34,7 +34,7 @@ Public Class GridItem_Ad
             Lbl_EndOfValidity.Text = BuildEndOfValidity(.GetEndOfValidity)
             Lbl_State.Text = .GetState().ToString
             Lbl_Comments.Text = .GetSellerComments & vbCrLf & .GetComments
-            Lbl_ArticlesCount.Text = .GetAdArticles.Count
+            Lbl_ArticlesCount.Text = .GetArticlesCount
         End With
 
         RedrawPrice()

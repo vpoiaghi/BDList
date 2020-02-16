@@ -34,14 +34,17 @@ Partial Class GridItem_Goody
         Me.lbl_scanned = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.lbl_editor = New System.Windows.Forms.Label()
-        Me.lbl_parutionDate = New System.Windows.Forms.Label()
+        Me.lbl_purchaseDate = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         Me.lbl_authors = New System.Windows.Forms.Label()
+        Me.lbl_parutionDate = New System.Windows.Forms.Label()
         Me.Nb_Number = New FrameworkPN.Number()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.pct_minFourthImage = New System.Windows.Forms.PictureBox()
         Me.pct_minThirdImage = New System.Windows.Forms.PictureBox()
         Me.pct_minSecondImage = New System.Windows.Forms.PictureBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Lbl_Count = New System.Windows.Forms.Label()
         Me.pct_withAutograph = New System.Windows.Forms.PictureBox()
         Me.pct_inPossession = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -49,6 +52,7 @@ Partial Class GridItem_Goody
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel6.SuspendLayout()
+        Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.pct_minFourthImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pct_minThirdImage, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +91,7 @@ Partial Class GridItem_Goody
         Me.Panel2.Controls.Add(Me.lbl_comments)
         Me.Panel2.Controls.Add(Me.Panel1)
         Me.Panel2.Controls.Add(Me.Panel6)
-        Me.Panel2.Controls.Add(Me.lbl_authors)
+        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Controls.Add(Me.lbl_goodyName)
         Me.Panel2.Controls.Add(Me.lbl_serieName)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -144,7 +148,7 @@ Partial Class GridItem_Goody
         'Panel6
         '
         Me.Panel6.Controls.Add(Me.lbl_editor)
-        Me.Panel6.Controls.Add(Me.lbl_parutionDate)
+        Me.Panel6.Controls.Add(Me.lbl_purchaseDate)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel6.Location = New System.Drawing.Point(10, 75)
         Me.Panel6.Name = "Panel6"
@@ -157,10 +161,44 @@ Partial Class GridItem_Goody
         Me.lbl_editor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_editor.Location = New System.Drawing.Point(0, 0)
         Me.lbl_editor.Name = "lbl_editor"
-        Me.lbl_editor.Size = New System.Drawing.Size(477, 19)
+        Me.lbl_editor.Size = New System.Drawing.Size(495, 19)
         Me.lbl_editor.TabIndex = 7
         Me.lbl_editor.Text = "Editeur"
         Me.lbl_editor.UseMnemonic = False
+        '
+        'lbl_purchaseDate
+        '
+        Me.lbl_purchaseDate.AutoSize = True
+        Me.lbl_purchaseDate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lbl_purchaseDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_purchaseDate.Location = New System.Drawing.Point(495, 0)
+        Me.lbl_purchaseDate.Name = "lbl_purchaseDate"
+        Me.lbl_purchaseDate.Size = New System.Drawing.Size(68, 13)
+        Me.lbl_purchaseDate.TabIndex = 8
+        Me.lbl_purchaseDate.Text = "Date d'achat"
+        Me.lbl_purchaseDate.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.lbl_purchaseDate.UseMnemonic = False
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.lbl_authors)
+        Me.Panel4.Controls.Add(Me.lbl_parutionDate)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel4.Location = New System.Drawing.Point(10, 56)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(563, 19)
+        Me.Panel4.TabIndex = 13
+        '
+        'lbl_authors
+        '
+        Me.lbl_authors.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lbl_authors.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_authors.Location = New System.Drawing.Point(0, 0)
+        Me.lbl_authors.Name = "lbl_authors"
+        Me.lbl_authors.Size = New System.Drawing.Size(477, 19)
+        Me.lbl_authors.TabIndex = 10
+        Me.lbl_authors.Text = "Auteurs"
+        Me.lbl_authors.UseMnemonic = False
         '
         'lbl_parutionDate
         '
@@ -170,21 +208,10 @@ Partial Class GridItem_Goody
         Me.lbl_parutionDate.Location = New System.Drawing.Point(477, 0)
         Me.lbl_parutionDate.Name = "lbl_parutionDate"
         Me.lbl_parutionDate.Size = New System.Drawing.Size(86, 13)
-        Me.lbl_parutionDate.TabIndex = 8
+        Me.lbl_parutionDate.TabIndex = 11
         Me.lbl_parutionDate.Text = "Date de parution"
         Me.lbl_parutionDate.TextAlign = System.Drawing.ContentAlignment.TopRight
         Me.lbl_parutionDate.UseMnemonic = False
-        '
-        'lbl_authors
-        '
-        Me.lbl_authors.Dock = System.Windows.Forms.DockStyle.Top
-        Me.lbl_authors.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_authors.Location = New System.Drawing.Point(10, 56)
-        Me.lbl_authors.Name = "lbl_authors"
-        Me.lbl_authors.Size = New System.Drawing.Size(563, 19)
-        Me.lbl_authors.TabIndex = 9
-        Me.lbl_authors.Text = "Auteurs"
-        Me.lbl_authors.UseMnemonic = False
         '
         'Nb_Number
         '
@@ -248,6 +275,7 @@ Partial Class GridItem_Goody
         '
         'Panel5
         '
+        Me.Panel5.Controls.Add(Me.Lbl_Count)
         Me.Panel5.Controls.Add(Me.Nb_Number)
         Me.Panel5.Controls.Add(Me.pct_withAutograph)
         Me.Panel5.Controls.Add(Me.pct_inPossession)
@@ -256,6 +284,19 @@ Partial Class GridItem_Goody
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(40, 347)
         Me.Panel5.TabIndex = 11
+        '
+        'Lbl_Count
+        '
+        Me.Lbl_Count.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Lbl_Count.Font = New System.Drawing.Font("MS Reference Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbl_Count.ForeColor = System.Drawing.Color.SteelBlue
+        Me.Lbl_Count.Location = New System.Drawing.Point(0, 120)
+        Me.Lbl_Count.Name = "Lbl_Count"
+        Me.Lbl_Count.Size = New System.Drawing.Size(40, 40)
+        Me.Lbl_Count.TabIndex = 14
+        Me.Lbl_Count.Text = "x 2"
+        Me.Lbl_Count.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Lbl_Count.Visible = False
         '
         'pct_withAutograph
         '
@@ -309,6 +350,8 @@ Partial Class GridItem_Goody
         Me.Panel1.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         CType(Me.pct_minFourthImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pct_minThirdImage, System.ComponentModel.ISupportInitialize).EndInit()
@@ -330,15 +373,18 @@ Partial Class GridItem_Goody
     Friend WithEvents pct_minSecondImage As System.Windows.Forms.PictureBox
     Friend WithEvents pct_inPossession As System.Windows.Forms.PictureBox
     Friend WithEvents lbl_comments As System.Windows.Forms.Label
-    Friend WithEvents lbl_authors As System.Windows.Forms.Label
     Friend WithEvents pct_withAutograph As System.Windows.Forms.PictureBox
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents lbl_editor As System.Windows.Forms.Label
-    Friend WithEvents lbl_parutionDate As System.Windows.Forms.Label
+    Friend WithEvents lbl_purchaseDate As System.Windows.Forms.Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents lbl_collection As Label
     Friend WithEvents lbl_scanned As Label
     Friend WithEvents Nb_Number As Number
+    Friend WithEvents Lbl_Count As Label
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents lbl_authors As Label
+    Friend WithEvents lbl_parutionDate As Label
 End Class

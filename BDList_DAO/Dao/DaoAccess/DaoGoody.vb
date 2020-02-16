@@ -25,6 +25,7 @@ Namespace DAO
         Public Const FIELD_ID_COLLECTION As String = "IdCollection"
         Public Const FIELD_NUMBER_IN_COLLECTION As String = "NumberInCollection"
         Public Const FIELD_SCANNED As String = "Scanned"
+        Public Const FIELD_COUNT As String = "Count"
 
 
         Protected Friend Overrides Function GetBoType() As Type
@@ -39,7 +40,7 @@ Namespace DAO
             fieldsNames.AddFields(FIELD_ORDER_NUMBER, FIELD_ID_KIND_OF_GOODY, FIELD_ID_POSSESSION_STATE, FIELD_DESCRIPTION,
                                   FIELD_NUMBER, FIELD_NUMBER_TYPE, FIELD_NUMBER_MAX, FIELD_AUTOGRAPH, FIELD_PARUTION_DATE, FIELD_BOUGHT_DATE, FIELD_FORMAT,
                                   FIELD_WIDTH, FIELD_HEIGHT, FIELD_COMMENTS, FIELD_BOX_NUMBER, FIELD_ID_COLLECTION, FIELD_NUMBER_IN_COLLECTION,
-                                  FIELD_SCANNED)
+                                  FIELD_SCANNED, FIELD_COUNT)
         End Sub
 
         Protected Friend Overrides Sub InitLinkedDaoList()
@@ -72,6 +73,7 @@ Namespace DAO
                 reqBuilder.AddValue(FIELD_ID_COLLECTION, GetSqlIdValue(.GetCollection))
                 reqBuilder.AddValue(FIELD_NUMBER_IN_COLLECTION, GetSqlIntegerValue(.GetNumberInCollection))
                 reqBuilder.AddValue(FIELD_SCANNED, GetSqlBooleanValue(.IsScanned))
+                reqBuilder.AddValue(FIELD_COUNT, GetSqlIntegerValue(.GetCount))
 
             End With
 
@@ -97,6 +99,7 @@ Namespace DAO
                 .SetBoxNumber(sqlResult.GetInteger(FIELD_BOX_NUMBER))
                 .SetNumberInCollection(sqlResult.GetInteger(FIELD_NUMBER_IN_COLLECTION))
                 .SetScanned(sqlResult.GetBoolean(FIELD_SCANNED))
+                .SetCount(sqlResult.GetInteger(FIELD_COUNT))
 
                 .SetKindOfGoody(GetLinkedBoById(sqlResult, GetType(DaoKindOfGoody), FIELD_ID_KIND_OF_GOODY))
                 .SetPossessionState(GetLinkedBoById(sqlResult, GetType(DaoPossessionState), FIELD_ID_POSSESSION_STATE))
@@ -118,7 +121,7 @@ Namespace DAO
                   & " LEFT JOIN Goody_Edition ON (Goody_Edition.IdGoody = Goody_Serie.IdGoody))" _
                   & " LEFT JOIN Edition ON (Goody_Edition.IdEdition = Edition.Id)" _
                   & " WHERE IdSerie = " & idSerie _
-                  & " ORDER BY Goody.ParutionDate ASC, Description ASC, EditionNumber ASC"
+                  & " ORDER BY Goody.ParutionDate ASC, Description ASC, EditionNumber ASC, Goody.IdCollection ASC, Goody.NumberInCollection ASC"
 
             Return GetByIds(rqt)
 
@@ -304,6 +307,54 @@ Namespace DAO
                                 & " AND " & goodyTableName & ".BoughtDate <= " & GetSqlDateValue(lastDate) _
                                 & " AND Goody_Editor.IdEditor = " & idEditor _
                                 & " ORDER BY " & goodyTableName & ".BoughtDate ASC, Description ASC, EditionNumber ASC"
+
+            Return GetByIds(rqt)
+
+        End Function
+
+        Public Function GetPurchased() As List(Of IdBObject)
+
+            Dim goodyTableName As String = GetTableName()
+            Dim goodySerieTableName As String = GetLinkTableName(Of DaoGoody, DaoSerie)()
+            Dim editionTableName As String = DaoManager.GetDao(Of DaoEdition).GetTableName()
+            Dim goodyEditionTableName As String = GetLinkTableName(Of DaoGoody, DaoEdition)()
+
+            Dim rqt As String =
+                " SELECT " & goodySerieTableName & ".IdGoody AS Id" &
+                " FROM (((" & goodySerieTableName &
+                " LEFT JOIN " & goodyTableName & " ON (" & goodySerieTableName & ".IdGoody = " & goodyTableName & ".Id))" &
+                " LEFT JOIN " & goodyEditionTableName & " ON (" & goodyEditionTableName & ".IdGoody = " & goodySerieTableName & ".IdGoody))" &
+                " LEFT JOIN " & editionTableName & " ON (" & goodyEditionTableName & ".IdEdition = " & editionTableName & ".Id))" &
+                " LEFT JOIN Goody_Editor ON (Goody.Id = Goody_Editor.IdGoody)" &
+                " WHERE " & goodyTableName & ".BoughtDate IS NOT NULL " &
+                " ORDER BY " & goodyTableName & ".BoughtDate DESC, Description ASC, EditionNumber ASC"
+
+            Return GetByIds(rqt)
+
+        End Function
+
+        Public Function GetPurchasedByEditor(editor As Editor) As List(Of IdBObject)
+
+            Dim goodyTableName As String = GetTableName()
+            Dim goodySerieTableName As String = GetLinkTableName(Of DaoGoody, DaoSerie)()
+            Dim editionTableName As String = DaoManager.GetDao(Of DaoEdition).GetTableName()
+            Dim goodyEditionTableName As String = GetLinkTableName(Of DaoGoody, DaoEdition)()
+
+            Dim rqt As String =
+                " SELECT " & goodySerieTableName & ".IdGoody AS Id" &
+                " FROM (((" & goodySerieTableName &
+                " LEFT JOIN " & goodyTableName & " ON (" & goodySerieTableName & ".IdGoody = " & goodyTableName & ".Id))" &
+                " LEFT JOIN " & goodyEditionTableName & " ON (" & goodyEditionTableName & ".IdGoody = " & goodySerieTableName & ".IdGoody))" &
+                " LEFT JOIN " & editionTableName & " ON (" & goodyEditionTableName & ".IdEdition = " & editionTableName & ".Id))" &
+                " LEFT JOIN Goody_Editor ON (Goody.Id = Goody_Editor.IdGoody)" &
+                " WHERE " & goodyTableName & ".BoughtDate IS NOT NULL "
+
+            If (Not editor Is Nothing) Then
+                rqt &= " AND Goody_Editor.IdEditor = " & editor.GetId()
+            End If
+
+            rqt &=
+                " ORDER BY " & goodyTableName & ".BoughtDate DESC, Description ASC, EditionNumber ASC"
 
             Return GetByIds(rqt)
 

@@ -24,7 +24,7 @@ Partial Class UC_Coming
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lst_comingItemsList = New FrameworkPN.GridView()
+        Me.GVw_Items = New FrameworkPN.GridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lst_editors = New System.Windows.Forms.ListView()
         Me.col_editorName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -35,18 +35,19 @@ Partial Class UC_Coming
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'lst_comingItemsList
+        'GVw_Items
         '
-        Me.lst_comingItemsList.BackColor = System.Drawing.Color.White
-        Me.lst_comingItemsList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lst_comingItemsList.ColumnsCount = 3
-        Me.lst_comingItemsList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lst_comingItemsList.ItemsMargin = 3
-        Me.lst_comingItemsList.Location = New System.Drawing.Point(278, 118)
-        Me.lst_comingItemsList.Name = "lst_comingItemsList"
-        Me.lst_comingItemsList.RowsCount = 4
-        Me.lst_comingItemsList.Size = New System.Drawing.Size(953, 658)
-        Me.lst_comingItemsList.TabIndex = 2
+        Me.GVw_Items.BackColor = System.Drawing.Color.White
+        Me.GVw_Items.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GVw_Items.ColumnsCount = 3
+        Me.GVw_Items.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GVw_Items.ItemsMargin = 3
+        Me.GVw_Items.Location = New System.Drawing.Point(278, 118)
+        Me.GVw_Items.Name = "GVw_Items"
+        Me.GVw_Items.RowsCount = 4
+        Me.GVw_Items.ShowFilter = False
+        Me.GVw_Items.Size = New System.Drawing.Size(953, 658)
+        Me.GVw_Items.TabIndex = 2
         '
         'Panel1
         '
@@ -119,7 +120,7 @@ Partial Class UC_Coming
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.Controls.Add(Me.lst_comingItemsList)
+        Me.Controls.Add(Me.GVw_Items)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
         Me.Name = "UC_Coming"
@@ -127,14 +128,14 @@ Partial Class UC_Coming
         Me.Title = "A paraître"
         Me.Controls.SetChildIndex(Me.Panel2, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
-        Me.Controls.SetChildIndex(Me.lst_comingItemsList, 0)
+        Me.Controls.SetChildIndex(Me.GVw_Items, 0)
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents lst_comingItemsList As FrameworkPN.GridView
+    Friend WithEvents GVw_Items As FrameworkPN.GridView
     Friend WithEvents lst_editors As System.Windows.Forms.ListView
     Friend WithEvents col_editorName As System.Windows.Forms.ColumnHeader
     Friend WithEvents Panel2 As Panel

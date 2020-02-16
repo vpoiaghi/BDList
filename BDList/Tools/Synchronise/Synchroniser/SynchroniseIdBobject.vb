@@ -19,7 +19,6 @@ Public MustInherit Class SynchroniseIdBobject
     Public MustOverride Sub LocalItemToPhoneItem(localItem As IdBObject, phoneItem As IdBObject)
     Protected MustOverride Sub PhoneItemToLocalItem(phoneItem As IdBObject, localItem As IdBObject)
 
-
     Private m_lastSyncDate As DateTime
 
     Public Sub New()

@@ -157,6 +157,10 @@ Namespace DAO
             m_daoDelete.Delete(boList)
         End Sub
 
+        Public Overrides Sub DeleteAll()
+            Throw New NotSupportedException("DeleteAll n'est pas autorisée")
+        End Sub
+
         Protected Overrides Sub DeleteAllInBase()
             ExecuteNonQuery("DELETE FROM " & GetTableName())
         End Sub

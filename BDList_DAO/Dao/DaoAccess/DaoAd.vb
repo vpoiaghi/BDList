@@ -23,7 +23,8 @@ Namespace DAO
                                   "EndOfValidity",
                                   "IdState",
                                   "CurrentCost",
-                                  "BestPrice")
+                                  "BestPrice",
+                                  "ArticleCount")
         End Sub
 
         Protected Friend Overrides Sub InitLinkedDaoList()
@@ -41,6 +42,7 @@ Namespace DAO
                 .SetEndOfValidity(sqlResult.GetDate("EndOfValidity"))
                 .SetCurrentCost(sqlResult.GetSingle("CurrentCost"))
                 .SetBestPrice(sqlResult.GetSingle("BestPrice"))
+                .SetArticlesCount(sqlResult.GetInteger("ArticlesCount"))
 
                 .SetState(GetLinkedBoById(sqlResult, GetType(DaoAdState), "IdState"))
 
@@ -59,6 +61,7 @@ Namespace DAO
                 reqBuilder.AddValue("IdState", GetSqlIdValue(.GetState))
                 reqBuilder.AddValue("CurrentCost", GetSqlSingleValue(.GetCurrentCost))
                 reqBuilder.AddValue("BestPrice", GetSqlSingleValue(.GetBestPrice))
+                reqBuilder.AddValue("ArticlesCount", GetSqlIntegerValue(.GetArticlesCount))
             End With
 
         End Sub

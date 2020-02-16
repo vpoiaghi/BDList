@@ -54,6 +54,8 @@ Partial Class FrmWriteAd
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btn_edit = New System.Windows.Forms.Button()
         Me.btn_add = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Txt_articlesCount = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Pnl_ImportFromBDFugue.SuspendLayout()
@@ -95,6 +97,8 @@ Partial Class FrmWriteAd
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Txt_articlesCount)
+        Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.Btn_PasteImage)
         Me.TabPage1.Controls.Add(Me.Pnl_ImportFromBDFugue)
         Me.TabPage1.Controls.Add(Me.Pnl_ImportFromEbay)
@@ -266,7 +270,7 @@ Partial Class FrmWriteAd
         Me.Dtb_EndOfValidity.Name = "Dtb_EndOfValidity"
         Me.Dtb_EndOfValidity.Size = New System.Drawing.Size(154, 20)
         Me.Dtb_EndOfValidity.TabIndex = 56
-        Me.Dtb_EndOfValidity.Text = "            "
+        Me.Dtb_EndOfValidity.Text = "             "
         Me.Dtb_EndOfValidity.TimeFormat = "HH:mm:ss"
         '
         'Label5
@@ -346,6 +350,7 @@ Partial Class FrmWriteAd
         Me.GVw_articles.Location = New System.Drawing.Point(3, 53)
         Me.GVw_articles.Name = "GVw_articles"
         Me.GVw_articles.RowsCount = 2
+        Me.GVw_articles.ShowFilter = False
         Me.GVw_articles.Size = New System.Drawing.Size(808, 382)
         Me.GVw_articles.TabIndex = 1
         '
@@ -381,6 +386,23 @@ Partial Class FrmWriteAd
         Me.btn_add.Size = New System.Drawing.Size(50, 50)
         Me.btn_add.TabIndex = 6
         Me.btn_add.UseVisualStyleBackColor = False
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(384, 403)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(94, 13)
+        Me.Label11.TabIndex = 71
+        Me.Label11.Text = "Nombre d'articles :"
+        '
+        'Txt_articlesCount
+        '
+        Me.Txt_articlesCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Txt_articlesCount.Location = New System.Drawing.Point(484, 401)
+        Me.Txt_articlesCount.Name = "Txt_articlesCount"
+        Me.Txt_articlesCount.Size = New System.Drawing.Size(79, 20)
+        Me.Txt_articlesCount.TabIndex = 72
         '
         'FrmWriteAd
         '
@@ -438,4 +460,6 @@ Partial Class FrmWriteAd
     Friend WithEvents btn_edit As Button
     Friend WithEvents btn_add As Button
     Friend WithEvents Btn_PasteImage As Button
+    Friend WithEvents Txt_articlesCount As TextBox
+    Friend WithEvents Label11 As Label
 End Class

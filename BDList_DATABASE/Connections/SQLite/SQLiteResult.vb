@@ -10,8 +10,10 @@ Public Class SQLiteResult
 
     Public Sub New(result As SQLiteDataReader)
 
-        m_datatable.Load(result)
-        m_rowsCount = m_datatable.Rows.Count
+        If result IsNot Nothing Then
+            m_datatable.Load(result)
+            m_rowsCount = m_datatable.Rows.Count
+        End If
 
         result = Nothing
 

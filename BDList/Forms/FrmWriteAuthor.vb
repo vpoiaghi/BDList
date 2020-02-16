@@ -505,7 +505,7 @@ Public Class FrmWriteAuthor
         m_personChanged = True
     End Sub
 
-    Private Sub DtbBirthday_TextChanged(sender As Object, e As EventArgs) Handles DtbBirthday.TextChanged
+    Private Sub DtbBirthday_TextChanged(sender As Object, e As EventArgs) Handles DtbBirthday.DateChanged
         m_personChanged = True
     End Sub
 
@@ -513,7 +513,7 @@ Public Class FrmWriteAuthor
         m_personChanged = True
     End Sub
 
-    Private Sub DtbDeathday_TextChanged(sender As Object, e As EventArgs) Handles DtbDeathday.TextChanged
+    Private Sub DtbDeathday_TextChanged(sender As Object, e As EventArgs) Handles DtbDeathday.DateChanged
         m_personChanged = True
     End Sub
 

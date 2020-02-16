@@ -32,6 +32,21 @@ Namespace BO
             m_adArticles = adArticles
         End Sub
 
+        Public Overloads Function GetArticlesCount() As Integer
+
+            Dim result As Integer
+
+            If (m_adArticles Is Nothing) OrElse (m_adArticles.Count = 0) Then
+                result = MyBase.GetArticlesCount
+            Else
+                result = m_adArticles.Count
+            End If
+
+            Return result
+
+        End Function
+
+
         Public Overloads Function GetState() As AdState
             Return MyBase.GetState
         End Function

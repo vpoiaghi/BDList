@@ -2,7 +2,7 @@
 Imports FrameworkPN
 
 Public Class RecentlyModifiedItemsAdapter
-    Inherits IdBObjectsAdapter
+    Inherits ChronologicParutionSortAdapter
 
     Public Sub New(idBObjects As List(Of IdBObject))
         MyBase.New(idBObjects)
