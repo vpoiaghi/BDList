@@ -431,8 +431,8 @@ Public Class UC_Serie
 
         ' boutons "onglets"
         btn_serie.Enabled = True
-        btn_editions.Enabled = False
-        btn_goodies.Enabled = True
+        btn_editions.Enabled = True
+        btn_goodies.Enabled = False
 
         ' zones
         lst_goodies.Visible = True
